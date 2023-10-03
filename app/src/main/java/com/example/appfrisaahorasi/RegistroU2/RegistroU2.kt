@@ -23,16 +23,28 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun RegistroU2() {
     Column(
-        modifier = Modifier.fillMaxSize().background(color = Color.White).padding(20.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color.White)
+            .padding(53.dp),
         verticalArrangement = Arrangement.Top, // Align items to the top
         horizontalAlignment = CenterHorizontally
     ) {
         Text(
             text = "Tags",
-            fontSize = 48.sp, // Adjust the size as needed
+            fontSize = 40.sp, // Adjust the size as needed
             fontWeight = FontWeight.Bold,
             color = Color.Black
         )
 
+        Text(text = "Seleccione los temas con los cuales desea que le aparezca informacion relevante.",
+            modifier = Modifier.padding(15.dp))
+
+
+
+
+
     }
+
+
 }

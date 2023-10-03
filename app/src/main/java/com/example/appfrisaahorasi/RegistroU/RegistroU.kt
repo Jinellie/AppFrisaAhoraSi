@@ -23,13 +23,16 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun RegistroU() {
     Column(
-        modifier = Modifier.fillMaxSize().background(color = Color.White).padding(20.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color.White)
+            .padding(53.dp),
         verticalArrangement = Arrangement.Top, // Align items to the top
         horizontalAlignment = CenterHorizontally
     ) {
         Text(
             text = "Registro",
-            fontSize = 48.sp, // Adjust the size as needed
+            fontSize = 40.sp, // Adjust the size as needed
             fontWeight = FontWeight.Bold,
             color = Color.Black
         )
