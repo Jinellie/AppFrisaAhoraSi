@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.ui.unit.sp
@@ -22,12 +23,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material3.Icon
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -35,6 +42,17 @@ import androidx.compose.ui.unit.dp
 @Preview
 @Composable
 fun RegistroU2() {
+
+    val tags: List<String> = listOf(
+        "Ambientalistas",
+        "Artisticos",
+        "Ambientalistas",
+        "Discapacidades",
+        "Medicos"
+
+    )
+
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -51,10 +69,18 @@ fun RegistroU2() {
         )
 
         Text(text = "Seleccione los temas con los cuales desea que le aparezca informacion relevante.",
-            modifier = Modifier.padding(15.dp))
+            modifier = Modifier.padding(20.dp),
+            textAlign = TextAlign.Center,
+            color = Color.Black,
+            fontSize = 15.sp)
+        Spacer(modifier = Modifier.height(44.dp))
 
 
-        ExampleBox()
+        LazyColumn {
+            items(items = tags) {
+                ExampleBox(tags = it)
+            }
+        }
 
 
 
@@ -67,26 +93,34 @@ fun RegistroU2() {
 
 //@Preview
 @Composable
-fun ExampleBox(){
+fun ExampleBox(tags: String){
+    val Redish = Color(red = 184, green = 4, blue = 4)
+
     Column(modifier = Modifier
         .fillMaxWidth()
-        .wrapContentSize(Alignment.Center)) {
+        .wrapContentSize(Alignment.Center).padding(15.dp)) {
         Box(
             modifier = Modifier
                 .height(50.dp)
-                .background(Color.White)
                 .width(275.dp)
+                .clip(RoundedCornerShape(15.dp))
                 .border(
                     width = 1.5.dp,
                     color = Color.Black,
-                    shape = RoundedCornerShape(15.dp)
-                )
+                    shape = RoundedCornerShape(15.dp))
+                .background(Color.White)
+
+
+
 
         )
         {
-            Text(text = "Ambientalistas",
-                modifier = Modifier.padding(16.dp),
-                textAlign = TextAlign.Center)
+            Text(text = tags,
+                modifier = Modifier.padding(16.dp)
+                .fillMaxSize(),
+                textAlign = TextAlign.Center,
+                color = Color.Black)
+
         }
     }
 }

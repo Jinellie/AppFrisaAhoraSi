@@ -10,6 +10,7 @@ android {
     defaultConfig {
         applicationId = "com.example.appfrisaahorasi"
         minSdk = 24
+        compileSdkPreview = "UpsideDownCake"
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
