@@ -37,6 +37,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults.indicatorLine
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.VisualTransformation
 
 class RegistroActivity : ComponentActivity() {
@@ -47,6 +48,36 @@ class RegistroActivity : ComponentActivity() {
         }
     }
 }
+@Composable
+fun CustomTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    placeholder: String,
+    keyboardType: KeyboardType
+) {
+    TextField(
+        value = value,
+        onValueChange = onValueChange,
+        placeholder = { Text(placeholder) },
+        colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = Color(red = 0.37578123807907104f, green = 0.37578123807907104f, blue = 0.37578123807907104f, alpha = 0.20999999344348907f),
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            cursorColor = Color.Black
+        ),
+        modifier = Modifier.fillMaxWidth()
+            .clip(RoundedCornerShape(5.dp))
+            .padding(18.dp, 6.dp, 18.dp, 6.dp),
+        shape = RoundedCornerShape(5.dp),
+        singleLine = true,
+        textStyle = TextStyle.Default,
+        keyboardOptions = KeyboardOptions.Default.copy(
+            keyboardType = keyboardType
+        ),
+        keyboardActions = KeyboardActions(onDone = { /* Acción al presionar Enter/Done */ })
+    )
+}
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -70,32 +101,23 @@ fun RegistroScreen() {
             ) {
                 Text(
                     text = "Registro",
-                    fontSize = 28.sp
+                    fontSize = 40.sp, // Adjust the size as needed
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
                 )
 
-                TextField(
+                CustomTextField(
                     value = viewModel.nombre,
                     onValueChange = { newValue -> viewModel.onNombreChanged(newValue) },
-                    label = { Text("Nombre") },
-                    colors = TextFieldDefaults.textFieldColors(
-                        //backgroundColor = MaterialTheme.colors.surface.copy(alpha = 0.3f)
-                        backgroundColor = Color(red = 0.37578123807907104f, green = 0.37578123807907104f, blue = 0.37578123807907104f, alpha = 0.20999999344348907f),
-                        focusedIndicatorColor = Color.Transparent, // Elimina el indicador de enfoque
-                        unfocusedIndicatorColor = Color.Transparent, // Elimina el indicador sin enfoque
-                        cursorColor = Color.Black // Cambia el color del cursor si es necesario
-                    ),
-                    modifier = Modifier.fillMaxWidth()
-                        .width(275.dp)
-                        .height(50.dp)
-                        .clip(RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp, bottomStart = 5.dp, bottomEnd = 5.dp))
-                        .padding(start = 18.dp, top = 6.dp, end = 18.dp, bottom = 6.dp),
-                    shape = RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp, bottomStart = 5.dp, bottomEnd = 5.dp),
-                    singleLine = true,
-                    textStyle = TextStyle.Default, // Puedes personalizar esto según tus necesidades
-                    keyboardOptions = KeyboardOptions.Default.copy(
-                        keyboardType = KeyboardType.Text
-                    ),
-                    keyboardActions = KeyboardActions(onDone = { /* Acción al presionar Enter/Done */ })
+                    placeholder = "Nombre",
+                    keyboardType = KeyboardType.Text
+                )
+
+                CustomTextField(
+                    value = viewModel.celular,
+                    onValueChange = { newValue -> viewModel.onCelularChanged(newValue) },
+                    placeholder = "Celular",
+                    keyboardType = KeyboardType.Phone
                 )
 
                 BasicTextField(
