@@ -66,7 +66,8 @@ fun CustomTextField(
             unfocusedIndicatorColor = Color.Transparent,
             cursorColor = Color.Black
         ),
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .clip(RoundedCornerShape(5.dp))
             .padding(18.dp, 6.dp, 18.dp, 6.dp),
         shape = RoundedCornerShape(5.dp),
@@ -102,7 +103,8 @@ fun PasswordTextField(
             unfocusedIndicatorColor = Color.Transparent,
             cursorColor = Color.Black
         ),
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .clip(RoundedCornerShape(5.dp))
             .padding(18.dp, 6.dp, 18.dp, 6.dp),
         shape = RoundedCornerShape(5.dp),
@@ -195,7 +197,7 @@ fun RegistroScreen() {
                     passwordVisibility = true // Puedes controlar la visibilidad de la contraseña aquí
                 )
 
-
+                ValidationExample()
                 Button(
                     onClick = { /* Realizar registro aquí */ },
                 ) {
@@ -240,31 +242,26 @@ class RegistroViewModel : ViewModel() {
         repetirContrasena = newRepetirContrasena
     }
 }
-@Preview
+
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun testStyle(){
+fun ValidationExample() {
+    var textInput by remember { mutableStateOf("") }
+    var isValid by remember { mutableStateOf(false) }
 
+    TextField(
+        value = textInput,
+        onValueChange = { input ->
+            textInput = input
+            isValid = input.isNotEmpty() // Add your custom validation rules here
+        },
+        label = { Text("Enter Text") },
+        isError = !isValid
+    )
 
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.Start),
-        modifier = Modifier
-
-            .width(275.dp)
-            .height(30.dp)
-            .clip(RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp, bottomStart = 5.dp, bottomEnd = 5.dp))
-            .background(Color(red = 0.37578123807907104f, green = 0.37578123807907104f, blue = 0.37578123807907104f, alpha = 0.20999999344348907f))
-
-            .padding(start = 18.dp, top = 6.dp, end = 18.dp, bottom = 6.dp)
-
-            .alpha(1f)
-
-
-    ) {
+    if (!isValid) {
+        Text(text = "Please enter valid text", color = Color.Red)
     }
-
-
 }
-
-
 
