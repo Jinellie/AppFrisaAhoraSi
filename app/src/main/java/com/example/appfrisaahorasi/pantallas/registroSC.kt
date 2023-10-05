@@ -48,6 +48,7 @@ class RegistroActivity : ComponentActivity() {
         }
     }
 }
+
 @Composable
 fun CustomTextField(
     value: String,
@@ -75,6 +76,53 @@ fun CustomTextField(
             keyboardType = keyboardType
         ),
         keyboardActions = KeyboardActions(onDone = { /* Acción al presionar Enter/Done */ })
+    )
+}
+
+@Composable
+fun PasswordTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    placeholder: String,
+    keyboardType: KeyboardType,
+    isPassword: Boolean = false,
+    passwordVisibility: Boolean = true
+) {
+    val visualTransformation = if (isPassword) {
+        if (passwordVisibility) PasswordVisualTransformation() else VisualTransformation.None
+    } else VisualTransformation.None
+
+    TextField(
+        value = value,
+        onValueChange = onValueChange,
+        placeholder = { Text(placeholder) },
+        colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = Color(red = 0.37578123807907104f, green = 0.37578123807907104f, blue = 0.37578123807907104f, alpha = 0.20999999344348907f),
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            cursorColor = Color.Black
+        ),
+        modifier = Modifier.fillMaxWidth()
+            .clip(RoundedCornerShape(5.dp))
+            .padding(18.dp, 6.dp, 18.dp, 6.dp),
+        shape = RoundedCornerShape(5.dp),
+        singleLine = true,
+        textStyle = TextStyle.Default,
+        keyboardOptions = KeyboardOptions.Default.copy(
+            keyboardType = keyboardType
+        ),
+        keyboardActions = KeyboardActions(onDone = { /* Acción al presionar Enter/Done */ }),
+        visualTransformation = visualTransformation,
+        trailingIcon = {
+            if (isPassword) {
+                IconButton(onClick = { /* Toggle password visibility */ }) {
+                    val visibilityIcon =
+                        if (passwordVisibility) Icons.Default.Visibility else Icons.Default.VisibilityOff
+                    val description = if (passwordVisibility) "Show password" else "Hide password"
+                    Icon(imageVector = visibilityIcon, contentDescription = description)
+                }
+            }
+        }
     )
 }
 
@@ -120,71 +168,33 @@ fun RegistroScreen() {
                     keyboardType = KeyboardType.Phone
                 )
 
-                BasicTextField(
-                    value = viewModel.celular,
-                    onValueChange = { newValue -> viewModel.onCelularChanged(newValue) },
-                    singleLine = true,
-                    textStyle = TextStyle.Default, // Puedes personalizar esto según tus necesidades
-                    keyboardOptions = KeyboardOptions.Default.copy(
-                        keyboardType = KeyboardType.Phone
-                    ),
-                    keyboardActions = KeyboardActions(onDone = { /* Acción al presionar Enter/Done */ })
-                )
-
-                BasicTextField(
+                CustomTextField(
                     value = viewModel.correo,
                     onValueChange = { newValue -> viewModel.onCorreoChanged(newValue) },
-                    singleLine = true,
-                    textStyle = TextStyle.Default, // Puedes personalizar esto según tus necesidades
-                    keyboardOptions = KeyboardOptions.Default.copy(
-                        keyboardType = KeyboardType.Email
-                    ),
-                    keyboardActions = KeyboardActions(onDone = { /* Acción al presionar Enter/Done */ })
+                    placeholder = "Correo (Opcional)",
+                    keyboardType = KeyboardType.Email
                 )
+
                 var passwordHidden by rememberSaveable { mutableStateOf(true) }
 
-                TextField(
+                PasswordTextField(
                     value = viewModel.contrasena,
                     onValueChange = { newValue -> viewModel.onContrasenaChanged(newValue) },
-                    singleLine = true,
-                    visualTransformation =
-                    if (passwordHidden) PasswordVisualTransformation() else VisualTransformation.None,
-                    trailingIcon = {
-                        IconButton(onClick = { passwordHidden = !passwordHidden }) {
-                            val visibilityIcon =
-                                if (passwordHidden) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
-                            // Please provide localized description for accessibility services
-                            val description = if (passwordHidden) "Show password" else "Hide password"
-                            Icon(imageVector = visibilityIcon, contentDescription = description)
-                        }
-                    },
-                    textStyle = TextStyle.Default, // Puedes personalizar esto según tus necesidades
-                    keyboardOptions = KeyboardOptions.Default.copy(
-                        keyboardType = KeyboardType.Password
-                    ),
-                    keyboardActions = KeyboardActions(onDone = { /* Acción al presionar Enter/Done */ })
+                    placeholder = "Contraseña",
+                    keyboardType = KeyboardType.Password,
+                    isPassword = true,
+                    passwordVisibility = passwordHidden
                 )
 
-                BasicTextField(
+                PasswordTextField(
                     value = viewModel.repetirContrasena,
                     onValueChange = { newValue -> viewModel.onRepetirContrasenaChanged(newValue) },
-                    singleLine = true,
-                    textStyle = TextStyle.Default, // Puedes personalizar esto según tus necesidades
-                    keyboardOptions = KeyboardOptions.Default.copy(
-                        keyboardType = KeyboardType.Password
-                    ),
-                    keyboardActions = KeyboardActions(onDone = { /* Acción al presionar Enter/Done */ })
+                    placeholder = "Repetir Contraseña",
+                    keyboardType = KeyboardType.Password,
+                    isPassword = true,
+                    passwordVisibility = true // Puedes controlar la visibilidad de la contraseña aquí
                 )
 
-/*                BasicTextField(
-                    value = viewModel.repetirContrasena,
-                    onValueChange = { viewModel.onRepetirContrasenaChanged(it) },
-                    singleLine = true,
-                    placeholder = { Text("Repetir Contraseña") },
-                    keyboardOptions = KeyboardOptions.Default.copy(
-                        keyboardType = KeyboardType.Password
-                    )
-                )*/
 
                 Button(
                     onClick = { /* Realizar registro aquí */ },
