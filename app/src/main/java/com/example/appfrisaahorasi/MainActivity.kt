@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.appfrisaahorasi.RegistroU2.RegistroU2
 import com.example.appfrisaahorasi.RegistroU2.ExampleBox
+import com.example.appfrisaahorasi.TipodeUsuario.TipodeUsuario
 import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
 
 class MainActivity : ComponentActivity() {
@@ -24,7 +25,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    RegistroU2()
+                    TipodeUsuario()
                 }
             }
         }
