@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#DDDDDD">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#C63636"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:id="@+id/nav_bar_item"
+        tools:ignore="MissingConstraints"
+        >
+
+        <ImageView
+            android:id="@+id/toolbar_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="Icon"
+            android:src="@drawable/nav_bar" />
+
+        <LinearLayout
+            android:layout_width="276dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="31dp"
+            android:background="@drawable/rounded_gray"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/editTextSearch"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="Buscar..."
+                android:inputType="text"
+                android:paddingLeft="15dp"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:id="@+id/dd"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+
+                android:layout_marginRight="15dp"
+                android:contentDescription="Icon"
+                android:src="@drawable/baseline_search_24" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <GridLayout
+        android:id="@+id/tag1"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_gravity="center_horizontal"
+        android:columnCount="3"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/nav_bar_item" >
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_search_view"
+            android:padding="10dp"
+            android:layout_columnWeight="1"
+            android:text="Ambiental" />
+
+        <TextView
+            android:id="@+id/Element2"
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:background="@drawable/rounded_search_view"
+            android:padding="10dp"
+            android:text="Seguridad" />
+        <TextView
+            android:id="@+id/Element3"
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:background="@drawable/rounded_search_view"
+            android:padding="10dp"
+            android:text="Seguros" />
+    </GridLayout>
+    <GridLayout
+        android:id="@+id/tag2"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_gravity="center_horizontal"
+        android:columnCount="3"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/tag1" >
+
+
+        <TextView
+            android:id="@+id/element4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_search_view"
+            android:padding="10dp"
+            android:layout_columnWeight="1"
+            android:text="Seguro Social" />
+
+        <TextView
+            android:id="@+id/e5"
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:background="@drawable/rounded_search_view"
+            android:padding="10dp"
+            android:text="Seguridad Nacional" />
+        <TextView
+            android:id="@+id/e6"
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:background="@drawable/rounded_search_view"
+            android:padding="10dp"
+            android:text="Aseguradora" />
+    </GridLayout>
+    <GridLayout
+        android:id="@+id/tag3"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_gravity="center_horizontal"
+        android:columnCount="3"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/tag2" >
+
+
+        <TextView
+            android:id="@+id/e7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_search_view"
+            android:padding="10dp"
+            android:layout_columnWeight="1"
+            android:text="Seguridad" />
+
+        <TextView
+            android:id="@+id/e8"
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:background="@drawable/rounded_search_view"
+            android:padding="10dp"
+            android:text="Privacidad" />
+        <TextView
+            android:id="@+id/e9"
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:background="@drawable/rounded_search_view"
+            android:padding="10dp"
+            android:text="Enfermedades" />
+
+    </GridLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
