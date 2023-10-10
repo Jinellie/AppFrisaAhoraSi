@@ -94,7 +94,6 @@ fun RegistroU2() {
 //@Preview
 @Composable
 fun ExampleBox(tags: String){
-    val Redish = Color(red = 184, green = 4, blue = 4)
 
     Column(modifier = Modifier
         .fillMaxWidth()
