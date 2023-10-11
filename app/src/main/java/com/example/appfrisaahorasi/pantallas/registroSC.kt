@@ -329,6 +329,9 @@ fun RegistroScreenPreview() {
 
 
 class RegistroViewModel : ViewModel() {
+    var horaInicio by mutableStateOf("")
+    var horaFin by mutableStateOf("")
+
     var nombre by mutableStateOf("")
     var celular by mutableStateOf("") // celular al que se vincula la cuenta
     var correo by mutableStateOf("")
@@ -343,6 +346,13 @@ class RegistroViewModel : ViewModel() {
 
     fun onNombreChanged(newNombre: String) {
         nombre = newNombre
+    }
+
+    fun onHoraInicioChanged(newInicio: String) {
+        horaInicio = newInicio
+    }
+    fun onHoraFinChanged(newFin: String) {
+        horaFin = newFin
     }
 
     fun onDescripcionChanged(newDescripcion: String) {
