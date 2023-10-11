@@ -1,10 +1,10 @@
 package com.example.appfrisaahorasi.pantallas
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -14,37 +14,31 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults.indicatorLine
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.text.style.TextOverflow
-import java.util.HexFormat
-import android.net.Uri
 
 
 class RegistroActivity : ComponentActivity() {
@@ -332,6 +326,11 @@ class RegistroViewModel : ViewModel() {
     var horaInicio by mutableStateOf("")
     var horaFin by mutableStateOf("")
 
+    var instagram by mutableStateOf("")
+    var twitter by mutableStateOf("")
+    var facebook by mutableStateOf("")
+
+
     var nombre by mutableStateOf("")
     var celular by mutableStateOf("") // celular al que se vincula la cuenta
     var correo by mutableStateOf("")
@@ -346,6 +345,16 @@ class RegistroViewModel : ViewModel() {
 
     fun onNombreChanged(newNombre: String) {
         nombre = newNombre
+    }
+
+    fun onInstagramChanged(newInstagram: String) {
+        instagram = newInstagram
+    }
+    fun onTwitterChanged(newTwitter: String) {
+        twitter = newTwitter
+    }
+    fun onFacebookChanged(newFacebook: String) {
+        facebook = newFacebook
     }
 
     fun onHoraInicioChanged(newInicio: String) {
