@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 
 @Preview
 @Composable
-fun RegistroU2() {
+fun registroU2() {
 
     val tags: List<String> = listOf(
         "Ambientalistas",
