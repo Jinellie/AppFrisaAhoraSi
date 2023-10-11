@@ -51,7 +51,8 @@ fun RegistroSC2Screen() {
     Scaffold( // nav bar iría aquí
         topBar = {
             TopAppBar(
-                title = { Text(text = "Registro") }
+                title = { Text(text = "") },
+                backgroundColor = Color(red = 0.7216145992279053f, green = 0.015033637173473835f, blue = 0.015033637173473835f, alpha = 0.7900000214576721f)
             )
         },
         content = {

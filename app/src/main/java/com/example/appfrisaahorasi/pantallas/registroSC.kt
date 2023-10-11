@@ -39,6 +39,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+// firebase y phone auth registro
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.tasks.await
 
 
 class RegistroActivity : ComponentActivity() {
@@ -138,7 +145,8 @@ fun RegistroScreen() {
     Scaffold( // nav bar iría aquí
         topBar = {
             TopAppBar(
-                title = { Text(text = "Registro") }
+                title = { Text(text = "") },
+                backgroundColor = Color(red = 0.7216145992279053f, green = 0.015033637173473835f, blue = 0.015033637173473835f, alpha = 0.7900000214576721f)
             )
         },
         content = {
@@ -306,7 +314,8 @@ fun RegistroScreen() {
                         disabledElevation = 0.dp,
                         hoveredElevation = 4.dp,
                         focusedElevation = 4.dp
-                    )
+
+                    ),
                 ) {
                     Text(text = "Guardar", color = Color.White)
                 }
@@ -321,6 +330,14 @@ fun RegistroScreenPreview() {
     RegistroScreen()
 }
 
+data class UserData(
+    val nombre: String,
+    val celular: String,
+    val correo: String,
+    val direccion: String,
+    val descripcion: String,
+    val edad: String
+)
 
 class RegistroViewModel : ViewModel() {
     var horaInicio by mutableStateOf("")
@@ -342,6 +359,48 @@ class RegistroViewModel : ViewModel() {
     var descripcion by mutableStateOf("") // descripcion para perfil de usuario o org
     var edad by  mutableStateOf("")
     var profilePictureUri by mutableStateOf<Uri?>(null)
+
+
+    // funcion de registro de usuario normal
+
+    //private val auth = FirebaseAuth.getInstance()
+    //private val firestore = FirebaseFirestore.getInstance()
+
+    /*suspend fun registerUser(
+        phoneNumber: String,
+        verificationCode: String,
+        userData: UserData
+    ): Boolean {
+        return try {
+            // Send verification code to the user's phone number
+            val options = PhoneAuthOptions.newBuilder(auth)
+                .setPhoneNumber(phoneNumber)
+                .setTimeout(60L, java.util.concurrent.TimeUnit.SECONDS)
+                .setActivity(this)
+                .setCallbacks(null)
+                .build()
+
+            val verificationId = PhoneAuthProvider.verifyPhoneNumber(options).await()
+
+            // Verify the code
+            val credential = PhoneAuthProvider.getCredential(verificationId, verificationCode)
+            auth.signInWithCredential(credential).await()
+
+            // Create user in Firestore with user data
+            val uid = auth.currentUser?.uid
+            if (uid != null) {
+                firestore.collection("users").document(uid).set(userData).await()
+            }
+
+            true
+        } catch (e: FirebaseAuthInvalidCredentialsException) {
+            // Invalid verification code
+            false
+        } catch (e: Exception) {
+            // Other errors
+            false
+        }
+    }*/
 
     fun onNombreChanged(newNombre: String) {
         nombre = newNombre
