@@ -7,11 +7,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
@@ -37,8 +35,17 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults.indicatorLine
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
+import java.util.HexFormat
+import android.net.Uri
+
 
 class RegistroActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -106,7 +113,7 @@ fun PasswordTextField(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(5.dp))
-            .padding(18.dp, 6.dp, 18.dp, 6.dp),
+            .padding(18.dp, 0.dp, 18.dp, 6.dp),
         shape = RoundedCornerShape(5.dp),
         singleLine = true,
         textStyle = TextStyle.Default,
@@ -127,7 +134,6 @@ fun PasswordTextField(
         }
     )
 }
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -156,11 +162,67 @@ fun RegistroScreen() {
                     color = Color.Black
                 )
 
+                Text(text = "Ingrese sus datos en los siguientes campos",
+                    modifier = Modifier.padding(15.dp),
+                    textAlign = TextAlign.Center,
+                    color = Color.DarkGray,
+                    fontSize = 15.sp)
+
+
+                Text(
+                    text = "Obligatorio *",
+                    textAlign = TextAlign.Start,
+                    fontSize = 12.sp,
+                    textDecoration = TextDecoration.None,
+                    letterSpacing = 0.sp,
+
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier
+                        .align(alignment = Alignment.Start)
+                        .padding(18.dp, 6.dp, 18.dp)
+
+                        .width(77.dp)
+
+                        //.height(18.dp)
+
+                        .alpha(1f),
+
+
+                    fontWeight = FontWeight.Medium,
+                    fontStyle = FontStyle.Normal,
+                    color = Color.Gray
+                )
+
                 CustomTextField(
                     value = viewModel.nombre,
-                    onValueChange = { newValue -> viewModel.onNombreChanged(newValue) },
-                    placeholder = "Nombre",
+                    onValueChange = { newValue -> viewModel.onNombreChanged(newValue)},
+                    placeholder = "Nombre del encargado",
                     keyboardType = KeyboardType.Text
+                )
+
+
+                Text(
+                    text = "Obligatorio *",
+                    textAlign = TextAlign.Start,
+                    fontSize = 12.sp,
+                    textDecoration = TextDecoration.None,
+                    letterSpacing = 0.sp,
+
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier
+                        .align(alignment = Alignment.Start)
+                        .padding(18.dp, 6.dp, 18.dp)
+
+                        .width(77.dp)
+
+                        //.height(18.dp)
+
+                        .alpha(1f),
+
+
+                    fontWeight = FontWeight.Medium,
+                    fontStyle = FontStyle.Normal,
+                    color = Color.Gray
                 )
 
                 CustomTextField(
@@ -170,15 +232,30 @@ fun RegistroScreen() {
                     keyboardType = KeyboardType.Phone
                 )
 
-                CustomTextField(
-                    value = viewModel.correo,
-                    onValueChange = { newValue -> viewModel.onCorreoChanged(newValue) },
-                    placeholder = "Correo (Opcional)",
-                    keyboardType = KeyboardType.Email
-                )
-
                 var passwordHidden by rememberSaveable { mutableStateOf(true) }
+                Text(
+                    text = "Obligatorio *",
+                    textAlign = TextAlign.Start,
+                    fontSize = 12.sp,
+                    textDecoration = TextDecoration.None,
+                    letterSpacing = 0.sp,
 
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier
+                        .align(alignment = Alignment.Start)
+                        .padding(18.dp, 6.dp, 18.dp)
+
+                        .width(77.dp)
+
+                        //.height(18.dp)
+
+                        .alpha(1f),
+
+
+                    fontWeight = FontWeight.Medium,
+                    fontStyle = FontStyle.Normal,
+                    color = Color.Gray
+                )
                 PasswordTextField(
                     value = viewModel.contrasena,
                     onValueChange = { newValue -> viewModel.onContrasenaChanged(newValue) },
@@ -187,7 +264,29 @@ fun RegistroScreen() {
                     isPassword = true,
                     passwordVisibility = passwordHidden
                 )
+                Text(
+                    text = "Obligatorio *",
+                    textAlign = TextAlign.Start,
+                    fontSize = 12.sp,
+                    textDecoration = TextDecoration.None,
+                    letterSpacing = 0.sp,
 
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier
+                        .align(alignment = Alignment.Start)
+                        .padding(18.dp, 0.dp, 18.dp, 0.dp)
+
+                        .width(77.dp)
+
+                        //.height(18.dp)
+
+                        .alpha(1f),
+
+
+                    fontWeight = FontWeight.Medium,
+                    fontStyle = FontStyle.Normal,
+                    color = Color.Gray
+                )
                 PasswordTextField(
                     value = viewModel.repetirContrasena,
                     onValueChange = { newValue -> viewModel.onRepetirContrasenaChanged(newValue) },
@@ -197,11 +296,25 @@ fun RegistroScreen() {
                     passwordVisibility = true // Puedes controlar la visibilidad de la contraseña aquí
                 )
 
-                ValidationExample()
                 Button(
                     onClick = { /* Realizar registro aquí */ },
+                    shape = RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp, bottomStart = 5.dp, bottomEnd = 5.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = Color(red = 0.7216145992279053f, green = 0.015033637173473835f, blue = 0.015033637173473835f, alpha = 0.7900000214576721f)
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .width(275.dp)
+                        .padding(start = 18.dp, top = 6.dp, end = 18.dp, bottom = 6.dp),
+                    elevation = ButtonDefaults.elevation(
+                        defaultElevation = 2.dp,
+                        pressedElevation = 8.dp,
+                        disabledElevation = 0.dp,
+                        hoveredElevation = 4.dp,
+                        focusedElevation = 4.dp
+                    )
                 ) {
-                    Text(text = "Registrarse")
+                    Text(text = "Guardar", color = Color.White)
                 }
             }
         }
@@ -217,13 +330,23 @@ fun RegistroScreenPreview() {
 
 class RegistroViewModel : ViewModel() {
     var nombre by mutableStateOf("")
-    var celular by mutableStateOf("")
+    var celular by mutableStateOf("") // celular al que se vincula la cuenta
     var correo by mutableStateOf("")
+    var direccion by mutableStateOf("")
+    var nombreOrg by mutableStateOf("") // nombre de la organización
     var contrasena by mutableStateOf("")
     var repetirContrasena by mutableStateOf("")
+    var telefono by mutableStateOf("") // telefono de una organizacion
+    var descripcion by mutableStateOf("") // descripcion para perfil de usuario o org
+    var edad by  mutableStateOf("")
+    var profilePictureUri by mutableStateOf<Uri?>(null)
 
     fun onNombreChanged(newNombre: String) {
         nombre = newNombre
+    }
+
+    fun onDescripcionChanged(newDescripcion: String) {
+        descripcion = newDescripcion
     }
 
     fun onCelularChanged(newCelular: String) {
@@ -234,6 +357,14 @@ class RegistroViewModel : ViewModel() {
         correo = newCorreo
     }
 
+    fun onDireccionChanged(newDireccion: String) {
+        direccion = newDireccion
+    }
+
+    fun onNombreOrgChanged(newNombreOrg: String) {
+        nombreOrg = newNombreOrg
+    }
+
     fun onContrasenaChanged(newContrasena: String) {
         contrasena = newContrasena
     }
@@ -241,6 +372,15 @@ class RegistroViewModel : ViewModel() {
     fun onRepetirContrasenaChanged(newRepetirContrasena: String) {
         repetirContrasena = newRepetirContrasena
     }
+
+    fun onTelefonoChanged(newTelefono: String) {
+        telefono = newTelefono
+    }
+
+    fun onEdadChanged(newEdad: String) {
+        edad = newEdad
+    }
+
 }
 
 
@@ -261,7 +401,7 @@ fun ValidationExample() {
     )
 
     if (!isValid) {
-        Text(text = "Please enter valid text", color = Color.Red)
+        Text(text = "Este campo es obligatorio", color = Color.Red)
     }
 }
 
