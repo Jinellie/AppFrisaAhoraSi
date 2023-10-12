@@ -11,6 +11,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+
+import com.example.appfrisaahorasi.pantallas.TipodeUsuario
+import com.example.appfrisaahorasi.pantallas.RegistroScreen
+import com.example.appfrisaahorasi.pantallas.registroU2
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -45,6 +49,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    registroU2()
                     /*
                     NavHost(navController, startDestination = NavRoutes.RegistrationStep1) {
                         composable(NavRoutes.RegistrationStep1) {
