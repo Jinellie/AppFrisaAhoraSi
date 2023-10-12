@@ -111,7 +111,7 @@ fun RegistroSC4Screen() {
                     CustomTextField(
                         value = viewModel.twitter,
                         onValueChange = { newValue -> viewModel.onTwitterChanged(newValue) },
-                        placeholder = "Twitter",
+                        placeholder = "X",
                         keyboardType = KeyboardType.Text,
                     )
                 }

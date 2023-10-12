@@ -77,7 +77,7 @@ fun Demo_ExposedDropdownMenuBox() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(32.dp)
+           // .padding(32.dp)
     ) {
         ExposedDropdownMenuBox(
             expanded = expanded,
@@ -89,6 +89,7 @@ fun Demo_ExposedDropdownMenuBox() {
                 value = selectedItems.joinToString(", ") { it },
                 onValueChange = {},
                 readOnly = true,
+
                 trailingIcon = {
                     if (expanded) {
                         Icon(

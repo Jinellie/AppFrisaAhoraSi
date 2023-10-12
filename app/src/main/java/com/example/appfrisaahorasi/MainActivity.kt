@@ -7,8 +7,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.example.appfrisaahorasi.pantallas.RegistroScreen
-import com.example.appfrisaahorasi.pantallas.RegistroU2
+import com.example.appfrisaahorasi.pantallas.RegistroSC3Screen
+//import com.example.appfrisaahorasi.pantallas.RegistroScreen
+//import com.example.appfrisaahorasi.pantallas.RegistroU2
 import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,7 +22,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    RegistroScreen()
+                    RegistroSC3Screen()
                 }
             }
         }
