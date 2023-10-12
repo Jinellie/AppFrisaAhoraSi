@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 
 @Preview
 @Composable
-fun RegistroU2() {
+fun registroU2() {
 
     val tags: List<String> = listOf(
         "Ambientalistas",
@@ -82,7 +82,6 @@ fun RegistroU2() {
 //@Preview
 @Composable
 fun ExampleBox(tags: String){
-    val Redish = Color(red = 184, green = 4, blue = 4)
 
     Column(modifier = Modifier
         .fillMaxWidth()
