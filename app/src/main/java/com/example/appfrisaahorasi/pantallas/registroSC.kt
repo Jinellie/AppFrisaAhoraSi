@@ -1,43 +1,52 @@
 package com.example.appfrisaahorasi.pantallas
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults.indicatorLine
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.text.input.VisualTransformation
+// firebase y phone auth registro
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.tasks.await
+
 
 class RegistroActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +55,85 @@ class RegistroActivity : ComponentActivity() {
             RegistroScreen()
         }
     }
+}
+
+@Composable
+fun CustomTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    placeholder: String,
+    keyboardType: KeyboardType
+) {
+    TextField(
+        value = value,
+        onValueChange = onValueChange,
+        placeholder = { Text(placeholder) },
+        colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = Color(red = 0.37578123807907104f, green = 0.37578123807907104f, blue = 0.37578123807907104f, alpha = 0.20999999344348907f),
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            cursorColor = Color.Black
+        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(5.dp))
+            .padding(18.dp, 6.dp, 18.dp, 6.dp),
+        shape = RoundedCornerShape(5.dp),
+        singleLine = true,
+        textStyle = TextStyle.Default,
+        keyboardOptions = KeyboardOptions.Default.copy(
+            keyboardType = keyboardType
+        ),
+        keyboardActions = KeyboardActions(onDone = { /* Acción al presionar Enter/Done */ })
+    )
+}
+
+@Composable
+fun PasswordTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    placeholder: String,
+    keyboardType: KeyboardType,
+    isPassword: Boolean = false,
+    passwordVisibility: Boolean = true
+) {
+    val visualTransformation = if (isPassword) {
+        if (passwordVisibility) PasswordVisualTransformation() else VisualTransformation.None
+    } else VisualTransformation.None
+
+    TextField(
+        value = value,
+        onValueChange = onValueChange,
+        placeholder = { Text(placeholder) },
+        colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = Color(red = 0.37578123807907104f, green = 0.37578123807907104f, blue = 0.37578123807907104f, alpha = 0.20999999344348907f),
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            cursorColor = Color.Black
+        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(5.dp))
+            .padding(18.dp, 0.dp, 18.dp, 6.dp),
+        shape = RoundedCornerShape(5.dp),
+        singleLine = true,
+        textStyle = TextStyle.Default,
+        keyboardOptions = KeyboardOptions.Default.copy(
+            keyboardType = keyboardType
+        ),
+        keyboardActions = KeyboardActions(onDone = { /* Acción al presionar Enter/Done */ }),
+        visualTransformation = visualTransformation,
+        trailingIcon = {
+            if (isPassword) {
+                IconButton(onClick = { /* Toggle password visibility */ }) {
+                    val visibilityIcon =
+                        if (passwordVisibility) Icons.Default.Visibility else Icons.Default.VisibilityOff
+                    val description = if (passwordVisibility) "Show password" else "Hide password"
+                    Icon(imageVector = visibilityIcon, contentDescription = description)
+                }
+            }
+        }
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -57,7 +145,8 @@ fun RegistroScreen() {
     Scaffold( // nav bar iría aquí
         topBar = {
             TopAppBar(
-                title = { Text(text = "Registro") }
+                title = { Text(text = "") },
+                backgroundColor = Color(red = 0.7216145992279053f, green = 0.015033637173473835f, blue = 0.015033637173473835f, alpha = 0.7900000214576721f)
             )
         },
         content = {
@@ -70,104 +159,165 @@ fun RegistroScreen() {
             ) {
                 Text(
                     text = "Registro",
-                    fontSize = 28.sp
+                    fontSize = 40.sp, // Adjust the size as needed
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
                 )
 
-                TextField(
+                Text(text = "Ingrese sus datos en los siguientes campos",
+                    modifier = Modifier.padding(15.dp),
+                    textAlign = TextAlign.Center,
+                    color = Color.DarkGray,
+                    fontSize = 15.sp)
+
+
+                Text(
+                    text = "Obligatorio *",
+                    textAlign = TextAlign.Start,
+                    fontSize = 12.sp,
+                    textDecoration = TextDecoration.None,
+                    letterSpacing = 0.sp,
+
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier
+                        .align(alignment = Alignment.Start)
+                        .padding(18.dp, 6.dp, 18.dp)
+
+                        .width(77.dp)
+
+                        //.height(18.dp)
+
+                        .alpha(1f),
+
+
+                    fontWeight = FontWeight.Medium,
+                    fontStyle = FontStyle.Normal,
+                    color = Color.Gray
+                )
+
+                CustomTextField(
                     value = viewModel.nombre,
-                    onValueChange = { newValue -> viewModel.onNombreChanged(newValue) },
-                    label = { Text("Nombre") },
-                    colors = TextFieldDefaults.textFieldColors(
-                        //backgroundColor = MaterialTheme.colors.surface.copy(alpha = 0.3f)
-                        backgroundColor = Color(red = 0.37578123807907104f, green = 0.37578123807907104f, blue = 0.37578123807907104f, alpha = 0.20999999344348907f),
-                        focusedIndicatorColor = Color.Transparent, // Elimina el indicador de enfoque
-                        unfocusedIndicatorColor = Color.Transparent, // Elimina el indicador sin enfoque
-                        cursorColor = Color.Black // Cambia el color del cursor si es necesario
-                    ),
-                    modifier = Modifier.fillMaxWidth()
-                        .width(275.dp)
-                        .height(50.dp)
-                        .clip(RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp, bottomStart = 5.dp, bottomEnd = 5.dp))
-                        .padding(start = 18.dp, top = 6.dp, end = 18.dp, bottom = 6.dp),
-                    shape = RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp, bottomStart = 5.dp, bottomEnd = 5.dp),
-                    singleLine = true,
-                    textStyle = TextStyle.Default, // Puedes personalizar esto según tus necesidades
-                    keyboardOptions = KeyboardOptions.Default.copy(
-                        keyboardType = KeyboardType.Text
-                    ),
-                    keyboardActions = KeyboardActions(onDone = { /* Acción al presionar Enter/Done */ })
+                    onValueChange = { newValue -> viewModel.onNombreChanged(newValue)},
+                    placeholder = "Nombre del encargado",
+                    keyboardType = KeyboardType.Text
                 )
 
-                BasicTextField(
+
+                Text(
+                    text = "Obligatorio *",
+                    textAlign = TextAlign.Start,
+                    fontSize = 12.sp,
+                    textDecoration = TextDecoration.None,
+                    letterSpacing = 0.sp,
+
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier
+                        .align(alignment = Alignment.Start)
+                        .padding(18.dp, 6.dp, 18.dp)
+
+                        .width(77.dp)
+
+                        //.height(18.dp)
+
+                        .alpha(1f),
+
+
+                    fontWeight = FontWeight.Medium,
+                    fontStyle = FontStyle.Normal,
+                    color = Color.Gray
+                )
+
+                CustomTextField(
                     value = viewModel.celular,
                     onValueChange = { newValue -> viewModel.onCelularChanged(newValue) },
-                    singleLine = true,
-                    textStyle = TextStyle.Default, // Puedes personalizar esto según tus necesidades
-                    keyboardOptions = KeyboardOptions.Default.copy(
-                        keyboardType = KeyboardType.Phone
-                    ),
-                    keyboardActions = KeyboardActions(onDone = { /* Acción al presionar Enter/Done */ })
+                    placeholder = "Celular",
+                    keyboardType = KeyboardType.Phone
                 )
 
-                BasicTextField(
-                    value = viewModel.correo,
-                    onValueChange = { newValue -> viewModel.onCorreoChanged(newValue) },
-                    singleLine = true,
-                    textStyle = TextStyle.Default, // Puedes personalizar esto según tus necesidades
-                    keyboardOptions = KeyboardOptions.Default.copy(
-                        keyboardType = KeyboardType.Email
-                    ),
-                    keyboardActions = KeyboardActions(onDone = { /* Acción al presionar Enter/Done */ })
-                )
                 var passwordHidden by rememberSaveable { mutableStateOf(true) }
+                Text(
+                    text = "Obligatorio *",
+                    textAlign = TextAlign.Start,
+                    fontSize = 12.sp,
+                    textDecoration = TextDecoration.None,
+                    letterSpacing = 0.sp,
 
-                TextField(
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier
+                        .align(alignment = Alignment.Start)
+                        .padding(18.dp, 6.dp, 18.dp)
+
+                        .width(77.dp)
+
+                        //.height(18.dp)
+
+                        .alpha(1f),
+
+
+                    fontWeight = FontWeight.Medium,
+                    fontStyle = FontStyle.Normal,
+                    color = Color.Gray
+                )
+                PasswordTextField(
                     value = viewModel.contrasena,
                     onValueChange = { newValue -> viewModel.onContrasenaChanged(newValue) },
-                    singleLine = true,
-                    visualTransformation =
-                    if (passwordHidden) PasswordVisualTransformation() else VisualTransformation.None,
-                    trailingIcon = {
-                        IconButton(onClick = { passwordHidden = !passwordHidden }) {
-                            val visibilityIcon =
-                                if (passwordHidden) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
-                            // Please provide localized description for accessibility services
-                            val description = if (passwordHidden) "Show password" else "Hide password"
-                            Icon(imageVector = visibilityIcon, contentDescription = description)
-                        }
-                    },
-                    textStyle = TextStyle.Default, // Puedes personalizar esto según tus necesidades
-                    keyboardOptions = KeyboardOptions.Default.copy(
-                        keyboardType = KeyboardType.Password
-                    ),
-                    keyboardActions = KeyboardActions(onDone = { /* Acción al presionar Enter/Done */ })
+                    placeholder = "Contraseña",
+                    keyboardType = KeyboardType.Password,
+                    isPassword = true,
+                    passwordVisibility = passwordHidden
                 )
+                Text(
+                    text = "Obligatorio *",
+                    textAlign = TextAlign.Start,
+                    fontSize = 12.sp,
+                    textDecoration = TextDecoration.None,
+                    letterSpacing = 0.sp,
 
-                BasicTextField(
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier
+                        .align(alignment = Alignment.Start)
+                        .padding(18.dp, 0.dp, 18.dp, 0.dp)
+
+                        .width(77.dp)
+
+                        //.height(18.dp)
+
+                        .alpha(1f),
+
+
+                    fontWeight = FontWeight.Medium,
+                    fontStyle = FontStyle.Normal,
+                    color = Color.Gray
+                )
+                PasswordTextField(
                     value = viewModel.repetirContrasena,
                     onValueChange = { newValue -> viewModel.onRepetirContrasenaChanged(newValue) },
-                    singleLine = true,
-                    textStyle = TextStyle.Default, // Puedes personalizar esto según tus necesidades
-                    keyboardOptions = KeyboardOptions.Default.copy(
-                        keyboardType = KeyboardType.Password
-                    ),
-                    keyboardActions = KeyboardActions(onDone = { /* Acción al presionar Enter/Done */ })
+                    placeholder = "Repetir Contraseña",
+                    keyboardType = KeyboardType.Password,
+                    isPassword = true,
+                    passwordVisibility = true // Puedes controlar la visibilidad de la contraseña aquí
                 )
-
-/*                BasicTextField(
-                    value = viewModel.repetirContrasena,
-                    onValueChange = { viewModel.onRepetirContrasenaChanged(it) },
-                    singleLine = true,
-                    placeholder = { Text("Repetir Contraseña") },
-                    keyboardOptions = KeyboardOptions.Default.copy(
-                        keyboardType = KeyboardType.Password
-                    )
-                )*/
 
                 Button(
                     onClick = { /* Realizar registro aquí */ },
+                    shape = RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp, bottomStart = 5.dp, bottomEnd = 5.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = Color(red = 0.7216145992279053f, green = 0.015033637173473835f, blue = 0.015033637173473835f, alpha = 0.7900000214576721f)
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .width(275.dp)
+                        .padding(start = 18.dp, top = 6.dp, end = 18.dp, bottom = 6.dp),
+                    elevation = ButtonDefaults.elevation(
+                        defaultElevation = 2.dp,
+                        pressedElevation = 8.dp,
+                        disabledElevation = 0.dp,
+                        hoveredElevation = 4.dp,
+                        focusedElevation = 4.dp
+
+                    ),
                 ) {
-                    Text(text = "Registrarse")
+                    Text(text = "Guardar", color = Color.White)
                 }
             }
         }
@@ -180,16 +330,101 @@ fun RegistroScreenPreview() {
     RegistroScreen()
 }
 
+data class UserData(
+    val nombre: String,
+    val celular: String,
+    val correo: String,
+    val direccion: String,
+    val descripcion: String,
+    val edad: String
+)
 
 class RegistroViewModel : ViewModel() {
+    var horaInicio by mutableStateOf("")
+    var horaFin by mutableStateOf("")
+
+    var instagram by mutableStateOf("")
+    var twitter by mutableStateOf("")
+    var facebook by mutableStateOf("")
+
+
     var nombre by mutableStateOf("")
-    var celular by mutableStateOf("")
+    var celular by mutableStateOf("") // celular al que se vincula la cuenta
     var correo by mutableStateOf("")
+    var direccion by mutableStateOf("")
+    var nombreOrg by mutableStateOf("") // nombre de la organización
     var contrasena by mutableStateOf("")
     var repetirContrasena by mutableStateOf("")
+    var telefono by mutableStateOf("") // telefono de una organizacion
+    var descripcion by mutableStateOf("") // descripcion para perfil de usuario o org
+    var edad by  mutableStateOf("")
+    var profilePictureUri by mutableStateOf<Uri?>(null)
+
+
+    // funcion de registro de usuario normal
+
+    //private val auth = FirebaseAuth.getInstance()
+    //private val firestore = FirebaseFirestore.getInstance()
+
+    /*suspend fun registerUser(
+        phoneNumber: String,
+        verificationCode: String,
+        userData: UserData
+    ): Boolean {
+        return try {
+            // Send verification code to the user's phone number
+            val options = PhoneAuthOptions.newBuilder(auth)
+                .setPhoneNumber(phoneNumber)
+                .setTimeout(60L, java.util.concurrent.TimeUnit.SECONDS)
+                .setActivity(this)
+                .setCallbacks(null)
+                .build()
+
+            val verificationId = PhoneAuthProvider.verifyPhoneNumber(options).await()
+
+            // Verify the code
+            val credential = PhoneAuthProvider.getCredential(verificationId, verificationCode)
+            auth.signInWithCredential(credential).await()
+
+            // Create user in Firestore with user data
+            val uid = auth.currentUser?.uid
+            if (uid != null) {
+                firestore.collection("users").document(uid).set(userData).await()
+            }
+
+            true
+        } catch (e: FirebaseAuthInvalidCredentialsException) {
+            // Invalid verification code
+            false
+        } catch (e: Exception) {
+            // Other errors
+            false
+        }
+    }*/
 
     fun onNombreChanged(newNombre: String) {
         nombre = newNombre
+    }
+
+    fun onInstagramChanged(newInstagram: String) {
+        instagram = newInstagram
+    }
+    fun onTwitterChanged(newTwitter: String) {
+        twitter = newTwitter
+    }
+    fun onFacebookChanged(newFacebook: String) {
+        facebook = newFacebook
+    }
+
+    fun onHoraInicioChanged(newInicio: String) {
+        horaInicio = newInicio
+    }
+    fun onHoraFinChanged(newFin: String) {
+        horaFin = newFin
+    }
+
+    fun onDescripcionChanged(newDescripcion: String) {
+        descripcion = newDescripcion
     }
 
     fun onCelularChanged(newCelular: String) {
@@ -200,6 +435,14 @@ class RegistroViewModel : ViewModel() {
         correo = newCorreo
     }
 
+    fun onDireccionChanged(newDireccion: String) {
+        direccion = newDireccion
+    }
+
+    fun onNombreOrgChanged(newNombreOrg: String) {
+        nombreOrg = newNombreOrg
+    }
+
     fun onContrasenaChanged(newContrasena: String) {
         contrasena = newContrasena
     }
@@ -207,32 +450,36 @@ class RegistroViewModel : ViewModel() {
     fun onRepetirContrasenaChanged(newRepetirContrasena: String) {
         repetirContrasena = newRepetirContrasena
     }
-}
-@Preview
-@Composable
-fun testStyle(){
 
-
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.Start),
-        modifier = Modifier
-
-            .width(275.dp)
-            .height(30.dp)
-            .clip(RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp, bottomStart = 5.dp, bottomEnd = 5.dp))
-            .background(Color(red = 0.37578123807907104f, green = 0.37578123807907104f, blue = 0.37578123807907104f, alpha = 0.20999999344348907f))
-
-            .padding(start = 18.dp, top = 6.dp, end = 18.dp, bottom = 6.dp)
-
-            .alpha(1f)
-
-
-    ) {
+    fun onTelefonoChanged(newTelefono: String) {
+        telefono = newTelefono
     }
 
+    fun onEdadChanged(newEdad: String) {
+        edad = newEdad
+    }
 
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ValidationExample() {
+    var textInput by remember { mutableStateOf("") }
+    var isValid by remember { mutableStateOf(false) }
+
+    TextField(
+        value = textInput,
+        onValueChange = { input ->
+            textInput = input
+            isValid = input.isNotEmpty() // Add your custom validation rules here
+        },
+        label = { Text("Enter Text") },
+        isError = !isValid
+    )
+
+    if (!isValid) {
+        Text(text = "Este campo es obligatorio", color = Color.Red)
+    }
+}
 
