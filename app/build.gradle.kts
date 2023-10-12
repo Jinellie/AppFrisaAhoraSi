@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -76,6 +77,21 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha02")
     implementation ("androidx.compose.material:material-icons-extended:1.0.0")
+    implementation("io.coil-kt:coil-compose:2.4.0")
+    // Import the BoM for the Firebase platform
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+
+    // Add the dependency for the Firebase Authentication library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-auth-ktx")
+
+    // firestore
+    implementation("com.google.firebase:firebase-firestore:23.0.3") // Replace with the latest version
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.0") // or a suitable version
+
+
+
 
 
 
