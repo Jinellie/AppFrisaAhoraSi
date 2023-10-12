@@ -9,6 +9,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 
 import com.example.appfrisaahorasi.pantallas.TipodeUsuario
+import com.example.appfrisaahorasi.pantallas.RegistroScreen
+import com.example.appfrisaahorasi.pantallas.registroU2
 import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
 
 class MainActivity : ComponentActivity() {
