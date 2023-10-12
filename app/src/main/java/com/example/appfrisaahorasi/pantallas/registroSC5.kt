@@ -1,4 +1,5 @@
 package com.example.appfrisaahorasi.pantallas
+// Seleccione los temas relevantes a su organización.
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -31,7 +32,7 @@ import androidx.compose.ui.unit.dp
 
 @Preview
 @Composable
-fun registroU2() {
+fun registroSC5() {
 
     val tags: List<String> = listOf(
         "Ambientalistas",
@@ -58,7 +59,7 @@ fun registroU2() {
             color = Color.Black
         )
 
-        Text(text = "Seleccione los temas con los cuales desea que le aparezca informacion relevante.",
+        Text(text = "Seleccione los temas relevantes a su organización.",
             modifier = Modifier.padding(20.dp),
             textAlign = TextAlign.Center,
             color = Color.Black,
@@ -99,37 +100,4 @@ fun registroU2() {
     }
 
 
-}
-
-//@Preview
-@Composable
-fun ExampleBox(tags: String){
-
-    Column(modifier = Modifier
-        .fillMaxWidth()
-        .wrapContentSize(Alignment.Center).padding(15.dp)) {
-        Box(
-            modifier = Modifier
-                .height(50.dp)
-                .width(275.dp)
-                .clip(RoundedCornerShape(15.dp))
-                .border(
-                    width = 1.5.dp,
-                    color = Color.Black,
-                    shape = RoundedCornerShape(15.dp))
-                .background(Color.White)
-
-
-
-
-        )
-        {
-            Text(text = tags,
-                modifier = Modifier.padding(16.dp)
-                .fillMaxSize(),
-                textAlign = TextAlign.Center,
-                color = Color.Black)
-
-        }
-    }
 }

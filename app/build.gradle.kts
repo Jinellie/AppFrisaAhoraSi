@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -71,6 +72,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+
     implementation("androidx.compose.ui:ui:1.5.3")
     implementation("androidx.compose.material:material:1.5.3")
     implementation("androidx.activity:activity-compose:1.8.0")
@@ -80,6 +82,20 @@ dependencies {
     implementation ("androidx.compose.material:material-icons-extended:1.5.3")
     implementation ("com.google.maps.android:android-maps-utils:3.4.0")
     implementation ("com.google.maps.android:maps-utils-ktx:3.4.0")
+
+    implementation("io.coil-kt:coil-compose:2.4.0")
+    // Import the BoM for the Firebase platform
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+
+    // Add the dependency for the Firebase Authentication library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-auth-ktx")
+
+    // firestore
+    implementation("com.google.firebase:firebase-firestore:23.0.3") // Replace with the latest version
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.0") // or a suitable version
+
 
     implementation("com.google.android.libraries.maps:maps:3.1.0-beta")
     implementation("com.google.maps.android:maps-v3-ktx:2.2.0")

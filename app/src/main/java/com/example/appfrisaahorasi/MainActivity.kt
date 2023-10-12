@@ -9,7 +9,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.appfrisaahorasi.pantallas.RegistroU2
+
+import com.example.appfrisaahorasi.pantallas.TipodeUsuario
 import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -38,7 +39,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    RegistroU2()
+                    TipodeUsuario()
                 }
             }
         }
