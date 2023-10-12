@@ -90,6 +90,8 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.0") // or a suitable version
 
+    implementation("androidx.navigation:navigation-compose:2.4.0-alpha01")
+
 
 
 
