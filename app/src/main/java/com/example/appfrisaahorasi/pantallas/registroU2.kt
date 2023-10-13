@@ -1,4 +1,5 @@
 package com.example.appfrisaahorasi.pantallas
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -71,7 +72,9 @@ fun registroU2() {
 
         LazyColumn {
             items(items = tags) {
-                ClickableBox(tags = it)
+                ClickableBox(tags = it) { tags ->
+                    Log.d("MOVIES", "$tags")
+                }
             }
         }
 
@@ -86,7 +89,7 @@ fun registroU2() {
 
 //@Preview
 @Composable
-fun ClickableBox(tags: String) {
+fun ClickableBox(tags: String, onItemClick: (String) -> Unit = {}) {
     var isClicked by remember { mutableStateOf(false) }
 
     Column(
@@ -108,6 +111,7 @@ fun ClickableBox(tags: String) {
                 .background(if (isClicked) Color.Black else Color.White)
                 .clickable {
                     isClicked = !isClicked
+                    onItemClick(tags)
                 }
         ) {
             Text(
