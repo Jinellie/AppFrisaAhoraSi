@@ -1,6 +1,7 @@
 package com.example.appfrisaahorasi.pantallas
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -39,13 +40,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.google.firebase.FirebaseException
+import com.google.firebase.FirebaseTooManyRequestsException
 // firebase y phone auth registro
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
+
 
 
 class RegistroActivity : ComponentActivity() {
@@ -363,10 +368,12 @@ class RegistroViewModel : ViewModel() {
 
     // funcion de registro de usuario normal
 
-    //private val auth = FirebaseAuth.getInstance()
-    //private val firestore = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
+    private val firestore = FirebaseFirestore.getInstance()
 
-    /*suspend fun registerUser(
+   /*
+    suspend fun registerUser(
+        activity: Activity, // Pass the Activity as a parameter
         phoneNumber: String,
         verificationCode: String,
         userData: UserData
@@ -376,8 +383,18 @@ class RegistroViewModel : ViewModel() {
             val options = PhoneAuthOptions.newBuilder(auth)
                 .setPhoneNumber(phoneNumber)
                 .setTimeout(60L, java.util.concurrent.TimeUnit.SECONDS)
-                .setActivity(this)
-                .setCallbacks(null)
+                .setActivity(activity)
+                .setCallbacks(object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                    override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+                        // Handle the verification completion here
+                    }
+
+                    override fun onVerificationFailed(e: FirebaseException) {
+                        // Handle the verification failure here
+                    }
+
+                    // ... other callback methods
+                })
                 .build()
 
             val verificationId = PhoneAuthProvider.verifyPhoneNumber(options).await()
@@ -390,18 +407,23 @@ class RegistroViewModel : ViewModel() {
             val uid = auth.currentUser?.uid
             if (uid != null) {
                 firestore.collection("users").document(uid).set(userData).await()
+                true
+            } else {
+                // Handle the case where uid is null
+                false
             }
-
-            true
         } catch (e: FirebaseAuthInvalidCredentialsException) {
             // Invalid verification code
+            false
+        } catch (e: FirebaseTooManyRequestsException) {
+            // Handle too many requests error
             false
         } catch (e: Exception) {
             // Other errors
             false
         }
-    }*/
-
+    }
+*/
     fun onNombreChanged(newNombre: String) {
         nombre = newNombre
     }
