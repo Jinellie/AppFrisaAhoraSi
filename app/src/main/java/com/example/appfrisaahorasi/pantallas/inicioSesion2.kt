@@ -14,11 +14,11 @@ import com.example.appfrisaahorasi.R
 
 @Preview
 @Composable
-fun PerfilUsuario() {
+fun InicioSesion2() {
     AndroidView(
         factory = { context ->
             // Inflate your XML layout using the context
-            val view = LayoutInflater.from(context).inflate(R.layout.profile_user, null)
+            val view = LayoutInflater.from(context).inflate(R.layout.ingresar_inicio_de_sesion, null)
             view
         },
         modifier = Modifier.fillMaxSize()
@@ -26,6 +26,3 @@ fun PerfilUsuario() {
 
     )
 }
-
-
-

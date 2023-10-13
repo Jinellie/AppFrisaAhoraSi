@@ -13,7 +13,8 @@
         android:gravity="center_horizontal"
         android:padding="5dp"
         app:layout_constraintBaseline_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        >
 
         <ImageView
             android:id="@+id/toolbar_icon"
@@ -64,7 +65,9 @@
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="0dp"
         app:layout_constraintTop_toBottomOf="@id/navigation_b"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+    >
 
 
         <ImageView
@@ -91,7 +94,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="13dp"
 
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="sans-serif-black"
             android:text="Sara Martinez Arriola"
             android:textSize="16sp" />
 
@@ -101,7 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
 
-            android:fontFamily="@font/poppins_light"
+            android:fontFamily="sans-serif"
             android:text="23 años"
             android:textSize="16sp" />
         <LinearLayout
@@ -124,7 +127,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="0dp"
 
-                android:fontFamily="@font/poppins_light"
+                android:fontFamily="sans-serif"
                 android:text="+52 81 2902 4531"
                 android:textSize="13sp" />
 
@@ -138,7 +141,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="27dp"
 
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="sans-serif-medium"
             android:text="Me encanta trabajar como voluntaria en diversas organizaciones sin fines de lucro. Ya sea ayudando a comunidades desfavorecidas, trabajando en proyectos de conservación ambiental o participando en campañas de concienciación social, siempre estoy dispuesta a dar un paso adelante para marcar la diferencia.
 
 "
@@ -164,7 +167,7 @@
                 android:layout_columnWeight="1"
                 android:layout_gravity="center"
                 android:background="@drawable/rounded_gray"
-                android:fontFamily="@font/poppins_medium"
+                android:fontFamily="sans-serif-medium"
                 android:gravity="center_horizontal"
                 android:padding="10dp"
                 android:text="Psicología"
@@ -178,7 +181,7 @@
                 android:layout_gravity="center"
 
                 android:background="@drawable/rounded_gray"
-                android:fontFamily="@font/poppins_medium"
+                android:fontFamily="sans-serif-medium"
                 android:padding="10dp"
                 android:text="Autoestima"
                 android:textSize="12sp" />
@@ -191,7 +194,7 @@
                 android:layout_gravity="center"
 
                 android:background="@drawable/rounded_gray"
-                android:fontFamily="@font/poppins_medium"
+                android:fontFamily="sans-serif-medium"
                 android:padding="10dp"
                 android:text="Autismo"
                 android:textSize="12sp" />
@@ -215,7 +218,7 @@
                 android:layout_columnWeight="1"
                 android:layout_gravity="center"
                 android:background="@drawable/rounded_gray"
-                android:fontFamily="@font/poppins_medium"
+                android:fontFamily="sans-serif-medium"
                 android:gravity="center_horizontal"
                 android:padding="10dp"
                 android:text="Bienestar"
@@ -231,7 +234,7 @@
                 android:layout_columnWeight="1"
                 android:layout_gravity="center"
                 android:background="@drawable/rounded_gray"
-                android:fontFamily="@font/poppins_medium"
+                android:fontFamily="sans-serif-medium"
                 android:padding="10dp"
                 android:text="Mentalidad"
                 android:textSize="12sp" />
