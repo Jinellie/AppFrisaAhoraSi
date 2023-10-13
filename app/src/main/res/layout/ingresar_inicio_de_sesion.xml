@@ -9,17 +9,15 @@
     tools:context=".MainActivity">
 
 
-
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="440dp"
         android:layout_height="550dp"
         android:layout_gravity="center"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="-100dp"
         android:background="@drawable/inicio_de_sesion_fondoarriba"
         android:backgroundTint="#C63636"
-        android:layout_marginTop="-100dp"
-        android:layout_marginStart="0dp"
-        >
+        android:orientation="vertical">
         <!-- app:layout_constraintTop_toTopOf="parent" -->
         <!--android:layout_marginTop="50dp"-->
 
@@ -27,62 +25,54 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_gravity="left"
-            android:src="@drawable/zzimg_iniciodesesion_flechaback"
-            android:layout_marginTop="120dp"
             android:layout_marginStart="40dp"
-            >
-        </ImageView>
+            android:layout_marginTop="120dp"
+            android:src="@drawable/zzimg_iniciodesesion_flechaback"></ImageView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Iniciar sesión"
-            android:fontFamily="sans-serif-medium"
-            android:textSize="35sp"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
             android:layout_gravity="left"
-            android:layout_marginTop="30dp"
             android:layout_marginStart="60dp"
-            />
+            android:layout_marginTop="30dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Iniciar sesión"
+            android:textColor="#FFFFFF"
+            android:textSize="35sp"
+            android:textStyle="bold" />
 
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
-            android:src="@drawable/zzimg_iniciodesesion_persona"
+            android:layout_marginStart="-130dp"
             android:layout_marginTop="50dp"
-            android:layout_marginStart="-130dp"
-            >
-        </ImageView>
-
+            android:src="@drawable/zzimg_iniciodesesion_persona"></ImageView>
 
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="250dp"
             android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="-30dp"
             android:background="@drawable/boton"
             android:backgroundTint="#FFFFFF"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_gravity="center"
-            android:layout_marginTop="-30dp"
-            android:layout_marginStart="30dp"
-            >
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:layout_width="230dp"
                 android:layout_height="40dp"
-                android:inputType="phone"
-                android:hint="Celular"
-                android:fontFamily="sans-serif"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="#6C6C6C"
                 android:layout_gravity="center"
-                android:layout_marginTop="-5dp"
                 android:layout_marginStart="5dp"
-                />
+                android:layout_marginTop="-5dp"
+                android:fontFamily="sans-serif"
+                android:hint="Celular"
+                android:inputType="phone"
+                android:textColor="#6C6C6C"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
@@ -91,69 +81,62 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
-            android:src="@drawable/zzimg_iniciodesesion_candado"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="-130dp"
-            >
-        </ImageView>
-
+            android:layout_marginTop="20dp"
+            android:src="@drawable/zzimg_iniciodesesion_candado"></ImageView>
 
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="250dp"
             android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="-30dp"
             android:background="@drawable/boton"
             android:backgroundTint="#FFFFFF"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_gravity="center"
-            android:layout_marginTop="-30dp"
-            android:layout_marginStart="30dp"
-            >
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:layout_width="230dp"
                 android:layout_height="40dp"
-                android:inputType="textPassword"
-                android:hint="Contraseña"
-                android:fontFamily="sans-serif"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="#6C6C6C"
                 android:layout_gravity="center"
-                android:layout_marginTop="-5dp"
                 android:layout_marginStart="5dp"
-                />
+                android:layout_marginTop="-5dp"
+                android:fontFamily="sans-serif"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:textColor="#6C6C6C"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
 
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="320dp"
             android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="100dp"
             android:background="@drawable/boton"
             android:backgroundTint="#FFFFFF"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_gravity="center"
-            android:layout_marginTop="100dp"
-            android:layout_marginStart="0dp"
-            >
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Iniciar sesión"
-                android:fontFamily="sans-serif"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="#6C6C6C"
-                android:textAlignment="center"
-                android:layout_gravity="center"
-                android:layout_marginTop="3dp"
+                android:layout_height="29dp"
+                android:layout_gravity="center|center_vertical"
                 android:layout_marginStart="0dp"
-                />
+                android:layout_marginTop="6dp"
+                android:fontFamily="sans-serif"
+                android:text="Iniciar sesión"
+                android:textAlignment="center"
+                android:textColor="#6C6C6C"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
@@ -224,15 +207,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="¿Olvidaste tu contraseña?"
-            android:fontFamily="sans-serif"
-            android:textSize="14sp"
-            android:textColor="#6C6C6C"
-            android:textAlignment="center"
             android:layout_gravity="center"
-            android:layout_marginTop="15dp"
             android:layout_marginStart="0dp"
-            />
+            android:layout_marginTop="15dp"
+            android:fontFamily="sans-serif"
+            android:text="¿Olvidaste tu contraseña?"
+            android:textAlignment="center"
+            android:textColor="#6C6C6C"
+            android:textSize="14sp" />
 
 
     </LinearLayout>
