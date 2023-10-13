@@ -96,6 +96,8 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.0") // or a suitable version
 
+    implementation("androidx.navigation:navigation-compose:2.4.0-alpha01")
+
 
     implementation("com.google.android.libraries.maps:maps:3.1.0-beta")
     implementation("com.google.maps.android:maps-v3-ktx:2.2.0")

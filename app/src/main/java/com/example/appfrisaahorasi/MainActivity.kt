@@ -1,17 +1,26 @@
 package com.example.appfrisaahorasi
 
 import android.os.Bundle
+import androidx.compose.runtime.Composable
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.remember
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 import com.example.appfrisaahorasi.pantallas.TipodeUsuario
+import com.example.appfrisaahorasi.pantallas.RegistroScreen
+import com.example.appfrisaahorasi.pantallas.registroU2
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
+import com.example.appfrisaahorasi.navigation.NavRoutes
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -34,13 +43,22 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AppFrisaAhoraSiTheme {
-                // A surface container using the 'background' color from the theme
+                val navController = rememberNavController()
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    TipodeUsuario()
-                    // Hola
+                    registroU2()
+                    /*
+                    NavHost(navController, startDestination = NavRoutes.RegistrationStep1) {
+                        composable(NavRoutes.RegistrationStep1) {
+                            RegistroStep1Screen()
+                        }
+                        composable(NavRoutes.RegistrationStep2) {
+                            RegistroStep2Screen()
+                        }
+                    }*/
                 }
             }
         }
