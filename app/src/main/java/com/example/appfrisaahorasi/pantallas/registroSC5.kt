@@ -69,7 +69,7 @@ fun registroSC5() {
 
         LazyColumn {
             items(items = tags) {
-                ExampleBox(tags = it)
+                ClickableBox(tags = it)
             }
         }
 
