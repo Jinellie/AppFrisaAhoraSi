@@ -72,7 +72,8 @@
                 android:inputType="phone"
                 android:textColor="#6C6C6C"
                 android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:id = "@+id/phoneNumberEditText" />
 
 
         </LinearLayout>
@@ -108,7 +109,8 @@
                 android:inputType="textPassword"
                 android:textColor="#6C6C6C"
                 android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:id = "@+id/passwordEditText"/>
 
 
         </LinearLayout>
@@ -123,7 +125,10 @@
             android:background="@drawable/boton"
             android:backgroundTint="#FFFFFF"
             android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            android:clickable="true"
+            android:id = "@+id/btnLogin"
+            >
 
             <TextView
                 android:layout_width="match_parent"

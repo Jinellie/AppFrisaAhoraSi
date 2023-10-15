@@ -3,6 +3,11 @@ package com.example.appfrisaahorasi.navigation
 // NavRoutes.kt
 
 object NavRoutes {
+    const val inicioSesion = "inicioSesion"
+    const val inicioSesion2 = "inicioSesion2"
+    const val avisoPrivacidad = "avisoPrivacidad"
+    const val perfilOrgvistaUsuario = "perfilOrgvistaUsuario"
+    const val perfilUsuario = "perfilUsuario"
     const val registroSC = "registroSC"
     const val registroSC2 = "registroSC2"
     const val registroSC3 = "registroSC3"
