@@ -49,6 +49,7 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
 }
 
 dependencies {
@@ -109,5 +110,11 @@ dependencies {
 
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3") // for the await function
+
+    // for app compat activity login stuffs
+    implementation("androidx.appcompat:appcompat:1.4.0")
+
+    // Also add the dependency for the Google Play services library and specify its version
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
 
 }
