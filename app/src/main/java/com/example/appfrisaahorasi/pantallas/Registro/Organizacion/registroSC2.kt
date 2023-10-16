@@ -1,4 +1,4 @@
-package com.example.appfrisaahorasi.pantallas
+package com.example.appfrisaahorasi.pantallas.Registro.Organizacion
 
 import android.annotation.SuppressLint
 import android.os.Bundle

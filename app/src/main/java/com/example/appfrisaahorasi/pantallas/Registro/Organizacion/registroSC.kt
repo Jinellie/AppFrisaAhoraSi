@@ -1,7 +1,6 @@
-package com.example.appfrisaahorasi.pantallas
+package com.example.appfrisaahorasi.pantallas.Registro.Organizacion
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -40,17 +39,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.google.firebase.FirebaseException
-import com.google.firebase.FirebaseTooManyRequestsException
 // firebase y phone auth registro
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.auth.PhoneAuthOptions
-import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.tasks.await
-
 
 
 class RegistroActivity : ComponentActivity() {
@@ -147,7 +138,9 @@ fun PasswordTextField(
 fun RegistroScreen() {
     val viewModel: RegistroViewModel = viewModel()
 
-    Scaffold( // nav bar iría aquí
+    Scaffold(
+        // nav bar iría aquí
+
         topBar = {
             TopAppBar(
                 title = { Text(text = "") },
@@ -343,16 +336,17 @@ data class UserData(
     val descripcion: String,
     val edad: String
 )
-
+// TODOS
 class RegistroViewModel : ViewModel() {
     var horaInicio by mutableStateOf("")
     var horaFin by mutableStateOf("")
 
+    // Redes sociales
     var instagram by mutableStateOf("")
     var twitter by mutableStateOf("")
     var facebook by mutableStateOf("")
 
-
+    //
     var nombre by mutableStateOf("")
     var celular by mutableStateOf("") // celular al que se vincula la cuenta
     var correo by mutableStateOf("")
@@ -371,59 +365,7 @@ class RegistroViewModel : ViewModel() {
     private val auth = FirebaseAuth.getInstance()
     private val firestore = FirebaseFirestore.getInstance()
 
-   /*
-    suspend fun registerUser(
-        activity: Activity, // Pass the Activity as a parameter
-        phoneNumber: String,
-        verificationCode: String,
-        userData: UserData
-    ): Boolean {
-        return try {
-            // Send verification code to the user's phone number
-            val options = PhoneAuthOptions.newBuilder(auth)
-                .setPhoneNumber(phoneNumber)
-                .setTimeout(60L, java.util.concurrent.TimeUnit.SECONDS)
-                .setActivity(activity)
-                .setCallbacks(object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                    override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-                        // Handle the verification completion here
-                    }
 
-                    override fun onVerificationFailed(e: FirebaseException) {
-                        // Handle the verification failure here
-                    }
-
-                    // ... other callback methods
-                })
-                .build()
-
-            val verificationId = PhoneAuthProvider.verifyPhoneNumber(options).await()
-
-            // Verify the code
-            val credential = PhoneAuthProvider.getCredential(verificationId, verificationCode)
-            auth.signInWithCredential(credential).await()
-
-            // Create user in Firestore with user data
-            val uid = auth.currentUser?.uid
-            if (uid != null) {
-                firestore.collection("users").document(uid).set(userData).await()
-                true
-            } else {
-                // Handle the case where uid is null
-                false
-            }
-        } catch (e: FirebaseAuthInvalidCredentialsException) {
-            // Invalid verification code
-            false
-        } catch (e: FirebaseTooManyRequestsException) {
-            // Handle too many requests error
-            false
-        } catch (e: Exception) {
-            // Other errors
-            false
-        }
-    }
-*/
     fun onNombreChanged(newNombre: String) {
         nombre = newNombre
     }
