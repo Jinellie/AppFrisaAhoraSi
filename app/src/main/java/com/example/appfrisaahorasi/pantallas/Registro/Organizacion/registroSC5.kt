@@ -1,8 +1,7 @@
-package com.example.appfrisaahorasi.pantallas
+package com.example.appfrisaahorasi.pantallas.Registro.Organizacion
+// Seleccione los temas relevantes a su organización.
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,21 +14,21 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.ui.Alignment
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.appfrisaahorasi.pantallas.InicioSesion.ClickableBox
 
 @Preview
 @Composable
-fun registroU2() {
+fun registroSC5() {
 
     val tags: List<String> = listOf(
         "Ambientalistas",
@@ -56,7 +55,7 @@ fun registroU2() {
             color = Color.Black
         )
 
-        Text(text = "Seleccione los temas con los cuales desea que le aparezca informacion relevante.",
+        Text(text = "Seleccione los temas relevantes a su organización.",
             modifier = Modifier.padding(20.dp),
             textAlign = TextAlign.Center,
             color = Color.Black,
@@ -66,48 +65,35 @@ fun registroU2() {
 
         LazyColumn {
             items(items = tags) {
-                ExampleBox(tags = it)
+                ClickableBox(tags = it)
             }
         }
 
-
-
-
-
-    }
-
-
-}
-
-//@Preview
-@Composable
-fun ExampleBox(tags: String){
-
-    Column(modifier = Modifier
-        .fillMaxWidth()
-        .wrapContentSize(Alignment.Center).padding(15.dp)) {
-        Box(
+        Button(
+            onClick = { /* Realizar registro aquí */ },
+            shape = RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp, bottomStart = 5.dp, bottomEnd = 5.dp),
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = Color(red = 0.7216145992279053f, green = 0.015033637173473835f, blue = 0.015033637173473835f, alpha = 0.7900000214576721f)
+            ),
             modifier = Modifier
-                .height(50.dp)
+                .fillMaxWidth()
                 .width(275.dp)
-                .clip(RoundedCornerShape(15.dp))
-                .border(
-                    width = 1.5.dp,
-                    color = Color.Black,
-                    shape = RoundedCornerShape(15.dp))
-                .background(Color.White)
+                .padding(start = 18.dp, top = 25.dp, end = 18.dp, bottom = 6.dp),
+            elevation = ButtonDefaults.elevation(
+                defaultElevation = 2.dp,
+                pressedElevation = 8.dp,
+                disabledElevation = 0.dp,
+                hoveredElevation = 4.dp,
+                focusedElevation = 4.dp
 
-
-
-
-        )
-        {
-            Text(text = tags,
-                modifier = Modifier.padding(16.dp)
-                .fillMaxSize(),
-                textAlign = TextAlign.Center,
-                color = Color.Black)
-
+            ),
+        ) {
+            Text(text = "Guardar", color = Color.White)
         }
+
+
+
     }
+
+
 }
