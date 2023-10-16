@@ -13,7 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.appfrisaahorasi.navigation.NavRoutes
 
-// Pantallas
+// Pantallas - Se base en el nombre de la clase, no el nombre del archivo
 import com.example.appfrisaahorasi.pantallas.AvisodePrivacidadScreen
 import com.example.appfrisaahorasi.pantallas.Inicio
 import com.example.appfrisaahorasi.pantallas.InicioSesion
@@ -27,7 +27,7 @@ import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.RegistroScree
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroU3Screen
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroUScreen
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.registroSC5
-import com.example.appfrisaahorasi.pantallas.Registro.Usuario.registroU2
+import com.example.appfrisaahorasi.pantallas.InicioSesion.PrimerInicioSesion
 import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
 
 
@@ -90,10 +90,10 @@ class MainActivity : ComponentActivity() {
 
                             // REGISTRO: USUARIO
                             composable(NavRoutes.registroU) {
-                                RegistroUScreen()
+                                RegistroUScreen(navController)
                             }
-                            composable(NavRoutes.registroU2) {
-                                registroU2()
+                            composable(NavRoutes.PrimerInicioSesion) {
+                                PrimerInicioSesion()
                             }
                             composable(NavRoutes.registroU3) {
                                 RegistroU3Screen()
