@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.appfrisaahorasi.R
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.CustomTextField
-import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.RegistroViewModel
+import com.example.appfrisaahorasi.pantallas.Registro.RegistroViewModel
 
 
 class RegistroU3Activity : ComponentActivity() {

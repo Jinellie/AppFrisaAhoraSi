@@ -90,8 +90,7 @@ dependencies {
     // Add the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-auth-ktx")
-
-    // firestore
+    // Registro
     implementation("com.google.firebase:firebase-firestore:24.8.1") // Replace with the latest version
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3") // or a suitable version

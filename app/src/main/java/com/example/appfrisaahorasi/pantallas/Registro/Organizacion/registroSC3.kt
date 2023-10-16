@@ -47,6 +47,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import com.example.appfrisaahorasi.R
+import com.example.appfrisaahorasi.pantallas.Registro.RegistroViewModel
 
 
 class RegistroSC3Activity : ComponentActivity() {

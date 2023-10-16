@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.appfrisaahorasi.pantallas.Registro.RegistroViewModel
 // firebase y phone auth registro
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -161,65 +162,47 @@ fun RegistroScreen() {
                     fontWeight = FontWeight.Bold,
                     color = Color.Black
                 )
-
                 Text(text = "Ingrese sus datos en los siguientes campos",
                     modifier = Modifier.padding(15.dp),
                     textAlign = TextAlign.Center,
                     color = Color.DarkGray,
                     fontSize = 15.sp)
-
-
                 Text(
                     text = "Obligatorio *",
                     textAlign = TextAlign.Start,
                     fontSize = 12.sp,
                     textDecoration = TextDecoration.None,
                     letterSpacing = 0.sp,
-
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier
                         .align(alignment = Alignment.Start)
                         .padding(18.dp, 6.dp, 18.dp)
-
                         .width(77.dp)
-
                         //.height(18.dp)
-
                         .alpha(1f),
-
-
                     fontWeight = FontWeight.Medium,
                     fontStyle = FontStyle.Normal,
                     color = Color.Gray
                 )
-
                 CustomTextField(
                     value = viewModel.nombre,
                     onValueChange = { newValue -> viewModel.onNombreChanged(newValue)},
                     placeholder = "Nombre del encargado",
                     keyboardType = KeyboardType.Text
                 )
-
-
                 Text(
                     text = "Obligatorio *",
                     textAlign = TextAlign.Start,
                     fontSize = 12.sp,
                     textDecoration = TextDecoration.None,
                     letterSpacing = 0.sp,
-
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier
                         .align(alignment = Alignment.Start)
                         .padding(18.dp, 6.dp, 18.dp)
-
                         .width(77.dp)
-
                         //.height(18.dp)
-
                         .alpha(1f),
-
-
                     fontWeight = FontWeight.Medium,
                     fontStyle = FontStyle.Normal,
                     color = Color.Gray
@@ -287,14 +270,6 @@ fun RegistroScreen() {
                     fontStyle = FontStyle.Normal,
                     color = Color.Gray
                 )
-                PasswordTextField(
-                    value = viewModel.repetirContrasena,
-                    onValueChange = { newValue -> viewModel.onRepetirContrasenaChanged(newValue) },
-                    placeholder = "Repetir Contraseña",
-                    keyboardType = KeyboardType.Password,
-                    isPassword = true,
-                    passwordVisibility = true // Puedes controlar la visibilidad de la contraseña aquí
-                )
 
                 Button(
                     onClick = { /* Realizar registro aquí */ },
@@ -337,93 +312,6 @@ data class UserData(
     val edad: String
 )
 // TODOS
-class RegistroViewModel : ViewModel() {
-    var horaInicio by mutableStateOf("")
-    var horaFin by mutableStateOf("")
-
-    // Redes sociales
-    var instagram by mutableStateOf("")
-    var twitter by mutableStateOf("")
-    var facebook by mutableStateOf("")
-
-    //
-    var nombre by mutableStateOf("")
-    var celular by mutableStateOf("") // celular al que se vincula la cuenta
-    var correo by mutableStateOf("")
-    var direccion by mutableStateOf("")
-    var nombreOrg by mutableStateOf("") // nombre de la organización
-    var contrasena by mutableStateOf("")
-    var repetirContrasena by mutableStateOf("")
-    var telefono by mutableStateOf("") // telefono de una organizacion
-    var descripcion by mutableStateOf("") // descripcion para perfil de usuario o org
-    var edad by  mutableStateOf("")
-    var profilePictureUri by mutableStateOf<Uri?>(null)
-
-
-    // funcion de registro de usuario normal
-
-    private val auth = FirebaseAuth.getInstance()
-    private val firestore = FirebaseFirestore.getInstance()
-
-
-    fun onNombreChanged(newNombre: String) {
-        nombre = newNombre
-    }
-
-    fun onInstagramChanged(newInstagram: String) {
-        instagram = newInstagram
-    }
-    fun onTwitterChanged(newTwitter: String) {
-        twitter = newTwitter
-    }
-    fun onFacebookChanged(newFacebook: String) {
-        facebook = newFacebook
-    }
-
-    fun onHoraInicioChanged(newInicio: String) {
-        horaInicio = newInicio
-    }
-    fun onHoraFinChanged(newFin: String) {
-        horaFin = newFin
-    }
-
-    fun onDescripcionChanged(newDescripcion: String) {
-        descripcion = newDescripcion
-    }
-
-    fun onCelularChanged(newCelular: String) {
-        celular = newCelular
-    }
-
-    fun onCorreoChanged(newCorreo: String) {
-        correo = newCorreo
-    }
-
-    fun onDireccionChanged(newDireccion: String) {
-        direccion = newDireccion
-    }
-
-    fun onNombreOrgChanged(newNombreOrg: String) {
-        nombreOrg = newNombreOrg
-    }
-
-    fun onContrasenaChanged(newContrasena: String) {
-        contrasena = newContrasena
-    }
-
-    fun onRepetirContrasenaChanged(newRepetirContrasena: String) {
-        repetirContrasena = newRepetirContrasena
-    }
-
-    fun onTelefonoChanged(newTelefono: String) {
-        telefono = newTelefono
-    }
-
-    fun onEdadChanged(newEdad: String) {
-        edad = newEdad
-    }
-
-}
 
 
 @OptIn(ExperimentalMaterial3Api::class)
