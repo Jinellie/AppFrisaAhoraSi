@@ -91,7 +91,7 @@ fun PerfilApp() {
 
         // pass the drawer
         drawerContent = {
-            Drawer()
+            Drawer() // cambiar por drawer usuario ----------------------------------------------------
         },
 
         floatingActionButton = {
@@ -194,26 +194,7 @@ fun MapScreen() {
 }
 
 // A function which will receive a callback to trigger to opening the drawer
-@Composable
-fun TopBar(onMenuClicked: () -> Unit) {
-    // TopAppBar Composable
-    TopAppBar(
-        title = {
-            Text(text = "Search...", color = Color.White)
-        },
-        navigationIcon = {
-            Icon(
-                imageVector = Icons.Default.Menu,
-                contentDescription = "Menu",
-                modifier = Modifier.clickable {
-                    onMenuClicked()
-                },
-                tint = Color.White
-            )
-        },
-        backgroundColor = RedApp
-    )
-}
+
 
 
 @Composable
@@ -270,22 +251,6 @@ fun Body() {
     }
 }
 
-
-@Composable
-fun Drawer() {
-    // Column Composable
-    Column(
-        Modifier
-            .background(Color.White)
-            .fillMaxSize()
-    ) {
-        // Repeat is a loop which
-        // takes count as argument
-        repeat(5) { item ->
-            Text(text = "Item number $item", modifier = Modifier.padding(8.dp), color = Color.Black)
-        }
-    }
-}
 
 
 

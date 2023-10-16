@@ -5,15 +5,18 @@ import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.appfrisaahorasi.navigation.NavRoutes
 import com.example.appfrisaahorasi.pantallas.AvisodePrivacidadScreen
+import com.example.appfrisaahorasi.pantallas.Home
 import com.example.appfrisaahorasi.pantallas.InicioSesion1
 import com.example.appfrisaahorasi.pantallas.InicioSesion2
 import com.example.appfrisaahorasi.pantallas.PerfilApp
@@ -36,6 +39,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             AppFrisaAhoraSiTheme {
                 val navController = rememberNavController()
+
+                // Initialize the shared ViewModel and set the NavController
+                val viewModel: NavHostViewModel = viewModel()
+                viewModel.navController = navController
 
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -85,6 +92,9 @@ class MainActivity : ComponentActivity() {
                         composable(NavRoutes.tipodeUsuario) {
                             TipodeUsuario()
                         }
+                        composable(NavRoutes.home) {
+                            Home()
+                        }
                     }
                 }
             }
@@ -98,6 +108,13 @@ class MainActivity : ComponentActivity() {
 
 }
 
+class NavHostViewModel : ViewModel() {
+    lateinit var navController: NavHostController
+
+    companion object {
+        //var navController: NavHostController
+    }
+}
 
 
 

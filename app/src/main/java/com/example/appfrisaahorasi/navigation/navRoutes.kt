@@ -17,4 +17,6 @@ object NavRoutes {
     const val registroU2 = "registroU2"
     const val registroU3 = "registroU3"
     const val tipodeUsuario = "tipodeUsuario"
+    const val home = "home"
+
 }
