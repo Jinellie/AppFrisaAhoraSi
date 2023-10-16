@@ -1,4 +1,4 @@
-package com.example.appfrisaahorasi.pantallas
+package com.example.appfrisaahorasi.pantallas.Perfil
 
 import android.view.LayoutInflater
 import androidx.compose.foundation.background
@@ -14,11 +14,11 @@ import com.example.appfrisaahorasi.R
 
 @Preview
 @Composable
-fun InicioSesion2() {
+fun PerfilUsuario() {
     AndroidView(
         factory = { context ->
             // Inflate your XML layout using the context
-            val view = LayoutInflater.from(context).inflate(R.layout.ingresar_inicio_de_sesion, null)
+            val view = LayoutInflater.from(context).inflate(R.layout.profile_user, null)
             view
         },
         modifier = Modifier.fillMaxSize()
@@ -26,3 +26,6 @@ fun InicioSesion2() {
 
     )
 }
+
+
+

@@ -1,4 +1,4 @@
-package com.example.appfrisaahorasi.pantallas
+package com.example.appfrisaahorasi.pantallas.Registro.Usuario
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -25,6 +25,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
+import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.CustomTextField
+import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.PasswordTextField
+import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.RegistroViewModel
 
 class RegistroUActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
