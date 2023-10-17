@@ -27,7 +27,7 @@ import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.RegistroScree
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroU3Screen
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroUScreen
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.registroSC5
-import com.example.appfrisaahorasi.pantallas.Registro.EscogerEiquetasScreen
+import com.example.appfrisaahorasi.pantallas.Registro.EscogerEtiquetasScreen
 import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
 
 class MainActivity : ComponentActivity() {
@@ -92,7 +92,7 @@ class MainActivity : ComponentActivity() {
                                 RegistroUScreen(navController)
                             }
                             composable(NavRoutes.EscogerEtiquetasScreen) {
-                                EscogerEiquetasScreen()
+                                EscogerEtiquetasScreen()
                             }
                             composable(NavRoutes.registroU3) {
                                 RegistroU3Screen()

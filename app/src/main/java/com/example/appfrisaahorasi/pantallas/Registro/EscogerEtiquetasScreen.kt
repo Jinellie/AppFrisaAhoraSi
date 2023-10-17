@@ -1,4 +1,6 @@
+
 package com.example.appfrisaahorasi.pantallas.Registro
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -37,9 +39,10 @@ import com.google.firebase.auth.FirebaseAuth
 
 @Preview
 @Composable
-fun EscogerEiquetasScreen() {
+fun EscogerEtiquetasScreen() {
     val userId = FirebaseAuth.getInstance().currentUser?.uid
     val user = mutableMapOf<String, Any>()
+
 
     val tags: List<String> = listOf(
         "Ambientalistas",
