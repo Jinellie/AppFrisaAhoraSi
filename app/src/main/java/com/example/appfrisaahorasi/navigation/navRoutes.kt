@@ -22,4 +22,8 @@ object NavRoutes {
 
     // PRIMER INICIO SESION
     const val EscogerEtiquetasScreen = "EscogerEtiquetasScreen"
+
+    //Busqueda
+    const val busqueda="Busqueda"
+    const val busquedaTags="BusquedaTags"
 }
