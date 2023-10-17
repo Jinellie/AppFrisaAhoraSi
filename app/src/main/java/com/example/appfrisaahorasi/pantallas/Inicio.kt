@@ -29,6 +29,6 @@ fun Inicio(navController: NavController) {
             view
         },
         modifier = Modifier.fillMaxSize()
-            .background(Color.White) // Set the background color here
+            //.background(Color.White) // Set the background color here
     )
 }

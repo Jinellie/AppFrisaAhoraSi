@@ -18,7 +18,8 @@ object NavRoutes {
     const val registroSC5 = "registroSC5"
     // REGISTRO USUARIO
     const val registroU = "registroU"
-    const val registroU2 = "registroU2"
     const val registroU3 = "registroU3"
 
+    // PRIMER INICIO SESION
+    const val EscogerEtiquetasScreen = "EscogerEtiquetasScreen"
 }
