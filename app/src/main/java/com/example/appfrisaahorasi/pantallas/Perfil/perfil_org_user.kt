@@ -39,6 +39,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.content.ContextCompat.startActivity
+import androidx.core.net.toUri
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import com.example.appfrisaahorasi.R
@@ -249,6 +251,8 @@ fun BottomBar() {
 
 @Composable
 fun Body() {
+    val coroutineScope = rememberCoroutineScope()
+    val context = LocalContext.current
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -258,6 +262,7 @@ fun Body() {
         Row(
             modifier = Modifier.fillMaxWidth()
         ) {
+
 
             Image(
                 painter = painterResource(id = R.drawable.organizacion),
@@ -320,22 +325,51 @@ fun Body() {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
+            val instaUrl = "https://www.instagram.com"
+            val twitterUrl = "https://twitter.com"
+            val faceBookUrl = "https://www.facebook.com"
+
+
             Image(
                 painter = painterResource(id = R.drawable.instagram),
                 contentDescription = null,
                 modifier = Modifier.size(30.dp)
+                    .clickable(){
+                        coroutineScope.launch {
+                            val intent = Intent(Intent.ACTION_VIEW, instaUrl.toUri())
+
+                            startActivity(context, intent, null)
+
+                        }
+                    }
             )
 
             Image(
                 painter = painterResource(id = R.drawable.twitter),
                 contentDescription = null,
                 modifier = Modifier.size(30.dp)
+                    .clickable(){
+                        coroutineScope.launch {
+                            val intent = Intent(Intent.ACTION_VIEW, twitterUrl.toUri())
+
+                            startActivity(context, intent, null)
+
+                        }
+                    }
             )
 
             Image(
                 painter = painterResource(id = R.drawable.facebook),
                 contentDescription = null,
                 modifier = Modifier.size(30.dp)
+                    .clickable(){
+                        coroutineScope.launch {
+                            val intent = Intent(Intent.ACTION_VIEW, faceBookUrl.toUri())
+
+                            startActivity(context, intent, null)
+
+                        }
+                    }
             )
         }
 
