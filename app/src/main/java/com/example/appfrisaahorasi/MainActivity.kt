@@ -16,6 +16,7 @@ import com.example.appfrisaahorasi.navigation.NavRoutes
 // Pantallas - Se base en el nombre de la clase, no el nombre del archivo
 import com.example.appfrisaahorasi.pantallas.AvisodePrivacidadScreen
 import com.example.appfrisaahorasi.pantallas.Busqueda.BrusqueTags
+import com.example.appfrisaahorasi.pantallas.Busqueda.HistorialBrusqre
 import com.example.appfrisaahorasi.pantallas.Inicio
 import com.example.appfrisaahorasi.pantallas.InicioSesion
 import com.example.appfrisaahorasi.pantallas.Perfil.PerfilApp
@@ -30,6 +31,7 @@ import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroUScreen
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.registroSC5
 import com.example.appfrisaahorasi.pantallas.InicioSesion.PrimerInicioSesion
 import com.example.appfrisaahorasi.pantallas.busquedaBar.Brusque
+
 import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
 
 
@@ -56,7 +58,7 @@ class MainActivity : ComponentActivity() {
                             }
                             // Iniciar Sesión
                             composable(NavRoutes.InicioSesion) {
-                                InicioSesion()
+                                InicioSesion(navController = controller)
                             }
                             // Aviso de privacidad
                             composable(NavRoutes.avisoPrivacidad) {
@@ -105,6 +107,9 @@ class MainActivity : ComponentActivity() {
                             }
                             composable(NavRoutes.busquedaTags){
                                 BrusqueTags(navController = controller)
+                            }
+                            composable(NavRoutes.historialBusqueda){
+                                HistorialBrusqre(navController = controller)
                             }
 
                         }
