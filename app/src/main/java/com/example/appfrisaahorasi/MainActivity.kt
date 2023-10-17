@@ -28,10 +28,11 @@ import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.RegistroScree
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroU3Screen
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroUScreen
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.registroSC5
-import com.example.appfrisaahorasi.pantallas.InicioSesion.PrimerInicioSesion
-import com.example.appfrisaahorasi.pantallas.busquedaBar.Brusque
-import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
+import com.example.appfrisaahorasi.pantallas.Registro.EscogerEtiquetasScreen
 
+import com.example.appfrisaahorasi.pantallas.busquedaBar.Brusque
+
+import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
 
 class MainActivity : ComponentActivity() {
     // NAV CONTROLLER TO ACCESS ALL
@@ -94,8 +95,8 @@ class MainActivity : ComponentActivity() {
                             composable(NavRoutes.registroU) {
                                 RegistroUScreen(navController)
                             }
-                            composable(NavRoutes.PrimerInicioSesion) {
-                                PrimerInicioSesion()
+                            composable(NavRoutes.EscogerEtiquetasScreen) {
+                                EscogerEtiquetasScreen()
                             }
                             composable(NavRoutes.registroU3) {
                                 RegistroU3Screen()
@@ -107,14 +108,13 @@ class MainActivity : ComponentActivity() {
                                 BrusqueTags(navController = controller)
                             }
 
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
+                        } // Fin NavHost
+                    } // Fin NavControllerCreation
+                } // Fin cuerpo surface
+            }// Fin App frisa
+        } // Fin Set Content
+    } // Fin ON Create
+} // Fin clase
 
 
 

@@ -48,7 +48,7 @@ class MainActivity : ComponentActivity() {
                 // Scaffold we created
                 PerfilApp()
             }
-            MapScreen()
+            // MapScreen()
         }
     }
 }
@@ -271,7 +271,6 @@ fun Body() {
     }
 }
 
-
 @Composable
 fun Drawer() {
     // Column Composable
@@ -288,19 +287,8 @@ fun Drawer() {
     }
 }
 
-
-
 @Preview
 @Composable
 fun PerfilPreview() {
     PerfilApp()
 }
-
-//data class organizationOSF{
-//    val Name: String,
-//    val tel: Int,
-//    val direction: String,
-//    val urlFacebook: String,
-//    val urlTwitter: String,
-//    val urlInstagram: String
-//}
