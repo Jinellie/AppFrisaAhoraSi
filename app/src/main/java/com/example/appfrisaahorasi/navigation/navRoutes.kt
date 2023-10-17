@@ -8,6 +8,7 @@ object NavRoutes {
     const val avisoPrivacidad = "avisoPrivacidad"
     const val perfilOrgvistaUsuario = "perfilOrgvistaUsuario"
     const val perfilUsuario = "perfilUsuario"
+    const val favoritos = "favoritos"
     // REGISTRO GENERAL
     const val IniciarRegistro = "Registro"
     // REGISTRO ORGANIZACION
@@ -22,8 +23,10 @@ object NavRoutes {
 
     // PRIMER INICIO SESION
     const val EscogerEtiquetasScreen = "EscogerEtiquetasScreen"
-
+    // Home
+    const val home = "home"
     //Busqueda
     const val busqueda="Busqueda"
     const val busquedaTags="BusquedaTags"
+
 }

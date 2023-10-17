@@ -1,11 +1,11 @@
 package com.example.appfrisaahorasi.pantallas.Perfil
 
+//import com.google.maps.android.ktx.awaitMap
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,8 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
@@ -32,10 +30,11 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import com.example.appfrisaahorasi.R
+import com.example.appfrisaahorasi.pantallas.AppDrawer
+import com.example.appfrisaahorasi.pantallas.TopBar
 import com.example.appfrisaahorasi.ui.theme.Black
 import com.example.appfrisaahorasi.ui.theme.RedApp
 import com.google.android.gms.maps.MapView
-//import com.google.maps.android.ktx.awaitMap
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -92,7 +91,7 @@ fun PerfilApp() {
 
         // pass the drawer
         drawerContent = {
-            Drawer()
+            AppDrawer("OSC") // cambiar por drawer usuario ----------------------------------------------------
         },
 
         floatingActionButton = {
@@ -195,26 +194,7 @@ fun MapScreen() {
 }
 
 // A function which will receive a callback to trigger to opening the drawer
-@Composable
-fun TopBar(onMenuClicked: () -> Unit) {
-    // TopAppBar Composable
-    TopAppBar(
-        title = {
-            Text(text = "Search...", color = Color.White)
-        },
-        navigationIcon = {
-            Icon(
-                imageVector = Icons.Default.Menu,
-                contentDescription = "Menu",
-                modifier = Modifier.clickable {
-                    onMenuClicked()
-                },
-                tint = Color.White
-            )
-        },
-        backgroundColor = RedApp
-    )
-}
+
 
 
 @Composable
@@ -271,6 +251,7 @@ fun Body() {
     }
 }
 
+
 @Composable
 fun Drawer() {
     // Column Composable
@@ -286,6 +267,7 @@ fun Drawer() {
         }
     }
 }
+
 
 @Preview
 @Composable

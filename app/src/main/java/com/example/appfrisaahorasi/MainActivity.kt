@@ -15,6 +15,7 @@ import com.example.appfrisaahorasi.navigation.NavRoutes
 
 // Pantallas - Se base en el nombre de la clase, no el nombre del archivo
 import com.example.appfrisaahorasi.pantallas.AvisodePrivacidadScreen
+import com.example.appfrisaahorasi.pantallas.Home
 import com.example.appfrisaahorasi.pantallas.Busqueda.BrusqueTags
 import com.example.appfrisaahorasi.pantallas.Inicio
 import com.example.appfrisaahorasi.pantallas.InicioSesion
@@ -101,13 +102,19 @@ class MainActivity : ComponentActivity() {
                             composable(NavRoutes.registroU3) {
                                 RegistroU3Screen()
                             }
+                            // Busqueda
                             composable(NavRoutes.busqueda){
                                 Brusque(navController = controller)
                             }
                             composable(NavRoutes.busquedaTags){
                                 BrusqueTags(navController = controller)
                             }
-
+                            composable(NavRoutes.home) {
+                                Home()
+                            }
+                            composable(NavRoutes.favoritos) {
+                              //  favoritos()
+                            }
                         } // Fin NavHost
                     } // Fin NavControllerCreation
                 } // Fin cuerpo surface
@@ -115,6 +122,7 @@ class MainActivity : ComponentActivity() {
         } // Fin Set Content
     } // Fin ON Create
 } // Fin clase
+
 
 
 

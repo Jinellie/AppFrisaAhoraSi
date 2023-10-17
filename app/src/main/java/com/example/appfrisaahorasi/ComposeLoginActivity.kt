@@ -56,10 +56,13 @@ class ComposeLoginActivity : ComponentActivity() {
 
                 if (e is FirebaseAuthInvalidCredentialsException) {
                     // Invalid request
+                    Log.d(TAG, "FirebaseAuthInvalidCredentialsException")
                 } else if (e is FirebaseTooManyRequestsException) {
                     // The SMS quota for the project has been exceeded
+                    Log.d(TAG, "FirebaseTooManyRequestsException")
                 } else if (e is FirebaseAuthMissingActivityForRecaptchaException) {
                     // reCAPTCHA verification attempted with null Activity
+                    Log.d(TAG, "FirebaseAuthMissingActivityForRecaptchaException")
                 }
 
                 // Show a message and update the UI
@@ -136,12 +139,15 @@ class ComposeLoginActivity : ComponentActivity() {
                     Log.d(TAG, "signInWithCredential:success")
 
                     val user = task.result?.user
+                    //val currentUser = auth.currentUser
+                    updateUI(user)
                 } else {
                     // Sign in failed, display a message and update the UI
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
                         // The verification code entered was invalid
-                        val errorMessage = task.exception?.message ?: "Error en el inicio de sesión."
+                        val errorMessage =
+                            task.exception?.message ?: "Error en el inicio de sesión."
                         showToast(errorMessage)
                     }
                     // Update UI
@@ -168,11 +174,18 @@ class ComposeLoginActivity : ComponentActivity() {
                         val userData = documentSnapshot.data
                         val tipoUsuario = userData?.get("tipoUsuario") as String?
                         if (tipoUsuario != null) {
-                            // You now have the "nombre" attribute
+                            // You now have the "tipoUsuario" attribute
+                            val intent = Intent(this, HomeActivity::class.java)
+                            intent.putExtra("tipoUsuario", tipoUsuario)
+                            startActivity(intent)
                         } else {
-                            // The "nombre" attribute is not set in the database
+                            val intent = Intent(this, HomeActivity::class.java)
+                            startActivity(intent)
+                            // The "tipoUsuario" attribute is not set in the database
                         }
                     } else {
+                        val intent = Intent(this, HomeActivity::class.java)
+                        startActivity(intent)
                         // User document doesn't exist
                     }
                 }
@@ -180,34 +193,6 @@ class ComposeLoginActivity : ComponentActivity() {
                     // Handle any errors
                 }
         }
-/*
-        if (user != null) {
-            // User is signed in, check user attributes or roles
-            val userAttributes = user.nombre
-
-            if (userAttributes != null) {
-                // Check the user's attributes or roles
-                when (userAttributes) {
-                    "admin" -> {
-                        // Navigate to the admin home screen
-                        // You can use Intent or Navigation Component for navigation
-                        //val intent = Intent(this, AdminHomeActivity::class.java)
-                        startActivity(intent)
-                    }
-                    "standard" -> {
-                        // Navigate to the standard user home screen
-                        // You can use Intent or Navigation Component for navigation
-                        //val intent = Intent(this, StandardUserHomeActivity::class.java)
-                        startActivity(intent)
-                    }
-                    else -> {
-                        // Default navigation or error handling
-                    }
-                }
-            } else {
-                // Handle case where user attributes are not available
-            }
-        }*/
     }
 
     companion object {
