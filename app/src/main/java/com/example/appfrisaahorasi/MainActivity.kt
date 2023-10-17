@@ -15,6 +15,7 @@ import com.example.appfrisaahorasi.navigation.NavRoutes
 
 // Pantallas - Se base en el nombre de la clase, no el nombre del archivo
 import com.example.appfrisaahorasi.pantallas.AvisodePrivacidadScreen
+import com.example.appfrisaahorasi.pantallas.Home
 import com.example.appfrisaahorasi.pantallas.Inicio
 import com.example.appfrisaahorasi.pantallas.InicioSesion
 import com.example.appfrisaahorasi.pantallas.Perfil.PerfilApp
@@ -97,6 +98,14 @@ class MainActivity : ComponentActivity() {
                             }
                             composable(NavRoutes.registroU3) {
                                 RegistroU3Screen()
+                            }
+
+                            composable(NavRoutes.home) {
+                                Home()
+                            }
+
+                            composable(NavRoutes.favoritos) {
+                              //  favoritos()
                             }
 
                         }
