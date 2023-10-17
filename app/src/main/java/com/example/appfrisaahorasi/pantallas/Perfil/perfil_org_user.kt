@@ -295,6 +295,10 @@ fun Body() {
                 painter = painterResource(id = R.drawable.share_icon),
                 contentDescription = null,
                 modifier = Modifier.padding(top = 27.dp).size(40.dp)
+                    .clickable{
+                        Context.shareLink(shareUrl)
+
+                    }
             )
 
             Spacer(modifier = Modifier.width(20.dp))
@@ -438,6 +442,7 @@ fun PerfilPreview() {
 
 
 //Funcionamiento del share
+var shareUrl = "https://www.linkedin.com/in/adrián-cavazos-guerra-96a141251/"
 fun Context.shareLink(url: String) {
     val sendIntent = Intent(
         Intent.ACTION_SEND
