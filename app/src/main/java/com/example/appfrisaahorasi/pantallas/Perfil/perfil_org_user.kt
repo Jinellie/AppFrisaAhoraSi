@@ -1,4 +1,4 @@
-package com.example.appfrisaahorasi.pantallas
+package com.example.appfrisaahorasi.pantallas.Perfil
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -86,7 +86,8 @@ fun PerfilApp() {
         bottomBar = { BottomBar() },
 
         // Pass the body in content parameter
-        content = {Body()
+        content = {
+            Body()
         },
 
         // pass the drawer
