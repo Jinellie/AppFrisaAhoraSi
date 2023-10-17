@@ -48,7 +48,7 @@ class MainActivity : ComponentActivity() {
                 // Scaffold we created
                 PerfilApp()
             }
-            MapScreen()
+//            MapScreen()
         }
     }
 }
@@ -266,7 +266,8 @@ fun Body() {
                 .wrapContentSize(Alignment.Center),
             style = TextStyle(fontSize = 24.sp) // Ajusta el tamaño del texto aquí
         )
-        MapScreen()
+
+//        MapScreen()
 
     }
 }

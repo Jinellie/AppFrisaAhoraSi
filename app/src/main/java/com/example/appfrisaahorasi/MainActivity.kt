@@ -28,6 +28,7 @@ import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroU3Screen
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroUScreen
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.registroSC5
 import com.example.appfrisaahorasi.pantallas.InicioSesion.PrimerInicioSesion
+import com.example.appfrisaahorasi.pantallas.Perfil.MapScreen
 import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
 
 
@@ -44,64 +45,68 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     navController = rememberNavController()
+                    PerfilApp()
+
+
 
                     // NAVIGATION MANAGER SCREENS
-                    navController?.let { controller ->
-                        NavHost(navController, startDestination = NavRoutes.Inicio) {
-                            //  Main page
-                            composable(NavRoutes.Inicio) {
-                                Inicio(navController = controller)
-                            }
-                            // Iniciar Sesión
-                            composable(NavRoutes.InicioSesion) {
-                                InicioSesion()
-                            }
-                            // Aviso de privacidad
-                            composable(NavRoutes.avisoPrivacidad) {
-                                AvisodePrivacidadScreen()
-                            }
-                            // Perfil USUARIO
-                            composable(NavRoutes.perfilOrgvistaUsuario) {
-                                PerfilApp()
-                            }
-                            composable(NavRoutes.perfilUsuario) {
-                                PerfilUsuario()
-                            }
-                            // REGISTRO EMPEZAR
-                            composable(NavRoutes.IniciarRegistro) {
-                                Registro(navController = controller)
-                            }
-                            // REGISTRO: ORGANIZACIÓN
-                            composable(NavRoutes.registroSC) {
-                                RegistroScreen()
-                            }
-                            composable(NavRoutes.registroSC2) {
-                                RegistroSC2Screen()
-                            }
-                            composable(NavRoutes.registroSC3) {
-                                RegistroSC3Screen()
-                            }
-                            composable(NavRoutes.registroSC4) {
-                                RegistroSC4Screen()
-                            }
-                            composable(NavRoutes.registroSC5) {
-                                registroSC5()
-                            }
-
-                            // REGISTRO: USUARIO
-                            composable(NavRoutes.registroU) {
-                                RegistroUScreen(navController)
-                            }
-                            composable(NavRoutes.PrimerInicioSesion) {
-                                PrimerInicioSesion()
-                            }
-                            composable(NavRoutes.registroU3) {
-                                RegistroU3Screen()
-                            }
-
-                        }
-                    }
+//                    navController?.let { controller ->
+//                        NavHost(navController, startDestination = NavRoutes.Inicio) {
+//                            //  Main page
+//                            composable(NavRoutes.Inicio) {
+//                                Inicio(navController = controller)
+//                            }
+//                            // Iniciar Sesión
+//                            composable(NavRoutes.InicioSesion) {
+//                                InicioSesion()
+//                            }
+//                            // Aviso de privacidad
+//                            composable(NavRoutes.avisoPrivacidad) {
+//                                AvisodePrivacidadScreen()
+//                            }
+//                            // Perfil USUARIO
+//                            composable(NavRoutes.perfilOrgvistaUsuario) {
+//                                PerfilApp()
+//                            }
+//                            composable(NavRoutes.perfilUsuario) {
+//                                PerfilUsuario()
+//                            }
+//                            // REGISTRO EMPEZAR
+//                            composable(NavRoutes.IniciarRegistro) {
+//                                Registro(navController = controller)
+//                            }
+//                            // REGISTRO: ORGANIZACIÓN
+//                            composable(NavRoutes.registroSC) {
+//                                RegistroScreen()
+//                            }
+//                            composable(NavRoutes.registroSC2) {
+//                                RegistroSC2Screen()
+//                            }
+//                            composable(NavRoutes.registroSC3) {
+//                                RegistroSC3Screen()
+//                            }
+//                            composable(NavRoutes.registroSC4) {
+//                                RegistroSC4Screen()
+//                            }
+//                            composable(NavRoutes.registroSC5) {
+//                                registroSC5()
+//                            }
+//
+//                            // REGISTRO: USUARIO
+//                            composable(NavRoutes.registroU) {
+//                                RegistroUScreen(navController)
+//                            }
+//                            composable(NavRoutes.PrimerInicioSesion) {
+//                                PrimerInicioSesion()
+//                            }
+//                            composable(NavRoutes.registroU3) {
+//                                RegistroU3Screen()
+//                            }
+//
+//                        }
+//                    }
                 }
+
             }
         }
     }
