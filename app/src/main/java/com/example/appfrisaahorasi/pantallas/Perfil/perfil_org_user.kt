@@ -1,18 +1,25 @@
 package com.example.appfrisaahorasi.pantallas.Perfil
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -242,47 +249,115 @@ fun BottomBar() {
 
 @Composable
 fun Body() {
-
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+
+            Image(
+                painter = painterResource(id = R.drawable.organizacion),
+                contentDescription = null,
+                modifier = Modifier.size(90.dp)
+            )
+
+            Text(
+                text = "Nombre_Org",
+                color = Black,
+                modifier = Modifier.padding(top = 27.dp),
+                style = TextStyle(fontSize = 24.sp)
+
+            )
+            Spacer(modifier = Modifier.width(37.dp))
+
+            Image(
+                painter = painterResource(id = R.drawable.share_icon),
+                contentDescription = null,
+                modifier = Modifier.padding(top = 27.dp).size(40.dp)
+            )
+
+            Spacer(modifier = Modifier.width(37.dp))
+
+            Image(
+                painter = painterResource(id = R.drawable.empty_heart),
+                contentDescription = null,
+                modifier = Modifier.padding(top = 27.dp).size(40.dp)
+            )
+
+        }
+
+
+
+
+        Text(
+            text = "¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada...",
+            color = Black,
+            modifier = Modifier
+                .padding(start = 30.dp, end = 30.dp, top = 15.dp)
+                .fillMaxWidth()
+                .wrapContentSize(Alignment.Center),
+            style = TextStyle(fontSize = 14.sp)
+        )
+
+        Spacer(modifier = Modifier.width(37.dp))
+
 
         Text(
             text = "¡Siguenos!",
             color = Black,
             modifier = Modifier
-                .padding(8.dp) // Agrega margen para espaciar
+                .padding(top = 15.dp)
                 .fillMaxWidth()
                 .wrapContentSize(Alignment.Center),
-            style = TextStyle(fontSize = 24.sp) // Ajusta el tamaño del texto aquí
+            style = TextStyle(fontSize = 24.sp)
         )
 
-        // Links
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceAround
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.instagram),
+                contentDescription = null,
+                modifier = Modifier.size(30.dp)
+            )
+
+            Image(
+                painter = painterResource(id = R.drawable.twitter),
+                contentDescription = null,
+                modifier = Modifier.size(30.dp)
+            )
+
+            Image(
+                painter = painterResource(id = R.drawable.facebook),
+                contentDescription = null,
+                modifier = Modifier.size(30.dp)
+            )
+        }
+
         Text(
             text = "Ubicación",
             color = Black,
             modifier = Modifier
-                .padding(8.dp) // Agrega margen para espaciar
+                .padding(top = 15.dp)
                 .fillMaxWidth()
                 .wrapContentSize(Alignment.Center),
-            style = TextStyle(fontSize = 24.sp) // Ajusta el tamaño del texto aquí
+            style = TextStyle(fontSize = 24.sp)
         )
+
         Image(
             painter = painterResource(id = R.drawable.google_maps),
             contentDescription = null,
-            modifier = Modifier
-                .size(90.dp).
-                fillMaxWidth()
-                .wrapContentSize(Alignment.Center)
+            modifier = Modifier.size(90.dp)
         )
-
-//        MapScreen()
-
     }
 }
+
+
 
 
 @Composable
@@ -307,6 +382,22 @@ fun Drawer() {
 @Composable
 fun PerfilPreview() {
     PerfilApp()
+}
+
+
+
+//Funcionamiento del share
+fun Context.shareLink(url: String) {
+    val sendIntent = Intent(
+        Intent.ACTION_SEND
+    ).apply {
+        putExtra(Intent.EXTRA_TEXT, url)
+        type = "text/plain"
+    }
+    val shareIntent = Intent.createChooser(
+        sendIntent, null
+    )
+    startActivity(shareIntent)
 }
 
 //data class organizationOSF{
