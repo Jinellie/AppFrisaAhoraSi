@@ -1,14 +1,17 @@
-package com.example.appfrisaahorasi.pantallas
+package com.example.appfrisaahorasi.pantallas.Registro.Organizacion
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
@@ -17,35 +20,35 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.appfrisaahorasi.R
+import com.example.appfrisaahorasi.pantallas.Registro.RegistroViewModel
 
-class RegistroSC2Activity : ComponentActivity() {
+
+class RegistroSC4Activity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            RegistroSC2Screen()
+            RegistroSC4Screen()
         }
     }
 }
 
+
 @Preview
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun RegistroSC2Screen() {
+fun RegistroSC4Screen() {
     val viewModel: RegistroViewModel = viewModel()
 
     Scaffold( // nav bar iría aquí
@@ -64,78 +67,73 @@ fun RegistroSC2Screen() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "Perfil",
+                    text = "Redes Sociales",
                     fontSize = 40.sp, // Adjust the size as needed
                     fontWeight = FontWeight.Bold,
                     color = Color.Black
                 )
 
-                Text(text = "Ingrese los datos de su organización en los siguientes campos. Esta información será visible en su perfil.",
+                Text(text = "Ingrese las redes sociales de su organización.",
                     modifier = Modifier.padding(15.dp),
                     textAlign = TextAlign.Center,
                     color = Color.DarkGray,
                     fontSize = 15.sp)
 
 
-                Text(
-                    text = "Obligatorio *",
-                    textAlign = TextAlign.Start,
-                    fontSize = 12.sp,
-                    textDecoration = TextDecoration.None,
-                    letterSpacing = 0.sp,
 
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier
-                        .align(alignment = Alignment.Start)
-                        .padding(18.dp, 6.dp, 18.dp)
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(10.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.instagram_icon),
+                        contentDescription = null,
+                        modifier = Modifier.size(40.dp)
+                    )
+                    CustomTextField(
+                        value = viewModel.instagram,
+                        onValueChange = { newValue -> viewModel.onInstagramChanged(newValue) },
+                        placeholder = "Instagram",
+                        keyboardType = KeyboardType.Text,
+                    )
+                }
 
-                        .width(77.dp)
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(10.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.twitter_icon),
+                        contentDescription = null,
+                        modifier = Modifier.size(40.dp)
+                    )
+                    CustomTextField(
+                        value = viewModel.twitter,
+                        onValueChange = { newValue -> viewModel.onTwitterChanged(newValue) },
+                        placeholder = "X",
+                        keyboardType = KeyboardType.Text,
+                    )
+                }
 
-                        //.height(18.dp)
-
-                        .alpha(1f),
-
-
-                    fontWeight = FontWeight.Medium,
-                    fontStyle = FontStyle.Normal,
-                    color = Color.Gray
-                )
-
-                CustomTextField(
-                    value = viewModel.nombreOrg,
-                    onValueChange = { newValue -> viewModel.onNombreOrgChanged(newValue)},
-                    placeholder = "Nombre de la organización",
-                    keyboardType = KeyboardType.Text
-                )
-
-                CustomTextField(
-                    value = viewModel.correo,
-                    onValueChange = { newValue -> viewModel.onCorreoChanged(newValue) },
-                    placeholder = "Correo",
-                    keyboardType = KeyboardType.Email
-                )
-
-                CustomTextField(
-                    value = viewModel.telefono,
-                    onValueChange = { newValue -> viewModel.onTelefonoChanged(newValue) },
-                    placeholder = "Teléfono",
-                    keyboardType = KeyboardType.Phone
-                )
-
-                CustomTextField(
-                    value = viewModel.direccion,
-                    onValueChange = { newValue -> viewModel.onDireccionChanged(newValue) },
-                    placeholder = "Dirección",
-                    keyboardType = KeyboardType.Text
-                )
-
-                CustomTextField(
-                    value = viewModel.descripcion,
-                    onValueChange = { newValue -> viewModel.onDescripcionChanged(newValue)},
-                    placeholder = "Descripción",
-                    keyboardType = KeyboardType.Text
-                )
-
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(10.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.facebook_icon),
+                        contentDescription = null,
+                        modifier = Modifier.size(40.dp)
+                    )
+                    CustomTextField(
+                        value = viewModel.facebook,
+                        onValueChange = { newValue -> viewModel.onFacebookChanged(newValue) },
+                        placeholder = "Facebook",
+                        keyboardType = KeyboardType.Text,
+                    )
+                }
 
 
                 Button(

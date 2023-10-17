@@ -1,4 +1,4 @@
-package com.example.appfrisaahorasi.pantallas
+package com.example.appfrisaahorasi.pantallas.Perfil
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -11,34 +11,34 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.appfrisaahorasi.ui.theme.RedApp
-import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
-import kotlinx.coroutines.launch
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
-import com.example.appfrisaahorasi.ui.theme.Black
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import com.example.appfrisaahorasi.R
-import com.google.android.libraries.maps.MapView
+import com.example.appfrisaahorasi.ui.theme.Black
+import com.example.appfrisaahorasi.ui.theme.RedApp
+import com.google.android.gms.maps.MapView
+//import com.google.maps.android.ktx.awaitMap
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import com.google.maps.android.ktx.awaitMap
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,7 +86,8 @@ fun PerfilApp() {
         bottomBar = { BottomBar() },
 
         // Pass the body in content parameter
-        content = {Body()
+        content = {
+            Body()
         },
 
         // pass the drawer
@@ -185,9 +186,9 @@ fun MapScreen() {
         AndroidView({ mapView }) { mapView ->
             // on below line launching our map view
             CoroutineScope(Dispatchers.Main).launch {
-                val map = mapView.awaitMap()
+                //val map = mapView.awaitMap()
                 // on below line adding zoom controls for map.
-                map.uiSettings.isZoomControlsEnabled = true
+                //map.uiSettings.isZoomControlsEnabled = true
             }
         }
     }
