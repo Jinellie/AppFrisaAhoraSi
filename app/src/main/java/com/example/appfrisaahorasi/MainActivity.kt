@@ -45,7 +45,19 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     navController = rememberNavController()
-                    PerfilApp()
+                    var OrgDesc = "¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada..."
+                    var NombreOrg = "Nombre_Org"
+
+                    var instaUrl = "https://www.instagram.com"
+                    val twitterUrl = "https://twitter.com"
+                    val faceBookUrl = "https://www.facebook.com"
+                    PerfilApp(
+                        com.example.appfrisaahorasi.pantallas.Perfil.NombreOrg,
+                        com.example.appfrisaahorasi.pantallas.Perfil.OrgDesc,
+                        com.example.appfrisaahorasi.pantallas.Perfil.instaUrl,
+                        com.example.appfrisaahorasi.pantallas.Perfil.twitterUrl,
+                        com.example.appfrisaahorasi.pantallas.Perfil.faceBookUrl
+                    )
 
 
 

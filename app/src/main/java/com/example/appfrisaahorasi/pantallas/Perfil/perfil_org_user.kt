@@ -26,8 +26,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -50,6 +53,7 @@ import com.google.android.gms.maps.MapView
 //import com.google.maps.android.ktx.awaitMap
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -58,16 +62,22 @@ class MainActivity : ComponentActivity() {
         setContent {
             Surface(color = Color.White) {
                 // Scaffold we created
-                PerfilApp()
+                PerfilApp(NombreOrg, OrgDesc, instaUrl, twitterUrl, faceBookUrl )
             }
 //            MapScreen()
         }
     }
 }
+//Descripcion de organizacion
+var OrgDesc = "¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada..."
+var NombreOrg = "Nombre_Org"
 
+var instaUrl = "https://www.instagram.com"
+val twitterUrl = "https://twitter.com"
+val faceBookUrl = "https://www.facebook.com"
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun PerfilApp() {
+fun PerfilApp(NombreOrg: String, OrgDesc : String, instaUrl : String, twitterUrl: String, facebookUrl: String ) {
 
     // create a scaffold state, set it to close by default
     val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
@@ -253,6 +263,8 @@ fun BottomBar() {
 fun Body() {
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
+    var isImageClicked by remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -271,13 +283,13 @@ fun Body() {
             )
 
             Text(
-                text = "Nombre_Org",
+                text = NombreOrg,
                 color = Black,
                 modifier = Modifier.padding(top = 27.dp),
                 style = TextStyle(fontSize = 24.sp)
 
             )
-            Spacer(modifier = Modifier.width(37.dp))
+            Spacer(modifier = Modifier.width(35.dp))
 
             Image(
                 painter = painterResource(id = R.drawable.share_icon),
@@ -285,13 +297,19 @@ fun Body() {
                 modifier = Modifier.padding(top = 27.dp).size(40.dp)
             )
 
-            Spacer(modifier = Modifier.width(37.dp))
+            Spacer(modifier = Modifier.width(20.dp))
+
+
 
             Image(
-                painter = painterResource(id = R.drawable.empty_heart),
+                painter = painterResource(if (isImageClicked) R.drawable.heart_black else R.drawable.empty_heart),
                 contentDescription = null,
-                modifier = Modifier.padding(top = 27.dp).size(40.dp)
-            )
+                modifier = Modifier
+                    .padding(top = 27.dp)
+                    .size(40.dp)
+                    .clickable {
+                        isImageClicked = !isImageClicked
+                    })
 
         }
 
@@ -299,7 +317,7 @@ fun Body() {
 
 
         Text(
-            text = "¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada...",
+            text = OrgDesc,
             color = Black,
             modifier = Modifier
                 .padding(start = 30.dp, end = 30.dp, top = 15.dp)
@@ -325,15 +343,14 @@ fun Body() {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            val instaUrl = "https://www.instagram.com"
-            val twitterUrl = "https://twitter.com"
-            val faceBookUrl = "https://www.facebook.com"
+
 
 
             Image(
                 painter = painterResource(id = R.drawable.instagram),
                 contentDescription = null,
-                modifier = Modifier.size(30.dp)
+                modifier = Modifier.padding(top = 15.dp).size(40.dp)
+
                     .clickable(){
                         coroutineScope.launch {
                             val intent = Intent(Intent.ACTION_VIEW, instaUrl.toUri())
@@ -347,7 +364,7 @@ fun Body() {
             Image(
                 painter = painterResource(id = R.drawable.twitter),
                 contentDescription = null,
-                modifier = Modifier.size(30.dp)
+                modifier = Modifier.padding(top = 15.dp).size(40.dp)
                     .clickable(){
                         coroutineScope.launch {
                             val intent = Intent(Intent.ACTION_VIEW, twitterUrl.toUri())
@@ -361,7 +378,7 @@ fun Body() {
             Image(
                 painter = painterResource(id = R.drawable.facebook),
                 contentDescription = null,
-                modifier = Modifier.size(30.dp)
+                modifier = Modifier.padding(top = 15.dp).size(40.dp)
                     .clickable(){
                         coroutineScope.launch {
                             val intent = Intent(Intent.ACTION_VIEW, faceBookUrl.toUri())
@@ -386,7 +403,7 @@ fun Body() {
         Image(
             painter = painterResource(id = R.drawable.google_maps),
             contentDescription = null,
-            modifier = Modifier.size(90.dp)
+            modifier = Modifier.padding(top = 20.dp).size(90.dp)
         )
     }
 }
@@ -415,7 +432,7 @@ fun Drawer() {
 @Preview
 @Composable
 fun PerfilPreview() {
-    PerfilApp()
+    PerfilApp(NombreOrg, OrgDesc, instaUrl, twitterUrl, faceBookUrl)
 }
 
 
