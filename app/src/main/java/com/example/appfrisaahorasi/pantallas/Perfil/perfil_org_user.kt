@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -24,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -243,7 +246,8 @@ fun Body() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(Color.White),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         Text(
@@ -265,6 +269,14 @@ fun Body() {
                 .fillMaxWidth()
                 .wrapContentSize(Alignment.Center),
             style = TextStyle(fontSize = 24.sp) // Ajusta el tamaño del texto aquí
+        )
+        Image(
+            painter = painterResource(id = R.drawable.google_maps),
+            contentDescription = null,
+            modifier = Modifier
+                .size(90.dp).
+                fillMaxWidth()
+                .wrapContentSize(Alignment.Center)
         )
 
 //        MapScreen()
