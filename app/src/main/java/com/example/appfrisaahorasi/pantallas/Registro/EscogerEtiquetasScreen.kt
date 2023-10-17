@@ -1,4 +1,6 @@
-package com.example.appfrisaahorasi.pantallas.InicioSesion
+
+package com.example.appfrisaahorasi.pantallas.Registro
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -33,10 +35,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import com.google.firebase.auth.FirebaseAuth
 
 @Preview
 @Composable
-fun PrimerInicioSesion() {
+fun EscogerEtiquetasScreen() {
+    val userId = FirebaseAuth.getInstance().currentUser?.uid
+    val user = mutableMapOf<String, Any>()
+
 
     val tags: List<String> = listOf(
         "Ambientalistas",
@@ -46,7 +52,8 @@ fun PrimerInicioSesion() {
         "Medicos"
 
     )
-
+    // Store temporaly the tags to subbmit at the end
+    var selectedTags by remember { mutableStateOf(listOf<String>()) }
 
     Column(
         modifier = Modifier
@@ -69,16 +76,14 @@ fun PrimerInicioSesion() {
             color = Color.Black,
             fontSize = 15.sp)
         Spacer(modifier = Modifier.height(44.dp))
-
-
         LazyColumn {
             items(items = tags) {
-                ClickableBox(tags = it)
             }
         }
 
         Button(
-            onClick = { /* Realizar registro aquí */ },
+            onClick = {
+            },
             shape = RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp, bottomStart = 5.dp, bottomEnd = 5.dp),
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = Color(red = 0.7216145992279053f, green = 0.015033637173473835f, blue = 0.015033637173473835f, alpha = 0.7900000214576721f)
@@ -93,17 +98,11 @@ fun PrimerInicioSesion() {
                 disabledElevation = 0.dp,
                 hoveredElevation = 4.dp,
                 focusedElevation = 4.dp
-
             ),
         ) {
             Text(text = "Guardar", color = Color.White)
         }
-
-
-
     }
-
-
 }
 
 //@Preview

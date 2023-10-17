@@ -21,12 +21,12 @@ object NavRoutes {
     const val registroU = "registroU"
     const val registroU3 = "registroU3"
 
-    // INICIO SESION NORMAL
-
     // PRIMER INICIO SESION
-    const val PrimerInicioSesion = "PrimerInicioSesion"
-
+    const val EscogerEtiquetasScreen = "EscogerEtiquetasScreen"
     // Home
     const val home = "home"
+    //Busqueda
+    const val busqueda="Busqueda"
+    const val busquedaTags="BusquedaTags"
 
 }

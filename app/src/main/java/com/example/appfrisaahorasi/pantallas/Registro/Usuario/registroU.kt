@@ -147,7 +147,7 @@ fun RegistroUScreen(
                 )
 
                 Button(
-                    onClick = {viewModel.registerUser(viewModel.correo, viewModel.contrasena, navController)},
+                    onClick = {viewModel.registerUser(navController)},
                     shape = RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp, bottomStart = 5.dp, bottomEnd = 5.dp),
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = Color(red = 0.7216145992279053f, green = 0.015033637173473835f, blue = 0.015033637173473835f, alpha = 0.7900000214576721f)

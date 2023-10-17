@@ -16,6 +16,7 @@ import com.example.appfrisaahorasi.navigation.NavRoutes
 // Pantallas - Se base en el nombre de la clase, no el nombre del archivo
 import com.example.appfrisaahorasi.pantallas.AvisodePrivacidadScreen
 import com.example.appfrisaahorasi.pantallas.Home
+import com.example.appfrisaahorasi.pantallas.Busqueda.BrusqueTags
 import com.example.appfrisaahorasi.pantallas.Inicio
 import com.example.appfrisaahorasi.pantallas.InicioSesion
 import com.example.appfrisaahorasi.pantallas.Perfil.PerfilApp
@@ -28,9 +29,11 @@ import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.RegistroScree
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroU3Screen
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroUScreen
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.registroSC5
-import com.example.appfrisaahorasi.pantallas.InicioSesion.PrimerInicioSesion
-import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
+import com.example.appfrisaahorasi.pantallas.Registro.EscogerEtiquetasScreen
 
+import com.example.appfrisaahorasi.pantallas.busquedaBar.Brusque
+
+import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
 
 class MainActivity : ComponentActivity() {
     // NAV CONTROLLER TO ACCESS ALL
@@ -93,28 +96,32 @@ class MainActivity : ComponentActivity() {
                             composable(NavRoutes.registroU) {
                                 RegistroUScreen(navController)
                             }
-                            composable(NavRoutes.PrimerInicioSesion) {
-                                PrimerInicioSesion()
+                            composable(NavRoutes.EscogerEtiquetasScreen) {
+                                EscogerEtiquetasScreen()
                             }
                             composable(NavRoutes.registroU3) {
                                 RegistroU3Screen()
                             }
-
+                            // Busqueda
+                            composable(NavRoutes.busqueda){
+                                Brusque(navController = controller)
+                            }
+                            composable(NavRoutes.busquedaTags){
+                                BrusqueTags(navController = controller)
+                            }
                             composable(NavRoutes.home) {
                                 Home()
                             }
-
                             composable(NavRoutes.favoritos) {
                               //  favoritos()
                             }
-
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+                        } // Fin NavHost
+                    } // Fin NavControllerCreation
+                } // Fin cuerpo surface
+            }// Fin App frisa
+        } // Fin Set Content
+    } // Fin ON Create
+} // Fin clase
 
 
 

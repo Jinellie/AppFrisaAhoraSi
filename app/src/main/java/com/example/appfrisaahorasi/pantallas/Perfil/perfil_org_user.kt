@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
                 // Scaffold we created
                 PerfilApp()
             }
-            MapScreen()
+            // MapScreen()
         }
     }
 }
@@ -252,6 +252,21 @@ fun Body() {
 }
 
 
+@Composable
+fun Drawer() {
+    // Column Composable
+    Column(
+        Modifier
+            .background(Color.White)
+            .fillMaxSize()
+    ) {
+        // Repeat is a loop which
+        // takes count as argument
+        repeat(5) { item ->
+            Text(text = "Item number $item", modifier = Modifier.padding(8.dp), color = Color.Black)
+        }
+    }
+}
 
 
 @Preview
@@ -259,12 +274,3 @@ fun Body() {
 fun PerfilPreview() {
     PerfilApp()
 }
-
-//data class organizationOSF{
-//    val Name: String,
-//    val tel: Int,
-//    val direction: String,
-//    val urlFacebook: String,
-//    val urlTwitter: String,
-//    val urlInstagram: String
-//}
