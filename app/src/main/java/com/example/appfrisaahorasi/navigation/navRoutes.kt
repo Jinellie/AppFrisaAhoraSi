@@ -25,4 +25,8 @@ object NavRoutes {
     // PRIMER INICIO SESION
     const val PrimerInicioSesion = "PrimerInicioSesion"
 
+    //Busqueda
+    const val busqueda="Busqueda"
+    const val busquedaTags="BusquedaTags"
+
 }

@@ -1,7 +1,8 @@
-package com.example.appfrisaahorasi.pantallas
+package com.example.appfrisaahorasi.pantallas.busquedaBar
 
 import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.LinearLayout
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -13,16 +14,16 @@ import com.example.appfrisaahorasi.R
 import com.example.appfrisaahorasi.navigation.NavRoutes
 
 @Composable
-fun Inicio(navController: NavController) {
+fun Brusque(navController: NavController) {
     AndroidView(
         factory = { context ->
             // Inflate your XML layout using the context
-            val view = LayoutInflater.from(context).inflate(R.layout.inicio_de_sesion, null)
+            val view = LayoutInflater.from(context).inflate(R.layout.activity_main, null)
 
             // Encuentra el botón por su ID y configura el onClickListener
-            val registroButton = view.findViewById<Button>(R.id.BtnIniciarRegistro)
-            registroButton.setOnClickListener {
-                navController.navigate(NavRoutes.IniciarRegistro)
+            val searchBar = view.findViewById<LinearLayout>(R.id.searchBar)
+            searchBar.setOnClickListener {
+                navController.navigate(NavRoutes.busquedaTags)
             }
 
             view
@@ -31,4 +32,3 @@ fun Inicio(navController: NavController) {
             .background(Color.White) // Set the background color here
     )
 }
-

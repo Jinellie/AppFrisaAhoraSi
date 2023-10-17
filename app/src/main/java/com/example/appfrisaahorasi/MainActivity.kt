@@ -15,6 +15,7 @@ import com.example.appfrisaahorasi.navigation.NavRoutes
 
 // Pantallas - Se base en el nombre de la clase, no el nombre del archivo
 import com.example.appfrisaahorasi.pantallas.AvisodePrivacidadScreen
+import com.example.appfrisaahorasi.pantallas.Busqueda.BrusqueTags
 import com.example.appfrisaahorasi.pantallas.Inicio
 import com.example.appfrisaahorasi.pantallas.InicioSesion
 import com.example.appfrisaahorasi.pantallas.Perfil.PerfilApp
@@ -28,6 +29,7 @@ import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroU3Screen
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroUScreen
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.registroSC5
 import com.example.appfrisaahorasi.pantallas.InicioSesion.PrimerInicioSesion
+import com.example.appfrisaahorasi.pantallas.busquedaBar.Brusque
 import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
 
 
@@ -97,6 +99,12 @@ class MainActivity : ComponentActivity() {
                             }
                             composable(NavRoutes.registroU3) {
                                 RegistroU3Screen()
+                            }
+                            composable(NavRoutes.busqueda){
+                                Brusque(navController = controller)
+                            }
+                            composable(NavRoutes.busquedaTags){
+                                BrusqueTags(navController = controller)
                             }
 
                         }
