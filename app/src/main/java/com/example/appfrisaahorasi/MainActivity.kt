@@ -137,7 +137,7 @@ class MainActivity : ComponentActivity() {
                             }
                             // HOME
                             composable(NavRoutes.home) {
-                                Home()
+                                Home(navController = controller)
                             }
                             composable(NavRoutes.favoritos) {
                               //  favoritos()
