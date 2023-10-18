@@ -68,7 +68,7 @@ fun OSCDrawerContent(navController: NavHostController) {
         NavigationButton(
             text = "Home",
             icon = Icons.Default.Home, // Replace with your desired icon
-            onClick = { navController.navigate("home") }
+            onClick = { navController.navigate("HistorialDeBusquedas") }
         )
 
         NavigationButton(
@@ -119,7 +119,7 @@ fun StandardUserDrawerContent(navController: NavHostController) {
         NavigationButton(
             text = "Home",
             icon = Icons.Default.Home, // Replace with your desired icon
-            onClick = { navController.navigate("home") }
+            onClick = { navController.navigate("HistorialDeBusquedas") }
         )
 
         NavigationButton(
@@ -164,7 +164,7 @@ fun InvitadoDrawerContent(navController: NavHostController) {
         NavigationButton(
             text = "Home",
             icon = Icons.Default.Home, // Replace with your desired icon
-            onClick = { navController.navigate("home") }
+            onClick = { navController.navigate("InicioSesion") }
         )
 
         NavigationButton(
