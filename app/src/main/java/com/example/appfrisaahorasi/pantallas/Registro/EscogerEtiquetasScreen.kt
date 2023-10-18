@@ -39,7 +39,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 
 @Composable
-fun EscogerEtiquetasScreen(navController: NavController, tTagsViewModel: TagsViewModel = viewModel()) {
+fun EscogerEtiquetasScreen(navController: NavController, tTagsViewModel: TagsViewModel) {
     val tags = tTagsViewModel.tagsList.value
 
     // Store temporaly the tags to subbmit at the end

@@ -8,9 +8,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.launch
 
 class RegistroViewModel : ViewModel() {
     // CONTROLES
@@ -101,7 +103,7 @@ class RegistroViewModel : ViewModel() {
         auth.createUserWithEmailAndPassword(this.correo, this.contrasena)
             .addOnCompleteListener { task ->
                 if(_loading.value == false){
-                    _loading.value = true;
+                    _loading.value = true
                     if (task.isSuccessful) {
                         // El usuario se registró con éxito
                         uploadDataUserOnCreate()
@@ -113,12 +115,76 @@ class RegistroViewModel : ViewModel() {
                         //scaffoldState.snackbarHostState.showSnackbar("Fallo en el inicio de sesión")
                         println("Fallo en el registro -> Main Page por default")
                     }
-                    _loading.value = false;
+                    _loading.value = false
                 }
             }
     }
 
+    fun finishRegisterUser(onSuccess: () -> Unit) {
+        val ageInt: Int = edad.toInt()
+        if (ageInt < 0 || ageInt > 99) {
+            Log.d("Error", "Not a valid age")
+            return
+        }
+        if (descripcion.length > 300) {
+            Log.d("Error", "Description is too large")
+            return
+        }
+        viewModelScope.launch {
+            try {
+                val userId = auth.currentUser?.uid
 
+                if (userId != null) {
+                    val newDataOfUser = mutableMapOf(
+                        "edad" to edad,
+                        "description" to descripcion
+                    )
+
+                    // Busca el documento que tiene el User_id que coincide con userId
+                    FirebaseFirestore.getInstance().collection("Users")
+                        .whereEqualTo("User_id", userId)
+                        .limit(1) // Solo esperamos un documento que coincida
+                        .get()
+                        .addOnSuccessListener { querySnapshot ->
+                            if (!querySnapshot.isEmpty) {
+                                // Obtiene el primer documento (debería haber solo uno que coincida)
+                                val document = querySnapshot.documents[0]
+
+                                // Actualiza el documento encontrado
+                                document.reference.update(newDataOfUser as Map<String, Any>)
+                                    .addOnCompleteListener { task ->
+                                        Log.d(
+                                            "Datos actualizados satisfactoriamente",
+                                            "Usuario $userId actualizado."
+                                        )
+                                        onSuccess()
+
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Log.d("No se actualizaron los datos", "Error ${e.message}")
+                                    }
+                            } else {
+                                Log.d(
+                                    "Documento no encontrado",
+                                    "No se encontró un documento que coincida con el User_id."
+                                )
+                            }
+                        }
+                        .addOnFailureListener { e ->
+                            Log.d("Error al buscar el documento", "Error ${e.message}")
+                        }
+                } else {
+                    Log.d("No user authenticated", "Data upload failed.")
+                    print("Fallo al subir la ultima parte de los datos")
+                }
+
+            } catch (e: Exception) {
+                Log.d("Error en Jetpack", "ERROR ${e.localizedMessage}")
+            }
+
+
+        }
+    }
     fun onNombreChanged(newNombre: String) {
         nombre = newNombre
     }
