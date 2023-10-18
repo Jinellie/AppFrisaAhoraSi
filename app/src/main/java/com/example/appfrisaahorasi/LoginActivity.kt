@@ -2,10 +2,9 @@ package com.example.appfrisaahorasi
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -24,8 +23,8 @@ class LoginActivity : AppCompatActivity() {
             val phoneNumber = phoneNumberEditText.text.toString()
             val password = passwordEditText.text.toString()
 
-            val intent = Intent(this, ComposeLoginActivity::class.java)
 
+            val intent = Intent(this, ComposeLoginActivity::class.java)
             intent.putExtra("phoneNumber", phoneNumber)
             intent.putExtra("password", password)
             startActivity(intent)
