@@ -2,6 +2,7 @@ package com.example.appfrisaahorasi.pantallas.InicioSesion
 
 import android.content.Intent
 import android.view.LayoutInflater
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
@@ -30,6 +31,12 @@ fun InicioSesion(navController: NavController) {
             iniciarsesion.setOnClickListener {
                 val intent = Intent(innerContext, LoginActivity::class.java)
                 innerContext.startActivity(intent)
+            }
+
+            // BackButton que te lleva al inicio
+            val backButton = view.findViewById<ImageView>(R.id.btnBack)
+            backButton.setOnClickListener {
+                navController.navigate("Inicio")
             }
             view
         },
