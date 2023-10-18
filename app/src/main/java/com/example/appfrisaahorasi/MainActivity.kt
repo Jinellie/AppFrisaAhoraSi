@@ -13,6 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.appfrisaahorasi.navigation.NavRoutes
+import com.example.appfrisaahorasi.navigation.NavRoutes.LogInFrisa
 
 // Pantallas - Se base en el nombre de la clase, no el nombre del archivo
 import com.example.appfrisaahorasi.pantallas.AvisodePrivacidadScreen
@@ -21,6 +22,7 @@ import com.example.appfrisaahorasi.pantallas.Busqueda.BrusqueTags
 import com.example.appfrisaahorasi.pantallas.Busqueda.HistorialBrusqre
 import com.example.appfrisaahorasi.pantallas.Inicio
 import com.example.appfrisaahorasi.pantallas.InicioSesion.InicioSesion
+import com.example.appfrisaahorasi.pantallas.InicioSesion.LogInFrisa
 import com.example.appfrisaahorasi.pantallas.Perfil.PerfilApp
 import com.example.appfrisaahorasi.pantallas.Perfil.PerfilUsuario
 import com.example.appfrisaahorasi.pantallas.Registro.Registro
@@ -45,15 +47,12 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
-
             AppFrisaAhoraSiTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
                     navController = rememberNavController()
-                  
 
                     // NAVIGATION MANAGER SCREENS
                     navController?.let { controller ->
@@ -62,10 +61,15 @@ class MainActivity : ComponentActivity() {
                             composable(NavRoutes.Inicio) {
                                 Inicio(navController = controller)
                             }
-                            // Iniciar Sesión
+                            // INICIO SESION
                             composable(NavRoutes.InicioSesion) {
-                                InicioSesion()
+                                InicioSesion(navController = controller)
                             }
+                            // Inicio con correo
+                            composable(NavRoutes.LogInFrisa){
+                                LogInFrisa(navController = controller)
+                            }
+
                             // Aviso de privacidad
                             composable(NavRoutes.avisoPrivacidad) {
                                 AvisodePrivacidadScreen()
@@ -120,7 +124,7 @@ class MainActivity : ComponentActivity() {
                             composable(NavRoutes.historialBusqueda){
                                 HistorialBrusqre(navController = controller)
                             }
-
+                            // HOME
                             composable(NavRoutes.home) {
                                 Home()
                             }

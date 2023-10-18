@@ -91,6 +91,7 @@ class RegistroViewModel : ViewModel() {
         if(celular.length != 10){
             showErrorDialog = true
             dialogMessage = "Numero de telefono no es válido"
+            return
         }
         for(item in celular){
             if(item <'0' ||  item > '9'){

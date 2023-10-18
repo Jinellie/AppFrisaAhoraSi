@@ -161,6 +161,7 @@
 
 
         <LinearLayout
+            android:id="@+id/btnLogInCorreo"
             android:layout_width="318dp"
             android:layout_height="43dp"
             android:background="@drawable/boton"
@@ -168,6 +169,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="0dp"
             android:layout_marginStart="1dp"
+            android:clickable="true"
             >
 
             <ImageView
@@ -192,6 +194,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="-30dp"
+
                 />
 
 
