@@ -42,6 +42,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.net.toUri
 import androidx.lifecycle.Lifecycle
@@ -86,6 +87,8 @@ fun PerfilApp(NombreOrg: String, OrgDesc : String, instaUrl : String, twitterUrl
     // and snackbar should happen in background
     // thread without blocking main thread
     val coroutineScope = rememberCoroutineScope()
+
+
 
     // Scaffold Composable
     Scaffold(
@@ -264,6 +267,9 @@ fun Body() {
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
     var isImageClicked by remember { mutableStateOf(false) }
+    val shareIntent = remember { Intent(Intent.ACTION_SEND) }
+    shareIntent.putExtra(Intent.EXTRA_TEXT, shareUrl)
+    shareIntent.type = "text/plain"
 
     Column(
         modifier = Modifier
@@ -296,7 +302,11 @@ fun Body() {
                 contentDescription = null,
                 modifier = Modifier.padding(top = 27.dp).size(40.dp)
                     .clickable{
-                        Context.shareLink(shareUrl)
+                        ContextCompat.startActivity(
+                            context,
+                            Intent.createChooser(shareIntent, null),
+                            null
+                        )
 
                     }
             )
