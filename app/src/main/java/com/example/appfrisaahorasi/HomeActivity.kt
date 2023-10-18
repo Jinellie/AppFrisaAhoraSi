@@ -1,8 +1,8 @@
 package com.example.appfrisaahorasi
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation.findNavController
 
 
 class HomeActivity : AppCompatActivity() {
@@ -14,11 +14,13 @@ class HomeActivity : AppCompatActivity() {
         // Retrieve the "tipoUsuario" parameter from the intent
         val tipoUsuario = intent.getStringExtra("tipoUsuario")
 
-        // Retrieve the NavController from the shared ViewModel
-        //val navController = NavHostViewModel.navController
+        Log.i("Home, signed in","signInWithCredential:success")
 
-        // When you want to navigate to a different Composable:
-       // navController.navigate("home")
+
+        //val navHostViewModel: NavHostViewModel by viewModels()
+        //val navController = navHostViewModel.navController
+        // Navegar a home
+        //navController.navigate("home")
 
 
     }

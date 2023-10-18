@@ -25,13 +25,14 @@ import androidx.navigation.NavController
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.CustomTextField
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.PasswordTextField
 import com.example.appfrisaahorasi.pantallas.Registro.RegistroViewModel
+import com.example.appfrisaahorasi.ui.theme.RedApp
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun RegistroUScreen(
     navController: NavController,
-    viewModel: RegistroViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+    viewModel: RegistroViewModel = viewModel()
     )
     {
     val viewModel: RegistroViewModel = viewModel()
@@ -40,7 +41,7 @@ fun RegistroUScreen(
         topBar = {
             TopAppBar(
                 title = { Text(text = "") },
-                backgroundColor = Color(red = 0.7216145992279053f, green = 0.015033637173473835f, blue = 0.015033637173473835f, alpha = 0.7900000214576721f)
+                backgroundColor = RedApp
             )
         },
         content = {
@@ -63,7 +64,7 @@ fun RegistroUScreen(
                     color = Color.DarkGray,
                     fontSize = 15.sp)
                 Text(
-                    text = "NOMBRE Y APELLIDOS *",
+                    text = "Obligatorio *",
                     textAlign = TextAlign.Start,
                     fontSize = 12.sp,
                     textDecoration = TextDecoration.None,
@@ -83,12 +84,12 @@ fun RegistroUScreen(
                 CustomTextField(
                     value = viewModel.nombre,
                     onValueChange = { newValue -> viewModel.onNombreChanged(newValue)},
-                    placeholder = " ",
+                    placeholder = "Nombre",
                     keyboardType = KeyboardType.Text
                 )
 
                 Text(
-                    text = "MEDIO DE CONTACTO",
+                    text = "Obligatorio *",
                     textAlign = TextAlign.Start,
                     fontSize = 12.sp,
                     textDecoration = TextDecoration.None,
@@ -107,7 +108,7 @@ fun RegistroUScreen(
                 CustomTextField(
                     value = viewModel.celular,
                     onValueChange = { newValue -> viewModel.onCelularChanged(newValue) },
-                    placeholder = "Celular *",
+                    placeholder = "Celular",
                     keyboardType = KeyboardType.Phone
                 )
 
@@ -120,7 +121,7 @@ fun RegistroUScreen(
 
                 var passwordHidden by rememberSaveable { mutableStateOf(true) }
                 Text(
-                    text = "CONTRASEÑA *",
+                    text = "Obligatorio *",
                     textAlign = TextAlign.Start,
                     fontSize = 12.sp,
                     textDecoration = TextDecoration.None,
@@ -140,7 +141,7 @@ fun RegistroUScreen(
                 PasswordTextField(
                     value = viewModel.contrasena,
                     onValueChange = { newValue -> viewModel.onContrasenaChanged(newValue) },
-                    placeholder = "Minimo 6 caracteres",
+                    placeholder = "Mínimo 6 caracteres",
                     keyboardType = KeyboardType.Password,
                     isPassword = true,
                     passwordVisibility = passwordHidden
@@ -150,7 +151,7 @@ fun RegistroUScreen(
                     onClick = {viewModel.registerUser(navController)},
                     shape = RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp, bottomStart = 5.dp, bottomEnd = 5.dp),
                     colors = ButtonDefaults.buttonColors(
-                        backgroundColor = Color(red = 0.7216145992279053f, green = 0.015033637173473835f, blue = 0.015033637173473835f, alpha = 0.7900000214576721f)
+                        backgroundColor = RedApp
                     ),
                     modifier = Modifier
                         .fillMaxWidth()

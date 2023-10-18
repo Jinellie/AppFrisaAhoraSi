@@ -3,6 +3,7 @@ package com.example.appfrisaahorasi.pantallas
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -31,6 +32,12 @@ fun Inicio(navController: NavController) {
             registroButton.setOnClickListener {
                 navController.navigate(NavRoutes.IniciarRegistro)
             }
+
+            val invitadoButton = view.findViewById<TextView>(R.id.invButton)
+            invitadoButton.setOnClickListener {
+                navController.navigate(NavRoutes.historialBusqueda)
+            }
+
 
             view
         },
