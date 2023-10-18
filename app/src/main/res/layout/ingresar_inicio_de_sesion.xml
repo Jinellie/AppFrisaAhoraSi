@@ -22,8 +22,11 @@
         <!--android:layout_marginTop="50dp"-->
 
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:id="@+id/btnBack"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="26dp"
+            android:layout_height="20dp"
             android:layout_gravity="left"
             android:layout_marginStart="40dp"
             android:layout_marginTop="120dp"
@@ -60,8 +63,9 @@
             android:backgroundTint="#FFFFFF"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent">
-
+            <!--- CELULAR -->
             <EditText
+                android:id="@+id/phoneNumberEditText"
                 android:layout_width="230dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
@@ -72,8 +76,7 @@
                 android:inputType="phone"
                 android:textColor="#6C6C6C"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                android:id = "@+id/phoneNumberEditText" />
+                android:textStyle="bold" />
 
 
         </LinearLayout>
@@ -99,6 +102,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <EditText
+                android:id="@+id/passwordEditText"
                 android:layout_width="230dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
@@ -109,14 +113,14 @@
                 android:inputType="textPassword"
                 android:textColor="#6C6C6C"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                android:id = "@+id/passwordEditText"/>
+                android:textStyle="bold" />
 
 
         </LinearLayout>
 
 
         <LinearLayout
+            android:id="@+id/btnLogin"
             android:layout_width="320dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
@@ -124,11 +128,9 @@
             android:layout_marginTop="100dp"
             android:background="@drawable/boton"
             android:backgroundTint="#FFFFFF"
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent"
             android:clickable="true"
-            android:id = "@+id/btnLogin"
-            >
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:layout_width="match_parent"
@@ -149,8 +151,6 @@
 
     </LinearLayout>
 
-
-
     <LinearLayout
         android:layout_width="320dp"
         android:layout_height="45dp"
@@ -164,6 +164,7 @@
 
 
         <LinearLayout
+            android:id="@+id/btnLogInCorreo"
             android:layout_width="318dp"
             android:layout_height="43dp"
             android:background="@drawable/boton"
@@ -171,6 +172,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="0dp"
             android:layout_marginStart="1dp"
+            android:clickable="true"
             >
 
             <ImageView
@@ -195,6 +197,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="-30dp"
+
                 />
 
 
