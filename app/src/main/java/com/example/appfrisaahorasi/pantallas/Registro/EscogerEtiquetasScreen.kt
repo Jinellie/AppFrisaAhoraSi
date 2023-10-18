@@ -74,6 +74,7 @@ fun EscogerEtiquetasScreen(navController: NavController, tTagsViewModel: TagsVie
                 items(items = tags) {
                     ClickableBox(it, selectedTags)
                 }
+
             }
         }
 
