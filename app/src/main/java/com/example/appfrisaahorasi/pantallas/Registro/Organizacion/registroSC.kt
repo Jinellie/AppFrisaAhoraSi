@@ -2,9 +2,6 @@ package com.example.appfrisaahorasi.pantallas.Registro.Organizacion
 
 // firebase y phone auth registro
 import android.annotation.SuppressLint
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -34,21 +31,11 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.appfrisaahorasi.pantallas.Registro.RegistroViewModel
 
-
-class RegistroActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            RegistroScreen()
-        }
-    }
-}
 
 @Composable
 fun CustomTextField(
@@ -136,9 +123,7 @@ fun PasswordTextField(
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun RegistroScreen() {
-    val viewModel: RegistroViewModel = viewModel()
-
+fun RegistroScreen(navController: NavController,viewModel: RegistroViewModel) {
     Scaffold(
         // nav bar iría aquí
         topBar = {
@@ -221,19 +206,13 @@ fun RegistroScreen() {
                     fontSize = 12.sp,
                     textDecoration = TextDecoration.None,
                     letterSpacing = 0.sp,
-
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier
                         .align(alignment = Alignment.Start)
                         .padding(18.dp, 6.dp, 18.dp)
-
                         .width(77.dp)
-
                         //.height(18.dp)
-
                         .alpha(1f),
-
-
                     fontWeight = FontWeight.Medium,
                     fontStyle = FontStyle.Normal,
                     color = Color.Gray
@@ -265,7 +244,7 @@ fun RegistroScreen() {
                 )
 
                 Button(
-                    onClick = { /* Realizar registro aquí */ },
+                    onClick = { viewModel.validateContinue1(navController)},
                     shape = RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp, bottomStart = 5.dp, bottomEnd = 5.dp),
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = Color(red = 0.7216145992279053f, green = 0.015033637173473835f, blue = 0.015033637173473835f, alpha = 0.7900000214576721f)
@@ -288,22 +267,21 @@ fun RegistroScreen() {
             }
         }
     )
+    if (viewModel.showErrorDialog) {
+        AlertDialog(
+            onDismissRequest = { viewModel.showErrorDialog = false }, // Esto se invocará cuando se toque fuera del diálogo
+            title = { Text(text = "Error") },
+            text = { Text(text = viewModel.dialogMessage) },
+            buttons = {
+                Button(onClick = { viewModel.showErrorDialog = false }) { // Esto se invocará cuando se presione el botón
+                    Text(text = "Aceptar")
+                }
+            }
+        )
+    }
 }
 
-@Composable
-@Preview(showBackground = true)
-fun RegistroScreenPreview() {
-    RegistroScreen()
-}
 
-data class UserData(
-    val nombre: String,
-    val celular: String,
-    val correo: String,
-    val direccion: String,
-    val descripcion: String,
-    val edad: String
-)
 // TODOS
 
 

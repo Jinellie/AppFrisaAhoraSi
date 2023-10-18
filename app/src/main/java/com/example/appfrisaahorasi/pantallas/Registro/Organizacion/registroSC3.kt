@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Scaffold
@@ -46,18 +47,11 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.navigation.NavController
 import com.example.appfrisaahorasi.R
 import com.example.appfrisaahorasi.pantallas.Registro.RegistroViewModel
 
 
-class RegistroSC3Activity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            RegistroSC3Screen()
-        }
-    }
-}
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Demo_ExposedDropdownMenuBox() {
@@ -139,11 +133,9 @@ fun Demo_ExposedDropdownMenuBox() {
 
 
 
-@Preview
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun RegistroSC3Screen() {
-    val viewModel: RegistroViewModel = viewModel()
+fun RegistroSC3Screen(navController: NavController, viewModel: RegistroViewModel) {
 
     Scaffold( // nav bar iría aquí
         topBar = {
@@ -173,9 +165,6 @@ fun RegistroSC3Screen() {
                     color = Color.DarkGray,
                     fontSize = 15.sp)
 
-
-
-
                 CustomTextField(
                     value = viewModel.horaInicio,
                     onValueChange = { newValue -> viewModel.onHoraInicioChanged(newValue)},
@@ -202,7 +191,7 @@ fun RegistroSC3Screen() {
 
 
                 Button(
-                    onClick = { /* Realizar registro aquí */ },
+                    onClick = { viewModel.validateContinue3(navController) },
                     shape = RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp, bottomStart = 5.dp, bottomEnd = 5.dp),
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = Color(red = 0.7216145992279053f, green = 0.015033637173473835f, blue = 0.015033637173473835f, alpha = 0.7900000214576721f)
@@ -224,4 +213,16 @@ fun RegistroSC3Screen() {
             }
         }
     )
+    if (viewModel.showErrorDialog) {
+        AlertDialog(
+            onDismissRequest = { viewModel.showErrorDialog = false }, // Esto se invocará cuando se toque fuera del diálogo
+            title = { Text(text = "Error") },
+            text = { Text(text = viewModel.dialogMessage) },
+            buttons = {
+                Button(onClick = { viewModel.showErrorDialog = false }) { // Esto se invocará cuando se presione el botón
+                    Text(text = "Aceptar")
+                }
+            }
+        )
+    }
 }

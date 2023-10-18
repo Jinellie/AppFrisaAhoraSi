@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Scaffold
@@ -115,9 +116,6 @@ fun RegistroU3Screen(navController: NavController, viewModel: RegistroViewModel 
                     Text(text = "Elige una foto de perfil", color = Color.White)
                 }
 
-
-
-
                 Button(
                     onClick = { viewModel.finishRegisterUser(){
                                     navController.navigate(NavRoutes.historialBusqueda)
@@ -144,4 +142,16 @@ fun RegistroU3Screen(navController: NavController, viewModel: RegistroViewModel 
             }
         }
     )
+    if (viewModel.showErrorDialog) {
+        AlertDialog(
+            onDismissRequest = { viewModel.showErrorDialog = false }, // Esto se invocará cuando se toque fuera del diálogo
+            title = { Text(text = "Error") },
+            text = { Text(text = viewModel.dialogMessage) },
+            buttons = {
+                Button(onClick = { viewModel.showErrorDialog = false }) { // Esto se invocará cuando se presione el botón
+                    Text(text = "Aceptar")
+                }
+            }
+        )
+    }
 }

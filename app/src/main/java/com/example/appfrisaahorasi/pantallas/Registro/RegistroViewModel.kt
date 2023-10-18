@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
+import com.example.appfrisaahorasi.navigation.NavRoutes
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
@@ -36,6 +37,7 @@ class RegistroViewModel : ViewModel() {
     //  Horario de atencion
     var horaInicio by mutableStateOf("")
     var horaFin by mutableStateOf("")
+
     //  Redes sociales
     var instagram by mutableStateOf("")
     var twitter by mutableStateOf("")
@@ -81,25 +83,38 @@ class RegistroViewModel : ViewModel() {
         }
     }
 
-    fun registerUser(navController: NavController) {
-        if(contrasena.length < 6){
-            showErrorDialog = true
-            dialogMessage = "Contraseña invalida"
-            return
-        }
-        if(celular.length != 10){
-            showErrorDialog = true
-            dialogMessage = "Numero de telefono no es válido"
-            return
-        }
-        for(item in celular){
-            if(item <'0' ||  item > '9'){
-                showErrorDialog = true
-                dialogMessage = "Numero de telefono invalido"
-                return
-            }
-        }
+    fun registrarOrganizacion(navController: NavController){
 
+
+    }
+    fun validateContinue1(navController: NavController){
+        if(!IsValidCelular() || !IsValidPass()){
+            return
+        }
+        navController.navigate(NavRoutes.registroSC2)
+    }
+    fun validateContinue2(navController: NavController){
+        if(!IsValidTelefono() || !IsValidDescripcion()){
+            return
+        }
+        navController.navigate(NavRoutes.registroSC3)
+    }
+    fun validateContinue3(navController: NavController){
+        if(!IsValidCelular() || !IsValidPass()){
+            return
+        }
+        navController.navigate(NavRoutes.registroSC4)
+    }
+    fun validateContinue4(navController: NavController){
+        // Etiquetas
+        navController.navigate(NavRoutes.historialBusqueda)
+    }
+
+
+    fun registerUser(navController: NavController) {
+        if(!IsValidCelular() || !IsValidPass()){
+            return
+        }
         auth.createUserWithEmailAndPassword(this.correo, this.contrasena)
             .addOnCompleteListener { task ->
                 if(_loading.value == false){
@@ -123,11 +138,13 @@ class RegistroViewModel : ViewModel() {
     fun finishRegisterUser(onSuccess: () -> Unit) {
         val ageInt: Int = edad.toInt()
         if (ageInt < 0 || ageInt > 99) {
-            Log.d("Error", "Not a valid age")
+            showErrorDialog = true
+            dialogMessage = "Edad no es valida"
             return
         }
         if (descripcion.length > 300) {
-            Log.d("Error", "Description is too large")
+            showErrorDialog = true
+            dialogMessage = "La descripción es muy larga"
             return
         }
         viewModelScope.launch {
@@ -237,5 +254,65 @@ class RegistroViewModel : ViewModel() {
     fun onEdadChanged(newEdad: String) {
         edad = newEdad
     }
+    // VALIDATIONS
+    fun IsValidPass(): Boolean{
+        if(contrasena.length < 6){
+            showErrorDialog = true
+            dialogMessage = "Contraseña invalida"
+            return false
+        }
+        return true
 
+    }
+    fun IsValidEmail():Boolean{
+        return true
+    }
+
+    fun IsValidCelular(): Boolean{
+        if(celular.length != 10){
+            showErrorDialog = true
+            dialogMessage = "Celular no es valido"
+            return false
+        }
+        for(item in celular){
+            if(item < '0' || item >'9'){
+                showErrorDialog = true
+                dialogMessage = "Celular no es valido"
+                return false
+            }
+        }
+        return true
+    }
+    fun IsValidNomOrg(): Boolean{
+        if(nombreOrg.length <= 1){
+            showErrorDialog = true
+            dialogMessage = "El nombre de la organizacion no puede estar vacio"
+            return false
+        }
+        return true
+    }
+    fun IsValidTelefono(): Boolean{
+        if(telefono.length != 10){
+            showErrorDialog = true
+            dialogMessage = "El telefono de la organizacion no es valido"
+            return false
+        }
+        for(item in telefono){
+            if(item < '0' || item >'9'){
+                showErrorDialog = true
+                dialogMessage = "Celular no es valido"
+                return false
+            }
+        }
+        return true
+    }
+
+    fun IsValidDescripcion(): Boolean{
+        if(descripcion.length < 1){
+            showErrorDialog = true
+            dialogMessage = "La descripción no puede estar vacia"
+            return false
+        }
+        return true
+    }
 }

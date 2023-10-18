@@ -1,9 +1,6 @@
 package com.example.appfrisaahorasi.pantallas.Registro.Organizacion
 
 import android.annotation.SuppressLint
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Scaffold
@@ -28,27 +26,16 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.appfrisaahorasi.pantallas.Registro.RegistroViewModel
 
-class RegistroSC2Activity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            RegistroSC2Screen()
-        }
-    }
-}
 
-@Preview
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun RegistroSC2Screen() {
-    val viewModel: RegistroViewModel = viewModel()
-
+fun RegistroSC2Screen(navController: NavController, viewModel: RegistroViewModel) {
     Scaffold( // nav bar iría aquí
         topBar = {
             TopAppBar(
@@ -140,7 +127,7 @@ fun RegistroSC2Screen() {
 
 
                 Button(
-                    onClick = { /* Realizar registro aquí */ },
+                    onClick = { viewModel.validateContinue2(navController)},
                     shape = RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp, bottomStart = 5.dp, bottomEnd = 5.dp),
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = Color(red = 0.7216145992279053f, green = 0.015033637173473835f, blue = 0.015033637173473835f, alpha = 0.7900000214576721f)
@@ -162,4 +149,16 @@ fun RegistroSC2Screen() {
             }
         }
     )
+    if (viewModel.showErrorDialog) {
+        AlertDialog(
+            onDismissRequest = { viewModel.showErrorDialog = false }, // Esto se invocará cuando se toque fuera del diálogo
+            title = { Text(text = "Error") },
+            text = { Text(text = viewModel.dialogMessage) },
+            buttons = {
+                Button(onClick = { viewModel.showErrorDialog = false }) { // Esto se invocará cuando se presione el botón
+                    Text(text = "Aceptar")
+                }
+            }
+        )
+    }
 }
