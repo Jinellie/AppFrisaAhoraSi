@@ -31,12 +31,10 @@ import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.RegistroScree
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroU3Screen
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroUScreen
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.registroSC5
-import com.example.appfrisaahorasi.pantallas.Registro.EscogerEtiquetasScreen
-
+import com.example.appfrisaahorasi.pantallas.Registro.Usuario.favOrgs
 import com.example.appfrisaahorasi.pantallas.busquedaBar.Brusque
-
-
 import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
+import com.example.appfrisaahorasi.pantallas.Registro.EscogerEtiquetasScreen
 
 class MainActivity : ComponentActivity() {
     // NAV CONTROLLER TO ACCESS ALL
@@ -115,6 +113,12 @@ class MainActivity : ComponentActivity() {
                             }
                             composable(NavRoutes.busquedaTags){
                                 BrusqueTags(navController = controller)
+                            }
+                            composable(NavRoutes.favOrgs){
+                                favOrgs(navController = controller)
+                            }
+                            composable(NavRoutes.favoritos){
+                                favOrgs(navController = controller)
                             }
 
                             composable(NavRoutes.historialBusqueda){
