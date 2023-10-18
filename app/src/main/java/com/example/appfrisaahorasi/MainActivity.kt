@@ -73,6 +73,7 @@ class MainActivity : ComponentActivity() {
                             // Perfil USUARIO
                             composable(NavRoutes.perfilOrgvistaUsuario) {
                                 PerfilApp("CarlosMex", "Si Somos", "www.teitter.com", "fbeds", "sdsdsd", navController = controller)
+
                             }
                             composable(NavRoutes.perfilUsuario) {
                                 PerfilUsuario()

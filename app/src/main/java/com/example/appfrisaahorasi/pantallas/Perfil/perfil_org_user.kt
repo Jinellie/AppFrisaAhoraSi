@@ -420,6 +420,5 @@ fun Context.shareLink(url: String) {
 //    val direction: String,
 //    val urlFacebook: String,
 //    val urlTwitter: String,
-//    val urlInstagram: String
+//    val urlInstagram: String
 //}
-
