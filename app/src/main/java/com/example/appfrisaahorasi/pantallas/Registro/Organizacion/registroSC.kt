@@ -141,7 +141,6 @@ fun RegistroScreen() {
 
     Scaffold(
         // nav bar iría aquí
-
         topBar = {
             TopAppBar(
                 title = { Text(text = "") },
