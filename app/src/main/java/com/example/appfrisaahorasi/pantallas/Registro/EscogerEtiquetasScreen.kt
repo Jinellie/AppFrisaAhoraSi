@@ -76,8 +76,10 @@ fun EscogerEtiquetasScreen() {
             color = Color.Black,
             fontSize = 15.sp)
         Spacer(modifier = Modifier.height(44.dp))
+
         LazyColumn {
-            items(items = tags) {
+            items(tags) { tag ->
+                ClickableBox(tags = tag)
             }
         }
 

@@ -62,6 +62,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+var NombreOrg = "Nombre_Org"
+var OrgDesc = "Hola soy una organizacion....Hola soy una organizacion....Hola soy una organizacion....Hola soy una organizacion....Hola soy una organizacion...."
+var instaUrl = "https://www.instagram.com"
+var twitterUrl = "https://twitter.com"
+var faceBookUrl = "https://www.facebook.com"
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable

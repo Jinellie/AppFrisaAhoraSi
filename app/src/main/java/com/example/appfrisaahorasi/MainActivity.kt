@@ -20,7 +20,7 @@ import com.example.appfrisaahorasi.pantallas.Busqueda.BrusqueTags
 import com.example.appfrisaahorasi.pantallas.Busqueda.HistorialBrusqre
 import com.example.appfrisaahorasi.pantallas.Inicio
 import com.example.appfrisaahorasi.pantallas.InicioSesion
-import com.example.appfrisaahorasi.pantallas.Perfil.PerfilApp
+//import com.example.appfrisaahorasi.pantallas.Perfil.PerfilApp
 import com.example.appfrisaahorasi.pantallas.Perfil.PerfilUsuario
 import com.example.appfrisaahorasi.pantallas.Registro.Registro
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.RegistroSC2Screen
@@ -52,86 +52,87 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     navController = rememberNavController()
+                    EscogerEtiquetasScreen()
                   
 
                     // NAVIGATION MANAGER SCREENS
-                    navController?.let { controller ->
-                        NavHost(navController, startDestination = NavRoutes.Inicio) {
-                            //  Main page
-                            composable(NavRoutes.Inicio) {
-                                Inicio(navController = controller)
-                            }
-                            // Iniciar Sesión
-                            composable(NavRoutes.InicioSesion) {
-                                InicioSesion(navController = controller)
-                            }
-                            // Aviso de privacidad
-                            composable(NavRoutes.avisoPrivacidad) {
-                                AvisodePrivacidadScreen()
-                            }
-                            // Perfil USUARIO
-                            composable(NavRoutes.perfilOrgvistaUsuario) {
-                                PerfilApp()
-                            }
-                            composable(NavRoutes.perfilUsuario) {
-                                PerfilUsuario()
-                            }
-                            // REGISTRO EMPEZAR
-                            composable(NavRoutes.IniciarRegistro) {
-                                Registro(navController = controller)
-                            }
-                            // REGISTRO: ORGANIZACIÓN
-                            composable(NavRoutes.registroSC) {
-                                RegistroScreen()
-                            }
-                            composable(NavRoutes.registroSC2) {
-                                RegistroSC2Screen()
-                            }
-                            composable(NavRoutes.registroSC3) {
-                                RegistroSC3Screen()
-                            }
-                            composable(NavRoutes.registroSC4) {
-                                RegistroSC4Screen()
-                            }
-                            composable(NavRoutes.registroSC5) {
-                                registroSC5()
-                            }
-
-                            // REGISTRO: USUARIO
-                            composable(NavRoutes.registroU) {
-                                RegistroUScreen(navController)
-                            }
-                            composable(NavRoutes.EscogerEtiquetasScreen) {
-                                EscogerEtiquetasScreen()
-                            }
-                            composable(NavRoutes.registroU3) {
-                                RegistroU3Screen()
-                            }
-                            // Busqueda
-                            composable(NavRoutes.busqueda){
-                                Brusque(navController = controller)
-                            }
-                            composable(NavRoutes.busquedaTags){
-                                BrusqueTags(navController = controller)
-                            }
-
-                            composable(NavRoutes.historialBusqueda){
-                                HistorialBrusqre(navController = controller)
-                            }
-
-                            composable(NavRoutes.home) {
-                                Home()
-                            }
-                            composable(NavRoutes.favoritos) {
+//                    navController?.let { controller ->
+//                        NavHost(navController, startDestination = NavRoutes.Inicio) {
+//                            //  Main page
+//                            composable(NavRoutes.Inicio) {
+//                                Inicio(navController = controller)
+//                            }
+//                            // Iniciar Sesión
+//                            composable(NavRoutes.InicioSesion) {
+//                                InicioSesion(navController = controller)
+//                            }
+//                            // Aviso de privacidad
+//                            composable(NavRoutes.avisoPrivacidad) {
+//                                AvisodePrivacidadScreen()
+//                            }
+//                            // Perfil USUARIO
+//                            composable(NavRoutes.perfilOrgvistaUsuario) {
+//                                PerfilApp()
+//                            }
+//                            composable(NavRoutes.perfilUsuario) {
+//                                PerfilUsuario()
+//                            }
+//                            // REGISTRO EMPEZAR
+//                            composable(NavRoutes.IniciarRegistro) {
+//                                Registro(navController = controller)
+//                            }
+//                            // REGISTRO: ORGANIZACIÓN
+//                            composable(NavRoutes.registroSC) {
+//                                RegistroScreen()
+//                            }
+//                            composable(NavRoutes.registroSC2) {
+//                                RegistroSC2Screen()
+//                            }
+//                            composable(NavRoutes.registroSC3) {
+//                                RegistroSC3Screen()
+//                            }
+//                            composable(NavRoutes.registroSC4) {
+//                                RegistroSC4Screen()
+//                            }
+//                            composable(NavRoutes.registroSC5) {
+//                                registroSC5()
+//                            }
+//
+//                            // REGISTRO: USUARIO
+//                            composable(NavRoutes.registroU) {
+//                                RegistroUScreen(navController)
+//                            }
+//                            composable(NavRoutes.EscogerEtiquetasScreen) {
+//                                EscogerEtiquetasScreen()
+//                            }
+//                            composable(NavRoutes.registroU3) {
+//                                RegistroU3Screen()
+//                            }
+//                            // Busqueda
+//                            composable(NavRoutes.busqueda){
+//                                Brusque(navController = controller)
+//                            }
+//                            composable(NavRoutes.busquedaTags){
+//                                BrusqueTags(navController = controller)
+//                            }
+//
+//                            composable(NavRoutes.historialBusqueda){
+//                                HistorialBrusqre(navController = controller)
+//                            }
+//
+//                            composable(NavRoutes.home) {
+//                                Home()
+//                            }
+//                            composable(NavRoutes.favoritos) {
                               //  favoritos()
                             }
                         } // Fin NavHost
                     } // Fin NavControllerCreation
                 } // Fin cuerpo surface
             }// Fin App frisa
-        } // Fin Set Content
-    } // Fin ON Create
-} // Fin clase
+//        } // Fin Set Content
+//    } // Fin ON Create
+//} // Fin clase
 
 
 
