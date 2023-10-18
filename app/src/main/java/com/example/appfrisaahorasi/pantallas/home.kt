@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -66,12 +67,12 @@ fun Home(navController: NavController) {
     Scaffold(
         scaffoldState = scaffoldState,
         drawerContent = {
-            AppDrawer(userType = "Personal")
+            AppDrawer(userType = "Personal", navController)
         },
         content = { padding ->
             ContentHome(
                // navController,
-                modifier = Modifier.padding(padding),
+                modifier = Modifier.padding(padding).clickable { navController.navigate("perfilOrgvistaUsuario") },
                 onMenuClick = {
                     coroutineScope.launch {
                         if (scaffoldState.drawerState.isOpen) {
