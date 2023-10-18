@@ -53,8 +53,10 @@ class MainActivity : ComponentActivity() {
                     navController = rememberNavController()
 
 
+
                     // NAVIGATION MANAGER SCREENS
                     navController?.let { controller ->
+
                         NavHost(navController, startDestination = NavRoutes.Inicio) {
                             //  Main page
                             composable(NavRoutes.Inicio) {
@@ -75,7 +77,8 @@ class MainActivity : ComponentActivity() {
                             }
                             // Perfil USUARIO
                             composable(NavRoutes.perfilOrgvistaUsuario) {
-                                PerfilApp("CarlosMex", "Si Somos", "www.teitter.com", "fbeds", "sdsdsd", navController = controller)
+                                PerfilApp("CarlosMex", "Somos una organización comprometida con la excelencia y la satisfacción del cliente. Nuestra misión es proporcionar soluciones innovadoras y de alta calidad en manufactura, aprovechando la experiencia de nuestro talentoso equipo y la última tecnología. Nos enorgullece nuestro compromiso con la integridad, la responsabilidad social y la sostenibilidad. Nuestra visión es liderar en [insertar aquí la área de liderazgo o enfoque estratégico], proporcionando un entorno de trabajo inspirador para nuestros empleados y generando un impacto positivo en la comunidad y el mundo en general. Estamos dedicados a alcanzar la excelencia en cada aspecto de nuestro negocio y a establecer relaciones a largo plazo con nuestros clientes, socios y partes interesadas",
+                                                "www.teitter.com", "fbeds", "sdsdsd", navController = controller)
 
                             }
                             composable(NavRoutes.perfilUsuario) {
@@ -140,9 +143,12 @@ class MainActivity : ComponentActivity() {
                     } // Fin NavControllerCreation
                 } // Fin cuerpo surface
             }// Fin App frisa
-//        } // Fin Set Content
-//    } // Fin ON Create
-//} // Fin clase
+                } // Fin Set Content
+            } // Fin ON Create
+        } // Fin clase
+
+
+
 
 
 
