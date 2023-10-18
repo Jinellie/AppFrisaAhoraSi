@@ -27,7 +27,7 @@ import kotlinx.coroutines.launch
 
 
 @Composable
-fun FavsOSC(navController: NavController) {
+fun FavsDos(navController: NavController) {
     val scaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
 
@@ -37,7 +37,7 @@ fun FavsOSC(navController: NavController) {
             AppDrawer(userType = "Personal", navController)
         },
         content = { padding ->
-            Content(
+            ContentDos(
                 navController,
                 modifier = Modifier.padding(padding),
                 onMenuClick = {
@@ -55,11 +55,11 @@ fun FavsOSC(navController: NavController) {
 }
 
 @Composable
-fun Content(navController: NavController, modifier: Modifier, onMenuClick: () -> Unit) {
+fun ContentDos(navController: NavController, modifier: Modifier, onMenuClick: () -> Unit) {
     AndroidView(
         factory = { context ->
             // Inflate your XML layout using the context
-            val view = LayoutInflater.from(context).inflate(R.layout.favs, null)
+            val view = LayoutInflater.from(context).inflate(R.layout.favs_osc, null)
 
             // ACTIVAR EL NAVDRAWER
             val tresBarrasButton = view.findViewById<ImageView>(R.id.tresBarras)
@@ -69,7 +69,7 @@ fun Content(navController: NavController, modifier: Modifier, onMenuClick: () ->
 
             val otraPantalla = view.findViewById<ImageView>(R.id.otroFavs)
             otraPantalla.setOnClickListener {
-                navController.navigate(NavRoutes.favOrgs)
+                navController.navigate(NavRoutes.favoritos)
             }
 
             view

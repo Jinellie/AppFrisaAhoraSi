@@ -52,7 +52,7 @@ fun LogInFrisa(navController: NavController){
         var password by remember { mutableStateOf("")}
 
         Text(
-            text = "E-mail",
+            text = "Correo",
             textAlign = TextAlign.Start,
             fontSize = 12.sp,
             textDecoration = TextDecoration.None,
@@ -77,7 +77,7 @@ fun LogInFrisa(navController: NavController){
         )
 
         Text(
-            text = "Password",
+            text = "Contraseña",
             textAlign = TextAlign.Start,
             fontSize = 12.sp,
             textDecoration = TextDecoration.None,
@@ -105,14 +105,14 @@ fun LogInFrisa(navController: NavController){
 
         Button(onClick = {
                 loginVM.login(){
-                    navController.navigate(NavRoutes.historialBusqueda)
+                    navController.navigate(NavRoutes.home)
                 }
             },
             colors = ButtonDefaults.buttonColors(backgroundColor = RedApp),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 30.dp, end = 30.dp)){
-            Text(text = "Log In")
+            Text(text = "Iniciar Sesión", color = Color.White)
         }
     }
 }

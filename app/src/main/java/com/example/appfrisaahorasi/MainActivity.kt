@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
@@ -36,6 +37,8 @@ import com.example.appfrisaahorasi.pantallas.Registro.EscogerEtiquetasScreen
 import com.example.appfrisaahorasi.pantallas.Registro.TagsViewModel
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.favOrgs
 import com.example.appfrisaahorasi.pantallas.busquedaBar.Brusque
+import com.example.appfrisaahorasi.pantallas.FavsOSC
+import com.example.appfrisaahorasi.pantallas.FavsDos
 import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
 
 import com.example.appfrisaahorasi.pantallas.Registro.RegistroViewModel
@@ -55,8 +58,11 @@ class MainActivity : ComponentActivity() {
                 ) {
                     navController = rememberNavController()
 
+
+
                     // NAVIGATION MANAGER SCREENS
                     navController?.let { controller ->
+
                         NavHost(navController, startDestination = NavRoutes.Inicio) {
                             //  Main page
                             composable(NavRoutes.Inicio) {
@@ -77,7 +83,8 @@ class MainActivity : ComponentActivity() {
                             }
                             // Perfil USUARIO
                             composable(NavRoutes.perfilOrgvistaUsuario) {
-                                PerfilApp("CarlosMex", "Si Somos", "www.instagram.com", "www.twitter.com", "www.facebook.com", navController = controller)
+
+                                PerfilApp("Diez por Ciénega A.C.", "Nuestra misión en Diez por Ciénega A.C. es promover el desarrollo integral de la población vulnerable en la región de la Ciénega de Chapala. Nos dedicamos a empoderar a las personas y comunidades desfavorecidas, brindándoles acceso a recursos, educación, salud y oportunidades que les permitan alcanzar su máximo potencial. Trabajamos incansablemente para construir un futuro más equitativo y próspero, donde cada individuo tenga las herramientas necesarias para superar desafíos y lograr una vida plena. Juntos, construimos puentes hacia un mejor mañana. #DesarrolloIntegral #Empoderamiento #ComunidadFuerte", "www.instagram.com", "www.twitter.com", "www.facebook.com", navController = controller)
 
                             }
                             composable(NavRoutes.perfilUsuario) {
@@ -118,30 +125,30 @@ class MainActivity : ComponentActivity() {
                             composable(NavRoutes.busquedaTags){
                                 BrusqueTags(navController = controller)
                             }
-                            composable(NavRoutes.favOrgs){
-                                favOrgs(navController = controller)
-                            }
-                            composable(NavRoutes.favoritos){
-                                favOrgs(navController = controller)
-                            }
-
                             composable(NavRoutes.historialBusqueda){
                                 HistorialBrusqre(navController = controller)
                             }
                             // HOME
                             composable(NavRoutes.home) {
-                                Home(navController)
+                                Home(navController = controller)
                             }
                             composable(NavRoutes.favoritos) {
-                              //  favoritos()
+                                FavsOSC(navController = controller)
                             }
+                            composable(NavRoutes.favOrgs){
+                                FavsDos(navController = controller)
+                            }
+
                         } // Fin NavHost
                     } // Fin NavControllerCreation
                 } // Fin cuerpo surface
             }// Fin App frisa
-        } // Fin Set Content
-    } // Fin ON Create
-} // Fin clase
+                } // Fin Set Content
+            } // Fin ON Create
+        } // Fin clase
+
+
+
 
 
 
