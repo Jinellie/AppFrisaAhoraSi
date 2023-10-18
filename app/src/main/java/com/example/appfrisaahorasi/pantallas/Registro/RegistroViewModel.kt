@@ -42,9 +42,6 @@ class RegistroViewModel : ViewModel() {
     var telefono by mutableStateOf("") // telefono de una organizacion
     var descripcion by mutableStateOf("") // descripcion para perfil de usuario o org
 
-
-
-
     private val auth = FirebaseAuth.getInstance()
     //private val firestore = FirebaseFirestore.getInstance()
     // FUNCION DE REGISTRO

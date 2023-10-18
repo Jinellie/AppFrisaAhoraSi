@@ -3,8 +3,8 @@ package com.example.appfrisaahorasi
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
@@ -34,6 +34,7 @@ import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroU3Screen
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroUScreen
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.registroSC5
 import com.example.appfrisaahorasi.pantallas.Registro.EscogerEtiquetasScreen
+import com.example.appfrisaahorasi.pantallas.Registro.TagsViewModel
 
 import com.example.appfrisaahorasi.pantallas.busquedaBar.Brusque
 
@@ -43,7 +44,7 @@ import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
 class MainActivity : ComponentActivity() {
     // NAV CONTROLLER TO ACCESS ALL
     private lateinit var navController: NavHostController
-
+    private val sharedTagsViewModel by viewModels<TagsViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -108,7 +109,7 @@ class MainActivity : ComponentActivity() {
                                 RegistroUScreen(navController)
                             }
                             composable(NavRoutes.EscogerEtiquetasScreen) {
-                                EscogerEtiquetasScreen()
+                                EscogerEtiquetasScreen(navController = controller)
                             }
                             composable(NavRoutes.registroU3) {
                                 RegistroU3Screen()

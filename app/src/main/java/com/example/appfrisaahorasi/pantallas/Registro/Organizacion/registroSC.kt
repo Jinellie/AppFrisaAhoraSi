@@ -252,19 +252,13 @@ fun RegistroScreen() {
                     fontSize = 12.sp,
                     textDecoration = TextDecoration.None,
                     letterSpacing = 0.sp,
-
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier
                         .align(alignment = Alignment.Start)
                         .padding(18.dp, 0.dp, 18.dp, 0.dp)
-
                         .width(77.dp)
-
                         //.height(18.dp)
-
                         .alpha(1f),
-
-
                     fontWeight = FontWeight.Medium,
                     fontStyle = FontStyle.Normal,
                     color = Color.Gray
