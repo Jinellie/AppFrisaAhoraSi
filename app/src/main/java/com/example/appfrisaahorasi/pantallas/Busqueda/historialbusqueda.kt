@@ -13,6 +13,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,8 +23,48 @@ import com.example.appfrisaahorasi.MainActivity
 import com.example.appfrisaahorasi.R
 import com.example.appfrisaahorasi.navigation.NavRoutes
 
+import androidx.compose.material.Scaffold
+import androidx.compose.material.DrawerState
+import androidx.compose.material.FabPosition
+import androidx.compose.material.Text
+import androidx.compose.material.rememberDrawerState
+import androidx.compose.material.rememberScaffoldState
+import com.example.appfrisaahorasi.pantallas.AppDrawer
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
+import androidx.compose.runtime.LaunchedEffect
+
 @Composable
 fun HistorialBrusqre(navController: NavController) {
+    val scaffoldState = rememberScaffoldState()
+    val coroutineScope = rememberCoroutineScope()
+
+    Scaffold(
+        scaffoldState = scaffoldState,
+        drawerContent = {
+            AppDrawer(userType = "")
+        },
+        content = { padding ->
+            Content(
+                navController,
+                modifier = Modifier.padding(padding),
+                onMenuClick = {
+                    coroutineScope.launch {
+                        if (scaffoldState.drawerState.isOpen) {
+                            scaffoldState.drawerState.close()
+                        } else {
+                            scaffoldState.drawerState.open()
+                        }
+                    }
+                }
+            )
+        }
+    )
+}
+
+@Composable
+fun Content(navController: NavController, modifier: Modifier, onMenuClick: () -> Unit) {
+
     AndroidView(
         factory = { context ->
             // Inflate your XML layout using the context
@@ -94,10 +135,16 @@ fun HistorialBrusqre(navController: NavController) {
             }
 
 
+            // ACTIVAR EL NAVDRAWER
+            val tresBarrasButton = view.findViewById<ImageView>(R.id.tresBarras)
+            tresBarrasButton.setOnClickListener {
+                onMenuClick()  // Esto abrirá o cerrará el cajón
+            }
 
             view
         },
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .background(Color.White) // Set the background color here
     )
 }

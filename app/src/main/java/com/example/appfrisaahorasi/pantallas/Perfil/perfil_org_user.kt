@@ -105,7 +105,7 @@ fun PerfilApp(NombreOrg: String, OrgDesc : String, instaUrl : String, twitterUrl
 
         // Pass the body in content parameter
         content = {
-            Body(navController)
+            Body(NombreOrg, OrgDesc, instaUrl, twitterUrl, facebookUrl, navController)
         },
 
         // pass the drawer
@@ -217,7 +217,7 @@ fun BottomBar() {
 }
 
 @Composable
-fun Body(navController: NavController) {
+fun Body(NombreOrg: String, OrgDesc : String, instaUrl : String, twitterUrl: String, facebookUrl: String,  navController: NavController ) {
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
     var isImageClicked by remember { mutableStateOf(false) }
@@ -349,7 +349,7 @@ fun Body(navController: NavController) {
                 modifier = Modifier.padding(top = 15.dp).size(40.dp)
                     .clickable(){
                         coroutineScope.launch {
-                            val intent = Intent(Intent.ACTION_VIEW, faceBookUrl.toUri())
+                            val intent = Intent(Intent.ACTION_VIEW, facebookUrl.toUri())
 
                             startActivity(context, intent, null)
 
@@ -425,6 +425,5 @@ fun Context.shareLink(url: String) {
 //    val direction: String,
 //    val urlFacebook: String,
 //    val urlTwitter: String,
-//    val urlInstagram: String
+//    val urlInstagram: String
 //}
-

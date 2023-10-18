@@ -36,22 +36,43 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
-@Preview
+
 @Composable
 fun EscogerEtiquetasScreen() {
+    println("Llega a tag screen")
     val userId = FirebaseAuth.getInstance().currentUser?.uid
-    val user = mutableMapOf<String, Any>()
+    val db = FirebaseFirestore.getInstance()
+    val collectionRef = db.collection("Tags")
+    val documentId = "f6af1fkY6a8tHuWYCwgG"
+    val ListaTags = mutableListOf<String>() // Corregir la declaración de la lista
+    println("Try to get the tags")
+    collectionRef.document(documentId)
+        .get()
+        .addOnSuccessListener { document ->
+            if (document.exists()) {
+                // El documento existe, y puedes acceder a sus datos
+                val data = document.data
 
+                // Itera sobre los valores del documento y agrégalos a ListaTags
+                for ((key, value) in data ?: emptyMap()) {
+                    if (value is String) {
+                        ListaTags.add(value)
+                    }
+                }
+                println("Se obtuvo la lista de tags exitosamente")
+            } else {
+                // El documento no existe
+                println("No se pudo obtener la lista de tags")
+            }
+        }
+        .addOnFailureListener { exception ->
+            // Ocurrió un error al obtener el documento
+            println("Ocurrió un error al intentar obtener el documento: $exception")
+            // Maneja el error o registra el mensaje de error
+        }
 
-    val tags: List<String> = listOf(
-        "Ambientalistas",
-        "Artisticos",
-        "Ambientalistas",
-        "Discapacidades",
-        "Medicos"
-
-    )
     // Store temporaly the tags to subbmit at the end
     var selectedTags by remember { mutableStateOf(listOf<String>()) }
 
@@ -78,8 +99,8 @@ fun EscogerEtiquetasScreen() {
         Spacer(modifier = Modifier.height(44.dp))
 
         LazyColumn {
-            items(tags) { tag ->
-                ClickableBox(tags = tag)
+
+            items(items = ListaTags) {
             }
         }
 
