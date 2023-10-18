@@ -1,5 +1,6 @@
 package com.example.appfrisaahorasi.pantallas.Perfil
 
+//import com.google.maps.android.ktx.awaitMap
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
@@ -10,6 +11,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -22,8 +24,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
@@ -52,24 +52,20 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.appfrisaahorasi.R
+import com.example.appfrisaahorasi.pantallas.AppDrawer
+import com.example.appfrisaahorasi.pantallas.TopBar
 import com.example.appfrisaahorasi.ui.theme.Black
 import com.example.appfrisaahorasi.ui.theme.RedApp
 import com.google.android.gms.maps.MapView
-//import com.google.maps.android.ktx.awaitMap
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-//Descripcion de organizacion
-var OrgDesc = "¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada..."
-var NombreOrg = "Nombre_Org"
 
-var instaUrl = "https://www.instagram.com"
-val twitterUrl = "https://twitter.com"
-val faceBookUrl = "https://www.facebook.com"
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
+
 fun PerfilApp(NombreOrg: String, OrgDesc : String, instaUrl : String, twitterUrl: String, facebookUrl: String,  navController: NavController ) {
 
     // create a scaffold state, set it to close by default
@@ -109,7 +105,7 @@ fun PerfilApp(NombreOrg: String, OrgDesc : String, instaUrl : String, twitterUrl
 
         // pass the drawer
         drawerContent = {
-            Drawer()
+            AppDrawer("OSC") // TODO: pasar parámetro tipoUsuario
         },
 
         floatingActionButton = {
@@ -192,26 +188,7 @@ fun rememberMapLifecycleObserver(mapView: MapView): LifecycleEventObserver =
 
 
 // A function which will receive a callback to trigger to opening the drawer
-@Composable
-fun TopBar(onMenuClicked: () -> Unit) {
-    // TopAppBar Composable
-    TopAppBar(
-        title = {
-            Text(text = "Search...", color = Color.White)
-        },
-        navigationIcon = {
-            Icon(
-                imageVector = Icons.Default.Menu,
-                contentDescription = "Menu",
-                modifier = Modifier.clickable {
-                    onMenuClicked()
-                },
-                tint = Color.White
-            )
-        },
-        backgroundColor = RedApp
-    )
-}
+
 
 
 @Composable
@@ -419,11 +396,6 @@ fun Drawer() {
 
 
 
-//@Preview
-//@Composable
-//fun PerfilPreview() {
-//    PerfilApp(NombreOrg, OrgDesc, instaUrl, twitterUrl, faceBookUrl)
-//}
 
 
 
@@ -450,3 +422,4 @@ fun Context.shareLink(url: String) {
 //    val urlTwitter: String,
 //    val urlInstagram: String
 //}
+

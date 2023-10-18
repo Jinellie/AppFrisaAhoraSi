@@ -1,64 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:foregroundTint="#EAECEF"
-    tools:context="MainActivity">
+    android:orientation="vertical"
+    android:background="#DDDDDD"
+    tools:context=".MainActivity">
 
 
     <LinearLayout
+        android:id="@+id/nav_bar_item"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="#C63636"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:gravity="center_horizontal"
-        android:padding="5dp"
-        tools:ignore="MissingConstraints">
+        android:gravity="center"
+        android:background="#C63636"> <!-- Color Rojo Nav Bar -->
 
         <ImageView
             android:id="@+id/toolbar_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:contentDescription="Icon"
-            android:src="@drawable/nav_bar" />
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:src="@drawable/zzimg_plantilla_tresbarras"
+            android:layout_marginStart="0dp">
+            >
+        </ImageView>
 
         <LinearLayout
-            android:layout_width="276dp"
-            android:layout_gravity="center"
-            android:layout_height="30dp"
-            android:orientation="horizontal"
-            android:background="@drawable/rounded_search_view"
-            android:layout_marginLeft="31dp">
+            android:id="@+id/searchBar"
+            android:layout_width="320dp"
+            android:layout_height="20dp"
+            android:background="@drawable/nav_bar_blanco"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="10dp">
+            <!-- app:layout_constraintTop_toTopOf="parent" -->
+            <!--android:layout_marginTop="50dp"-->
 
-
-            <EditText
+            <TextView
                 android:id="@+id/editTextSearch"
-                android:layout_width="220dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@null"
-                android:hint="Buscar..."
-                android:layout_weight="1"
-                android:inputType="text"
-                android:paddingLeft="15dp"
-                android:textSize="13sp" />
-            <ImageView
-                android:id="@+id/dd"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginRight="15dp"
+                android:layout_width="280dp"
+                android:layout_height="40dp"
+                android:hint="Buscar"
+                android:textSize="15sp"
+                android:textColor="#767676"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="10dp"
+                />
 
-                android:layout_gravity="center"
-                android:contentDescription="Icon"
-                android:src="@drawable/baseline_search_24" />
+            <ImageView
+                android:id="@+id/searchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleX="0.7"
+                android:scaleY="0.7"
+                android:src="@drawable/zzimg_plantilla_busquedarojo"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="0dp"
+
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="0dp"
+                android:contentDescription="Botón de búsqueda"
+                >
+            </ImageView>
+
 
         </LinearLayout>
-
 
     </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>
