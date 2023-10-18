@@ -44,12 +44,15 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+
+
             AppFrisaAhoraSiTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
                     navController = rememberNavController()
+                  
 
                     // NAVIGATION MANAGER SCREENS
                     navController?.let { controller ->
