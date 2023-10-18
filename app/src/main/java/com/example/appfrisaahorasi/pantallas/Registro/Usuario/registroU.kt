@@ -169,4 +169,16 @@ fun RegistroUScreen(
             }
         }
     )
+    if (viewModel.showErrorDialog) {
+        AlertDialog(
+            onDismissRequest = { viewModel.showErrorDialog = false }, // Esto se invocará cuando se toque fuera del diálogo
+            title = { Text(text = "Error") },
+            text = { Text(text = viewModel.dialogMessage) },
+            buttons = {
+                Button(onClick = { viewModel.showErrorDialog = false }) { // Esto se invocará cuando se presione el botón
+                    Text(text = "Aceptar")
+                }
+            }
+        )
+    }
 }
