@@ -37,7 +37,7 @@ fun Inicio(navController: NavController) {
             // INVITADO
             val invitadoButton = view.findViewById<TextView>(R.id.invButton)
             invitadoButton.setOnClickListener {
-                navController.navigate(NavRoutes.historialBusqueda)
+                navController.navigate(NavRoutes.home)
             }
             view
         },

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
@@ -38,11 +39,15 @@ import com.example.appfrisaahorasi.ui.theme.RedApp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+import androidx.navigation.NavController
+import com.example.appfrisaahorasi.R
+import com.example.appfrisaahorasi.navigation.NavRoutes
+
 
 @Composable
-fun AppDrawer(userType: String) {
+fun AppDrawer(userType: String, navController: NavController) {
 
-    val navController = rememberNavController()
+    //val navController = rememberNavController()
     // Define the selected drawer content Composable
     val drawerContent: @Composable () -> Unit = when (userType) {
         "OSC" -> { { OSCDrawerContent(navController) } }
@@ -57,7 +62,7 @@ fun AppDrawer(userType: String) {
 }
 
 @Composable
-fun OSCDrawerContent(navController: NavHostController) {
+fun OSCDrawerContent(navController: NavController) {
     // Column Composable
     Column(
         modifier = Modifier
@@ -68,7 +73,7 @@ fun OSCDrawerContent(navController: NavHostController) {
         NavigationButton(
             text = "Home",
             icon = Icons.Default.Home, // Replace with your desired icon
-            onClick = { navController.navigate("HistorialDeBusquedas") }
+            onClick = { navController.navigate("home") }
         )
 
         NavigationButton(
@@ -108,7 +113,7 @@ fun OSCDrawerContent(navController: NavHostController) {
 }
 
 @Composable
-fun StandardUserDrawerContent(navController: NavHostController) {
+fun StandardUserDrawerContent(navController: NavController) {
     // Column Composable
     Column(
         modifier = Modifier
@@ -119,7 +124,7 @@ fun StandardUserDrawerContent(navController: NavHostController) {
         NavigationButton(
             text = "Home",
             icon = Icons.Default.Home, // Replace with your desired icon
-            onClick = { navController.navigate("HistorialDeBusquedas") }
+            onClick = { navController.navigate("home") }
         )
 
         NavigationButton(
@@ -153,7 +158,7 @@ fun StandardUserDrawerContent(navController: NavHostController) {
 }
 
 @Composable
-fun InvitadoDrawerContent(navController: NavHostController) {
+fun InvitadoDrawerContent(navController: NavController) {
     // Column Composable
     Column(
         modifier = Modifier
@@ -164,7 +169,7 @@ fun InvitadoDrawerContent(navController: NavHostController) {
         NavigationButton(
             text = "Home",
             icon = Icons.Default.Home, // Replace with your desired icon
-            onClick = { navController.navigate("InicioSesion") }
+            onClick = { navController.navigate("home") }
         )
 
         NavigationButton(
@@ -187,7 +192,10 @@ fun InvitadoDrawerContent(navController: NavHostController) {
 fun NavigationButton(text: String, icon: ImageVector, onClick: () -> Unit) {
 
     Row(
-        modifier = Modifier.clickable { onClick() }.height(60.dp).padding(20.dp, 0.dp, 0.dp, 0.dp),
+        modifier = Modifier
+            .clickable { onClick() }
+            .height(60.dp)
+            .padding(20.dp, 0.dp, 0.dp, 0.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
@@ -235,7 +243,7 @@ private fun logoutUser() {
 }
 
 data class MyComposableParams(val text: String = "")
-@Preview
+/*@Preview
 @Composable
 fun MyComposablePreview(@PreviewParameter(MyComposableParamsProvider::class) params: MyComposableParams) {
     AppDrawer(userType = params.text)
@@ -246,3 +254,4 @@ class MyComposableParamsProvider : PreviewParameterProvider<MyComposableParams> 
         MyComposableParams(text = "")
     )
 }
+*/

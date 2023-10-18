@@ -132,7 +132,7 @@ class MainActivity : ComponentActivity() {
                             }
                             // HOME
                             composable(NavRoutes.home) {
-                                Home()
+                                Home(navController)
                             }
                             composable(NavRoutes.favoritos) {
                               //  favoritos()

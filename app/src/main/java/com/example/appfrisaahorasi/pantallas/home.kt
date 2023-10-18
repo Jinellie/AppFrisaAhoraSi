@@ -66,7 +66,7 @@ fun Home(navController: NavController) {
     Scaffold(
         scaffoldState = scaffoldState,
         drawerContent = {
-            AppDrawer(userType = "Personal")
+            AppDrawer(userType = "Personal", navController)
         },
         content = { padding ->
             ContentHome(

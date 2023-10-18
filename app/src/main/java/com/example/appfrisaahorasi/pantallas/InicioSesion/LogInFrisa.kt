@@ -105,7 +105,7 @@ fun LogInFrisa(navController: NavController){
 
         Button(onClick = {
                 loginVM.login(){
-                    navController.navigate(NavRoutes.historialBusqueda)
+                    navController.navigate(NavRoutes.home)
                 }
             },
             colors = ButtonDefaults.buttonColors(backgroundColor = RedApp),

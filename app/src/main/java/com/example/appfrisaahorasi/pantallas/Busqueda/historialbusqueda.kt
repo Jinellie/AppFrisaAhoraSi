@@ -42,7 +42,7 @@ fun HistorialBrusqre(navController: NavController) {
     Scaffold(
         scaffoldState = scaffoldState,
         drawerContent = {
-            AppDrawer(userType = "")
+            AppDrawer(userType = "", navController)
         },
         content = { padding ->
             Content(
@@ -147,4 +147,11 @@ fun Content(navController: NavController, modifier: Modifier, onMenuClick: () ->
             .fillMaxSize()
             .background(Color.White) // Set the background color here
     )
+}
+
+
+@Composable
+fun RegresarHistorial()
+{
+
 }
