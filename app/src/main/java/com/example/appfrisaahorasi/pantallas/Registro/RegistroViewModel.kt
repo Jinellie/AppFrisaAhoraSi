@@ -13,6 +13,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class RegistroViewModel : ViewModel() {
+    // CONTROLES
+    var showErrorDialog by mutableStateOf(false)
+    var dialogMessage by mutableStateOf("")
+
+
     // GENERAL
     var nombre by mutableStateOf("")
     var celular by mutableStateOf("") // celular al que se vincula la cuenta
@@ -45,6 +50,22 @@ class RegistroViewModel : ViewModel() {
     // FUNCION DE REGISTRO
     private val _loading = MutableLiveData(false)
     fun registerUser(navController: NavController) {
+        if(contrasena.length < 6){
+            showErrorDialog = true
+            dialogMessage = "Contraseña invalida"
+            return
+        }
+        if(celular.length != 10){
+            showErrorDialog = true
+            dialogMessage = "Numero de telefono no es válido"
+        }
+        for(item in celular){
+            if(item <'0' ||  item > '9'){
+                showErrorDialog = true
+                dialogMessage = "Numero de telefono invalido"
+                return
+            }
+        }
         auth.createUserWithEmailAndPassword(this.correo, this.contrasena)
             .addOnCompleteListener { task ->
                 if(_loading.value == false){
