@@ -39,6 +39,10 @@ import com.google.android.gms.maps.MapView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.auth.FirebaseAuth
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -239,6 +243,10 @@ fun BottomBar() {
 
 @Composable
 fun Body() {
+    val firestore = FirebaseFirestore.getInstance()
+    val auth = FirebaseAuth.getInstance()
+    val currentUser = auth.currentUser
+    val coroutineScope = rememberCoroutineScope()
 
     Column(
         modifier = Modifier
@@ -266,7 +274,40 @@ fun Body() {
                 .wrapContentSize(Alignment.Center),
             style = TextStyle(fontSize = 24.sp) // Ajusta el tamaño del texto aquí
         )
-        MapScreen()
+        Button(
+            onClick = {
+                if (currentUser != null) {
+                    val uid = currentUser.uid
+
+                    firestore.collection("Users")
+                        .whereEqualTo("User_id", uid)
+                        .get()
+                        .addOnSuccessListener { querySnapshot ->
+                            if (!querySnapshot.isEmpty) {
+                                val userData = querySnapshot.documents[0].data
+
+                                // Eliminar valores nulos del Map
+                                val cleanedUserData = userData?.filterValues { it != null } as Map<String, Any>
+
+                                // Guardar los datos del usuario en la colección "listaDifusion"
+                                firestore.collection("listaDifusion")
+                                    .add(cleanedUserData)
+                                    .addOnSuccessListener { documentReference ->
+                                        println("Datos del usuario guardados con ID: ${documentReference.id}")
+                                    }
+                                    .addOnFailureListener { e ->
+                                        println("Error al guardar los datos del usuario: $e")
+                                    }
+                            }
+                        }
+                } else {
+                    println("Usuario no autentificado")
+                }
+            }
+        ) {
+            Text(text = "¡Siguenos!")
+        }
+        //MapScreen()
 
     }
 }

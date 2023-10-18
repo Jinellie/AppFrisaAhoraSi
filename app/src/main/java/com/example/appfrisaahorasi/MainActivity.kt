@@ -43,64 +43,65 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    navController = rememberNavController()
-
-                    // NAVIGATION MANAGER SCREENS
-                    navController?.let { controller ->
-                        NavHost(navController, startDestination = NavRoutes.Inicio) {
-                            //  Main page
-                            composable(NavRoutes.Inicio) {
-                                Inicio(navController = controller)
-                            }
-                            // Iniciar Sesión
-                            composable(NavRoutes.InicioSesion) {
-                                InicioSesion()
-                            }
-                            // Aviso de privacidad
-                            composable(NavRoutes.avisoPrivacidad) {
-                                AvisodePrivacidadScreen()
-                            }
-                            // Perfil USUARIO
-                            composable(NavRoutes.perfilOrgvistaUsuario) {
-                                PerfilApp()
-                            }
-                            composable(NavRoutes.perfilUsuario) {
-                                PerfilUsuario()
-                            }
-                            // REGISTRO EMPEZAR
-                            composable(NavRoutes.IniciarRegistro) {
-                                Registro(navController = controller)
-                            }
-                            // REGISTRO: ORGANIZACIÓN
-                            composable(NavRoutes.registroSC) {
-                                RegistroScreen()
-                            }
-                            composable(NavRoutes.registroSC2) {
-                                RegistroSC2Screen()
-                            }
-                            composable(NavRoutes.registroSC3) {
-                                RegistroSC3Screen()
-                            }
-                            composable(NavRoutes.registroSC4) {
-                                RegistroSC4Screen()
-                            }
-                            composable(NavRoutes.registroSC5) {
-                                registroSC5()
-                            }
-
-                            // REGISTRO: USUARIO
-                            composable(NavRoutes.registroU) {
-                                RegistroUScreen(navController)
-                            }
-                            composable(NavRoutes.PrimerInicioSesion) {
-                                PrimerInicioSesion()
-                            }
-                            composable(NavRoutes.registroU3) {
-                                RegistroU3Screen()
-                            }
-
-                        }
-                    }
+                    PerfilApp()
+//                    navController = rememberNavController()
+//
+//                    // NAVIGATION MANAGER SCREENS
+//                    navController?.let { controller ->
+//                        NavHost(navController, startDestination = NavRoutes.Inicio) {
+//                            //  Main page
+//                            composable(NavRoutes.Inicio) {
+//                                Inicio(navController = controller)
+//                            }
+//                            // Iniciar Sesión
+//                            composable(NavRoutes.InicioSesion) {
+//                                InicioSesion()
+//                            }
+//                            // Aviso de privacidad
+//                            composable(NavRoutes.avisoPrivacidad) {
+//                                AvisodePrivacidadScreen()
+//                            }
+//                            // Perfil USUARIO
+//                            composable(NavRoutes.perfilOrgvistaUsuario) {
+//                                PerfilApp()
+//                            }
+//                            composable(NavRoutes.perfilUsuario) {
+//                                PerfilUsuario()
+//                            }
+//                            // REGISTRO EMPEZAR
+//                            composable(NavRoutes.IniciarRegistro) {
+//                                Registro(navController = controller)
+//                            }
+//                            // REGISTRO: ORGANIZACIÓN
+//                            composable(NavRoutes.registroSC) {
+//                                RegistroScreen()
+//                            }
+//                            composable(NavRoutes.registroSC2) {
+//                                RegistroSC2Screen()
+//                            }
+//                            composable(NavRoutes.registroSC3) {
+//                                RegistroSC3Screen()
+//                            }
+//                            composable(NavRoutes.registroSC4) {
+//                                RegistroSC4Screen()
+//                            }
+//                            composable(NavRoutes.registroSC5) {
+//                                registroSC5()
+//                            }
+//
+//                            // REGISTRO: USUARIO
+//                            composable(NavRoutes.registroU) {
+//                                RegistroUScreen(navController)
+//                            }
+//                            composable(NavRoutes.PrimerInicioSesion) {
+//                                PrimerInicioSesion()
+//                            }
+//                            composable(NavRoutes.registroU3) {
+//                                RegistroU3Screen()
+//                            }
+//
+//                        }
+//                    }
                 }
             }
         }
