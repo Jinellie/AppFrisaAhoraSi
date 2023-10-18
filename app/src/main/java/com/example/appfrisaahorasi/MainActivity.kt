@@ -63,7 +63,7 @@ class MainActivity : ComponentActivity() {
                             }
                             // Iniciar Sesión
                             composable(NavRoutes.InicioSesion) {
-                                InicioSesion(navController = controller)
+                                InicioSesion()
                             }
                             // Aviso de privacidad
                             composable(NavRoutes.avisoPrivacidad) {
@@ -71,7 +71,7 @@ class MainActivity : ComponentActivity() {
                             }
                             // Perfil USUARIO
                             composable(NavRoutes.perfilOrgvistaUsuario) {
-                                PerfilApp()
+                                PerfilApp(navController = controller)
                             }
                             composable(NavRoutes.perfilUsuario) {
                                 PerfilUsuario()
