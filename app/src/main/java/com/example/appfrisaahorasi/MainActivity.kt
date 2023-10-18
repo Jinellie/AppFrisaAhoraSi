@@ -76,7 +76,7 @@ class MainActivity : ComponentActivity() {
                             }
                             // Perfil USUARIO
                             composable(NavRoutes.perfilOrgvistaUsuario) {
-                                PerfilApp("CarlosMex", "Si Somos", "www.teitter.com", "fbeds", "sdsdsd", navController = controller)
+                                PerfilApp("CarlosMex", "Si Somos", "www.instagram.com", "www.twitter.com", "www.facebook.com", navController = controller)
 
                             }
                             composable(NavRoutes.perfilUsuario) {
@@ -105,13 +105,13 @@ class MainActivity : ComponentActivity() {
 
                             // REGISTRO: USUARIO
                             composable(NavRoutes.registroU) {
-                                RegistroUScreen(navController)
+                                RegistroUScreen(navController, sharedTagsViewModel)
                             }
                             composable(NavRoutes.EscogerEtiquetasScreen) {
-                                EscogerEtiquetasScreen(navController = controller)
+                                EscogerEtiquetasScreen(navController = controller, sharedTagsViewModel)
                             }
                             composable(NavRoutes.registroU3) {
-                                RegistroU3Screen()
+                                RegistroU3Screen(navController = controller)
                             }
                             // Busqueda
                             composable(NavRoutes.busqueda){
