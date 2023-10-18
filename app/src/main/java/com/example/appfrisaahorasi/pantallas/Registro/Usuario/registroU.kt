@@ -22,9 +22,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.navigation.NavController
+import com.example.appfrisaahorasi.pantallas.Registro.NavigationFlow
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.CustomTextField
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.PasswordTextField
 import com.example.appfrisaahorasi.pantallas.Registro.RegistroViewModel
+import com.example.appfrisaahorasi.pantallas.Registro.TagsViewModel
 import com.example.appfrisaahorasi.ui.theme.RedApp
 
 
@@ -32,11 +34,11 @@ import com.example.appfrisaahorasi.ui.theme.RedApp
 @Composable
 fun RegistroUScreen(
     navController: NavController,
+    tTagsViewModel: TagsViewModel,
     viewModel: RegistroViewModel = viewModel()
     )
     {
-    val viewModel: RegistroViewModel = viewModel()
-
+    tTagsViewModel.navigationFlow.value = NavigationFlow.REGISTRATION_USER
     Scaffold( // nav bar iría aquí
         topBar = {
             TopAppBar(

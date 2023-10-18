@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,6 +25,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.draw.clip
@@ -35,46 +35,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 
 @Composable
-fun EscogerEtiquetasScreen() {
-    println("Llega a tag screen")
-    val userId = FirebaseAuth.getInstance().currentUser?.uid
-    val db = FirebaseFirestore.getInstance()
-    val collectionRef = db.collection("Tags")
-    val documentId = "f6af1fkY6a8tHuWYCwgG"
-    val ListaTags = mutableListOf<String>() // Corregir la declaración de la lista
-    println("Try to get the tags")
-    collectionRef.document(documentId)
-        .get()
-        .addOnSuccessListener { document ->
-            if (document.exists()) {
-                // El documento existe, y puedes acceder a sus datos
-                val data = document.data
-
-                // Itera sobre los valores del documento y agrégalos a ListaTags
-                for ((key, value) in data ?: emptyMap()) {
-                    if (value is String) {
-                        ListaTags.add(value)
-                    }
-                }
-                println("Se obtuvo la lista de tags exitosamente")
-            } else {
-                // El documento no existe
-                println("No se pudo obtener la lista de tags")
-            }
-        }
-        .addOnFailureListener { exception ->
-            // Ocurrió un error al obtener el documento
-            println("Ocurrió un error al intentar obtener el documento: $exception")
-            // Maneja el error o registra el mensaje de error
-        }
+fun EscogerEtiquetasScreen(navController: NavController, tTagsViewModel: TagsViewModel) {
+    val tags = tTagsViewModel.tagsList.value
 
     // Store temporaly the tags to subbmit at the end
-    var selectedTags by remember { mutableStateOf(listOf<String>()) }
+    val selectedTags = remember { mutableStateListOf<String>() }
 
     Column(
         modifier = Modifier
@@ -96,14 +65,20 @@ fun EscogerEtiquetasScreen() {
             textAlign = TextAlign.Center,
             color = Color.Black,
             fontSize = 15.sp)
-        Spacer(modifier = Modifier.height(44.dp))
-        LazyColumn {
-            items(items = ListaTags) {
+        Spacer(modifier = Modifier.height(34.dp))
+        // Envolver el LazyColumn con un Box para darle un peso
+        Box(
+            modifier = Modifier.weight(1f)
+        ) {
+            LazyColumn {
+                items(items = tags) {
+                    ClickableBox(it, selectedTags)
+                }
             }
         }
 
         Button(
-            onClick = {
+            onClick = {tTagsViewModel.uploadDataTags(navController,selectedTags, NavigationFlow.REGISTRATION_USER)
             },
             shape = RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp, bottomStart = 5.dp, bottomEnd = 5.dp),
             colors = ButtonDefaults.buttonColors(
@@ -126,9 +101,10 @@ fun EscogerEtiquetasScreen() {
     }
 }
 
+
 //@Preview
 @Composable
-fun ClickableBox(tags: String) {
+fun ClickableBox(tags: String, selectedTags: MutableList<String>) {
     var isClicked by remember { mutableStateOf(false) }
 
     Column(
@@ -150,6 +126,11 @@ fun ClickableBox(tags: String) {
                 .background(if (isClicked) Color.Black else Color.White)
                 .clickable {
                     isClicked = !isClicked
+                    if (isClicked) {
+                        selectedTags.add(tags)
+                    } else {
+                        selectedTags.remove(tags)
+                    }
                 }
         ) {
             Text(
@@ -161,6 +142,7 @@ fun ClickableBox(tags: String) {
         }
     }
 }
+
 
 
 

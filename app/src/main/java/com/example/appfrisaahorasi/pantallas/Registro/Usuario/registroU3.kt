@@ -34,29 +34,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.appfrisaahorasi.R
+import com.example.appfrisaahorasi.navigation.NavRoutes
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.CustomTextField
 import com.example.appfrisaahorasi.pantallas.Registro.RegistroViewModel
 
-
-class RegistroU3Activity : ComponentActivity() {
-    private val viewModel: RegistroViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            RegistroU3Screen()
-        }
-    }
-
-}
-
-
-@Preview
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun RegistroU3Screen() {
-    val viewModel: RegistroViewModel = viewModel()
+fun RegistroU3Screen(navController: NavController, viewModel: RegistroViewModel = viewModel()) {
 
     Scaffold( // nav bar iría aquí
         topBar = {
@@ -110,13 +96,11 @@ fun RegistroU3Screen() {
                         .size(200.dp)
                         .clip(RoundedCornerShape(10.dp))
                 )
-
+                // Boton de foto de perfil
                 Button(
                     onClick = {
                         // Launch the image picker
                         // Inside the button click listener or where you want to trigger image selection
-                        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-                        intent.type = "image/*"
 
                     },
                     shape = RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp, bottomStart = 5.dp, bottomEnd = 5.dp),
@@ -135,7 +119,10 @@ fun RegistroU3Screen() {
 
 
                 Button(
-                    onClick = { /* Realizar registro aquí */ },
+                    onClick = { viewModel.finishRegisterUser(){
+                                    navController.navigate(NavRoutes.historialBusqueda)
+                                }
+                              },
                     shape = RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp, bottomStart = 5.dp, bottomEnd = 5.dp),
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = Color(red = 0.7216145992279053f, green = 0.015033637173473835f, blue = 0.015033637173473835f, alpha = 0.7900000214576721f)

@@ -3,8 +3,8 @@ package com.example.appfrisaahorasi
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
@@ -33,6 +33,8 @@ import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.RegistroScree
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroU3Screen
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroUScreen
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.registroSC5
+import com.example.appfrisaahorasi.pantallas.Registro.EscogerEtiquetasScreen
+import com.example.appfrisaahorasi.pantallas.Registro.TagsViewModel
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.favOrgs
 import com.example.appfrisaahorasi.pantallas.busquedaBar.Brusque
 import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
@@ -41,7 +43,7 @@ import com.example.appfrisaahorasi.pantallas.Registro.EscogerEtiquetasScreen
 class MainActivity : ComponentActivity() {
     // NAV CONTROLLER TO ACCESS ALL
     private lateinit var navController: NavHostController
-
+    private val sharedTagsViewModel by viewModels<TagsViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -74,7 +76,7 @@ class MainActivity : ComponentActivity() {
                             }
                             // Perfil USUARIO
                             composable(NavRoutes.perfilOrgvistaUsuario) {
-                                PerfilApp("CarlosMex", "Si Somos", "www.teitter.com", "fbeds", "sdsdsd", navController = controller)
+                                PerfilApp("CarlosMex", "Si Somos", "www.instagram.com", "www.twitter.com", "www.facebook.com", navController = controller)
 
                             }
                             composable(NavRoutes.perfilUsuario) {
@@ -103,13 +105,13 @@ class MainActivity : ComponentActivity() {
 
                             // REGISTRO: USUARIO
                             composable(NavRoutes.registroU) {
-                                RegistroUScreen(navController)
+                                RegistroUScreen(navController, sharedTagsViewModel)
                             }
                             composable(NavRoutes.EscogerEtiquetasScreen) {
-                                EscogerEtiquetasScreen()
+                                EscogerEtiquetasScreen(navController = controller, sharedTagsViewModel)
                             }
                             composable(NavRoutes.registroU3) {
-                                RegistroU3Screen()
+                                RegistroU3Screen(navController = controller)
                             }
                             // Busqueda
                             composable(NavRoutes.busqueda){
