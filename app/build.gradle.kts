@@ -64,6 +64,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.foundation:foundation-android:1.5.3")
+    implementation("androidx.navigation:navigation-runtime-ktx:2.7.4")
     //implementation("com.google.android.libraries.maps:maps:3.1.0-beta")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
