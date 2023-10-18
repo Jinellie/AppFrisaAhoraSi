@@ -42,7 +42,7 @@ fun HistorialBrusqre(navController: NavController) {
     Scaffold(
         scaffoldState = scaffoldState,
         drawerContent = {
-            AppDrawer(userType = "", navController)
+            AppDrawer(userType = "Personal", navController)
         },
         content = { padding ->
             Content(
