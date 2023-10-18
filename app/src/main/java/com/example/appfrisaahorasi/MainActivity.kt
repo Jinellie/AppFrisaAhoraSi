@@ -80,8 +80,7 @@ class MainActivity : ComponentActivity() {
                             // Perfil USUARIO
                             composable(NavRoutes.perfilOrgvistaUsuario) {
 
-                                PerfilApp("CarlosMex", "Somos una organización comprometida con la excelencia y la satisfacción del cliente. Nuestra misión es proporcionar soluciones innovadoras y de alta calidad en manufactura, aprovechando la experiencia de nuestro talentoso equipo y la última tecnología. Nos enorgullece nuestro compromiso con la integridad, la responsabilidad social y la sostenibilidad. Nuestra visión es liderar en [insertar aquí la área de liderazgo o enfoque estratégico], proporcionando un entorno de trabajo inspirador para nuestros empleados y generando un impacto positivo en la comunidad y el mundo en general. Estamos dedicados a alcanzar la excelencia en cada aspecto de nuestro negocio y a establecer relaciones a largo plazo con nuestros clientes, socios y partes interesadas",
-                                                "www.teitter.com", "fbeds", "sdsdsd", navController = controller)
+                                PerfilApp("Diez por Ciénega A.C.", "Nuestra misión en Diez por Ciénega A.C. es promover el desarrollo integral de la población vulnerable en la región de la Ciénega de Chapala. Nos dedicamos a empoderar a las personas y comunidades desfavorecidas, brindándoles acceso a recursos, educación, salud y oportunidades que les permitan alcanzar su máximo potencial. Trabajamos incansablemente para construir un futuro más equitativo y próspero, donde cada individuo tenga las herramientas necesarias para superar desafíos y lograr una vida plena. Juntos, construimos puentes hacia un mejor mañana. #DesarrolloIntegral #Empoderamiento #ComunidadFuerte", "www.instagram.com", "www.twitter.com", "www.facebook.com", navController = controller)
 
                             }
                             composable(NavRoutes.perfilUsuario) {
@@ -138,6 +137,7 @@ class MainActivity : ComponentActivity() {
                             // HOME
                             composable(NavRoutes.home) {
                                 Home(navController = controller)
+
                             }
                             composable(NavRoutes.favoritos) {
                               //  favoritos()
