@@ -1,5 +1,6 @@
 package com.example.appfrisaahorasi.pantallas
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.compose.foundation.background
@@ -7,22 +8,21 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.navigation.NavController
+import com.example.appfrisaahorasi.LoginActivity
 import com.example.appfrisaahorasi.R
-import com.example.appfrisaahorasi.navigation.NavRoutes
 
 @Composable
-fun InicioSesion(navController: NavController) {
+fun InicioSesion() {
     AndroidView(
-        factory = { context ->
+        factory = { innerContext ->
             // Inflate your XML layout using the context
-            val view = LayoutInflater.from(context).inflate(R.layout.ingresar_inicio_de_sesion, null)
+            val view = LayoutInflater.from(innerContext).inflate(R.layout.ingresar_inicio_de_sesion, null)
 
             val iniciarsesion = view.findViewById<LinearLayout>(R.id.btnLogin)
             iniciarsesion.setOnClickListener {
-                navController.navigate(NavRoutes.historialBusqueda)
+                val intent = Intent(innerContext, LoginActivity::class.java)
+                innerContext.startActivity(intent)
             }
 
             view

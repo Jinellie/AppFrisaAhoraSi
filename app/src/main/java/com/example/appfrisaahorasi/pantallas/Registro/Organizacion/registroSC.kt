@@ -1,7 +1,7 @@
 package com.example.appfrisaahorasi.pantallas.Registro.Organizacion
 
+// firebase y phone auth registro
 import android.annotation.SuppressLint
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -37,12 +37,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.appfrisaahorasi.pantallas.Registro.RegistroViewModel
-// firebase y phone auth registro
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 
 
 class RegistroActivity : ComponentActivity() {
@@ -69,7 +65,9 @@ fun CustomTextField(
             backgroundColor = Color(red = 0.37578123807907104f, green = 0.37578123807907104f, blue = 0.37578123807907104f, alpha = 0.20999999344348907f),
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
-            cursorColor = Color.Black
+            cursorColor = Color.Black,
+            placeholderColor = Color.Black,
+            disabledPlaceholderColor = Color.Black
         ),
         modifier = Modifier
             .fillMaxWidth()
@@ -106,7 +104,9 @@ fun PasswordTextField(
             backgroundColor = Color(red = 0.37578123807907104f, green = 0.37578123807907104f, blue = 0.37578123807907104f, alpha = 0.20999999344348907f),
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
-            cursorColor = Color.Black
+            cursorColor = Color.Black,
+            placeholderColor = Color.Black,
+            disabledPlaceholderColor = Color.Black
         ),
         modifier = Modifier
             .fillMaxWidth()
