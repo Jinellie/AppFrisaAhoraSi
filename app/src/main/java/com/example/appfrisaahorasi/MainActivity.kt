@@ -29,6 +29,7 @@ import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroU3Screen
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroUScreen
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.registroSC5
 import com.example.appfrisaahorasi.pantallas.InicioSesion.PrimerInicioSesion
+import com.example.appfrisaahorasi.pantallas.Registro.Usuario.favOrgs
 import com.example.appfrisaahorasi.pantallas.busquedaBar.Brusque
 import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
 
@@ -105,6 +106,12 @@ class MainActivity : ComponentActivity() {
                             }
                             composable(NavRoutes.busquedaTags){
                                 BrusqueTags(navController = controller)
+                            }
+                            composable(NavRoutes.favOrgs){
+                                favOrgs(navController = controller)
+                            }
+                            composable(NavRoutes.favoritos){
+                                favOrgs(navController = controller)
                             }
 
                         }

@@ -28,5 +28,7 @@ object NavRoutes {
     //Busqueda
     const val busqueda="Busqueda"
     const val busquedaTags="BusquedaTags"
+    const val favOrgs="FavOrgs"
+    const val favoritos="Favoritos"
 
 }
