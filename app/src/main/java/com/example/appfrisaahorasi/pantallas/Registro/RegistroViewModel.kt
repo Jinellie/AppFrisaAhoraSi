@@ -83,8 +83,58 @@ class RegistroViewModel : ViewModel() {
         }
     }
 
-    fun registrarOrganizacion(navController: NavController){
+    private fun uploadDataOrganizacion(){
+        val userId = auth.currentUser?.uid
+        if (userId != null) {
+            val newDataOfUser = mutableMapOf(
+                "User_id" to userId,
+                "Encargado" to this.nombre,
+                "Email" to this.correo,
+                "TipoDeUsuario" to "Organizacion",
+                "celular" to this.celular,
+                "Direccion" to this.direccion,
+                "NombreOrganizacion" to this.nombreOrg,
+                "HoraInicio" to this.horaInicio,
+                "HoraFin" to this.horaFin,
+                "Dias" to "PorImplementarEnCodigoEsto",
+                "Instagram" to this.instagram,
+                "Facebook" to this.facebook,
+                "Twitter" to this.twitter,
+                "Tags" to "TO DO"
+            )
 
+            FirebaseFirestore.getInstance().collection("Users")
+                .add(newDataOfUser)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Log.d("Datos subidos satisfactoriamente", "Creado ${task.result?.id}")
+                    } else {
+                        Log.d("No se subieron los datos", "Error ${task.exception}")
+                    }
+                }
+        } else {
+            Log.d("No user authenticated", "Data upload failed.")
+        }
+    }
+
+    private fun registrarOrganizacion(navController: NavController){
+        // Verificación
+        auth.createUserWithEmailAndPassword(this.correo, this.contrasena)
+            .addOnCompleteListener { task ->
+                if(_loading.value == false){
+                    _loading.value = true
+                    if (task.isSuccessful) {
+                        // El usuario se registró con éxito
+                        uploadDataOrganizacion()
+                        navController.navigate("EscogerEtiquetasScreen")
+                    } else {
+                        // Ocurrió un error al registrar al usuario
+                        navController.navigate("Inicio")
+                        //scaffoldState.snackbarHostState.showSnackbar("Fallo en el inicio de sesión")
+                    }
+                    _loading.value = false
+                }
+            }
 
     }
     fun validateContinue1(navController: NavController){
@@ -107,6 +157,7 @@ class RegistroViewModel : ViewModel() {
     }
     fun validateContinue4(navController: NavController){
         // Etiquetas
+        registrarOrganizacion(navController)
         navController.navigate(NavRoutes.historialBusqueda)
     }
 
