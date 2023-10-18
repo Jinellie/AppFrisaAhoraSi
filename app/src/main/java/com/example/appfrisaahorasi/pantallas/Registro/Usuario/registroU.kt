@@ -143,7 +143,7 @@ fun RegistroUScreen(
                 PasswordTextField(
                     value = viewModel.contrasena,
                     onValueChange = { newValue -> viewModel.onContrasenaChanged(newValue) },
-                    placeholder = "Mínimo 6 caracteres",
+                    placeholder = "Contraseña ",
                     keyboardType = KeyboardType.Password,
                     isPassword = true,
                     passwordVisibility = passwordHidden
