@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
@@ -15,7 +16,9 @@ import com.example.appfrisaahorasi.navigation.NavRoutes
 
 // Pantallas - Se base en el nombre de la clase, no el nombre del archivo
 import com.example.appfrisaahorasi.pantallas.AvisodePrivacidadScreen
+import com.example.appfrisaahorasi.pantallas.Home
 import com.example.appfrisaahorasi.pantallas.Busqueda.BrusqueTags
+import com.example.appfrisaahorasi.pantallas.Busqueda.HistorialBrusqre
 import com.example.appfrisaahorasi.pantallas.Inicio
 import com.example.appfrisaahorasi.pantallas.InicioSesion
 import com.example.appfrisaahorasi.pantallas.Perfil.PerfilApp
@@ -28,11 +31,10 @@ import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.RegistroScree
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroU3Screen
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroUScreen
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.registroSC5
-import com.example.appfrisaahorasi.pantallas.InicioSesion.PrimerInicioSesion
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.favOrgs
 import com.example.appfrisaahorasi.pantallas.busquedaBar.Brusque
 import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
-
+import com.example.appfrisaahorasi.pantallas.Registro.EscogerEtiquetasScreen
 
 class MainActivity : ComponentActivity() {
     // NAV CONTROLLER TO ACCESS ALL
@@ -41,12 +43,15 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+
+
             AppFrisaAhoraSiTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
                     navController = rememberNavController()
+                  
 
                     // NAVIGATION MANAGER SCREENS
                     navController?.let { controller ->
@@ -65,7 +70,8 @@ class MainActivity : ComponentActivity() {
                             }
                             // Perfil USUARIO
                             composable(NavRoutes.perfilOrgvistaUsuario) {
-                                PerfilApp()
+                                PerfilApp("CarlosMex", "Si Somos", "www.teitter.com", "fbeds", "sdsdsd", navController = controller)
+
                             }
                             composable(NavRoutes.perfilUsuario) {
                                 PerfilUsuario()
@@ -95,12 +101,13 @@ class MainActivity : ComponentActivity() {
                             composable(NavRoutes.registroU) {
                                 RegistroUScreen(navController)
                             }
-                            composable(NavRoutes.PrimerInicioSesion) {
-                                PrimerInicioSesion()
+                            composable(NavRoutes.EscogerEtiquetasScreen) {
+                                EscogerEtiquetasScreen()
                             }
                             composable(NavRoutes.registroU3) {
                                 RegistroU3Screen()
                             }
+                            // Busqueda
                             composable(NavRoutes.busqueda){
                                 Brusque(navController = controller)
                             }
@@ -114,13 +121,24 @@ class MainActivity : ComponentActivity() {
                                 favOrgs(navController = controller)
                             }
 
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+                            composable(NavRoutes.historialBusqueda){
+                                HistorialBrusqre(navController = controller)
+                            }
+
+                            composable(NavRoutes.home) {
+                                Home()
+                            }
+                            composable(NavRoutes.favoritos) {
+                              //  favoritos()
+                            }
+                        } // Fin NavHost
+                    } // Fin NavControllerCreation
+                } // Fin cuerpo surface
+            }// Fin App frisa
+        } // Fin Set Content
+    } // Fin ON Create
+} // Fin clase
+
 
 
 

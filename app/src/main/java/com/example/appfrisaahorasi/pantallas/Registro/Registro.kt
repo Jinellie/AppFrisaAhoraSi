@@ -36,7 +36,7 @@ fun Registro (navController: NavController) {
         modifier = Modifier
             .clickable { navController.navigate(NavRoutes.registroU) }
             .fillMaxSize()
-            .background(color = RedApp)
+            .background(color = Color.White)
             .padding(53.dp),
         verticalArrangement = Arrangement.Top, // Align items to the top
         horizontalAlignment = Alignment.CenterHorizontally

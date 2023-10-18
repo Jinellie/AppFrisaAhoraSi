@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 //import com.google.firebase.quickstart.auth.R
 
@@ -43,6 +44,8 @@ class GoogleSignInActivity : Activity() {
         // Initialize Firebase Auth
         auth = Firebase.auth
         // [END initialize_auth]
+        // Call the signIn function to initiate the login flow
+        signIn()
     }
 
     // [START on_start_check_user]
@@ -101,6 +104,38 @@ class GoogleSignInActivity : Activity() {
     // [END signin]
 
     private fun updateUI(user: FirebaseUser?) {
+
+        val db = FirebaseFirestore.getInstance()
+        val userId = Firebase.auth.currentUser?.uid // Get the user's ID
+
+        if (userId != null) {
+            val userDocument = db.collection("Users").document(userId)
+
+            userDocument.get()
+                .addOnSuccessListener { documentSnapshot ->
+                    if (documentSnapshot.exists()) {
+                        val userData = documentSnapshot.data
+                        val tipoUsuario = userData?.get("tipoUsuario") as String?
+                        if (tipoUsuario != null) {
+                            // You now have the "tipoUsuario" attribute
+                            val intent = Intent(this, HomeActivity::class.java)
+                            intent.putExtra("tipoUsuario", tipoUsuario)
+                            startActivity(intent)
+                        } else {
+                            val intent = Intent(this, HomeActivity::class.java)
+                            startActivity(intent)
+                            // The "tipoUsuario" attribute is not set in the database
+                        }
+                    } else {
+                        val intent = Intent(this, HomeActivity::class.java)
+                        startActivity(intent)
+                        // User document doesn't exist
+                    }
+                }
+                .addOnFailureListener { e ->
+                    // Handle any errors
+                }
+        }
     }
 
     companion object {
