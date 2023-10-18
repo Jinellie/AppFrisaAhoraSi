@@ -17,6 +17,9 @@
         android:background="#C63636"> <!-- Color Rojo Nav Bar -->
 
         <ImageView
+            android:id="@+id/tresBarras"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:scaleX="1"

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
@@ -63,7 +64,7 @@ class MainActivity : ComponentActivity() {
                             }
                             // Iniciar Sesión
                             composable(NavRoutes.InicioSesion) {
-                                InicioSesion(navController = controller)
+                                InicioSesion()
                             }
                             // Aviso de privacidad
                             composable(NavRoutes.avisoPrivacidad) {
@@ -71,7 +72,7 @@ class MainActivity : ComponentActivity() {
                             }
                             // Perfil USUARIO
                             composable(NavRoutes.perfilOrgvistaUsuario) {
-                                PerfilApp()
+                                PerfilApp("CarlosMex", "Si Somos", "www.teitter.com", "fbeds", "sdsdsd", navController = controller)
                             }
                             composable(NavRoutes.perfilUsuario) {
                                 PerfilUsuario()
