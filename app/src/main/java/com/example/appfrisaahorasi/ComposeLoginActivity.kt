@@ -5,6 +5,22 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextField
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import com.example.appfrisaahorasi.ui.theme.RedApp
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.FirebaseAuth
@@ -19,12 +35,63 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import java.util.concurrent.TimeUnit
 
+@Composable
+fun ComposeLoginActivity(
+    phoneNumber: String?,
+    password: String?,
+    onVerificationCodeEntered: (String) -> Unit // Callback to handle entered verification code
+) {
+    // Your Composable UI code here
+    // You can display the login UI and handle navigation
+
+
+    @Composable
+    fun CodeInputPopup(onVerificationCodeEntered: (String) -> Unit) {
+         val openAlertDialog = remember { mutableStateOf(true) }
+    when {
+
+           openAlertDialog.value -> {
+        // Define a callback function to capture the codigo value
+        var codigo: String = ""
+        val codigoCallback: (String) -> Unit = { value -> codigo = value }
+        AlertDialogExample(
+            isVisible = true,
+
+            onDismissRequest = { openAlertDialog.value = false },
+            onConfirmation = { codigo: String ->
+                openAlertDialog.value = false
+                println("Confirmation registered") // Add logic here to handle confirmation.
+                codigoCallback(codigo)
+            },
+            dialogTitle = "Ingresar código",
+
+            icon = Icons.Default.Info,
+            codigoCallback = codigoCallback
+        )
+         }
+    }
+        // Call CodeInputPopup and pass the callback
+        CodeInputPopup(onVerificationCodeEntered)
+
+    // Handle UI and navigation based on your logic
+    // For example, if verification is successful, navigate to the next screen
+}
+}
+
 class ComposeLoginActivity : ComponentActivity() {
     private lateinit var auth: FirebaseAuth
 
     private var storedVerificationId: String? = ""
     private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
     private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
+
+    val phoneNumber = intent.getStringExtra("phoneNumber")
+    val password = intent.getStringExtra("password")
+
+    // MutableState for controlling the code input popup
+    var isCodeInputPopupVisible by mutableStateOf(false)
+    var verificationCode by mutableStateOf("")
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +100,22 @@ class ComposeLoginActivity : ComponentActivity() {
         // Initialize Firebase Auth
         auth = Firebase.auth
         // [END initialize_auth]
+
+        if (phoneNumber != null) {
+            startPhoneNumberVerification(phoneNumber)
+        }
+
+        setContent {
+            val phoneNumber = intent.getStringExtra("phoneNumber")
+            val password = intent.getStringExtra("password")
+
+            ComposeLoginActivity(phoneNumber, password) { enteredCode ->
+                // Handle the entered code, e.g., sign in with it
+                // This callback is invoked when the confirmation button is clicked in the popup
+                verifyPhoneNumberWithCode(storedVerificationId, enteredCode)
+            }
+        }
+
 
         // Initialize phone auth callbacks
         // [START phone_auth_callbacks]
@@ -80,6 +163,9 @@ class ComposeLoginActivity : ComponentActivity() {
                 // Save verification ID and resending token so we can use them later
                 storedVerificationId = verificationId
                 resendToken = token
+
+
+
             }
         }
         // [END phone_auth_callbacks]
@@ -89,7 +175,7 @@ class ComposeLoginActivity : ComponentActivity() {
     override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
+        val currentUser = auth.currentUser //TODO: continuar login
         updateUI(currentUser)
     }
     // [END on_start_check_user]
@@ -198,6 +284,60 @@ class ComposeLoginActivity : ComponentActivity() {
     companion object {
         private const val TAG = "ComposeLoginActivity"
     }
+
+
+}
+
+
+@Composable
+fun AlertDialogExample(
+    isVisible: Boolean,
+    onDismissRequest: () -> Unit,
+    onConfirmation: (String) -> Unit,
+    dialogTitle: String,
+    icon: ImageVector,
+    codigoCallback: (String) -> Unit // Callback to receive the codigo value
+
+) {
+    var codigo by remember { mutableStateOf("") }
+    if (isVisible) {
+    AlertDialog(
+
+        icon = {
+            Icon(icon, contentDescription = "Example Icon")
+        },
+        title = {
+            Text(text = dialogTitle)
+        },
+        text = {
+            TextField(value = "", onValueChange = { codigo = it })
+        },
+        onDismissRequest = {
+            onDismissRequest()
+        },
+        confirmButton = {
+            TextButton(
+                onClick = {
+                    onConfirmation(codigo)
+                }
+            ) {
+                Text("Confirmar", color = Color.Black)
+            }
+        },
+        dismissButton = {
+            TextButton(
+                onClick = {
+                    onDismissRequest()
+                }
+            ) {
+                Text("Cancelar", color = RedApp)
+            }
+        },
+        containerColor = Color.White,
+        textContentColor = Color.DarkGray,
+        titleContentColor = Color.Black
+    )
+}
 }
 
 

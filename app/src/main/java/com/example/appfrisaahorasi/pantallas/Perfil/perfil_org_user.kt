@@ -54,7 +54,7 @@ class MainActivity : ComponentActivity() {
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun PerfilApp() {
+fun PerfilApp() { // TODO: pasar parámetro de tipoUsuario para cambiar navdrawer y elementos del perfil
 
     // create a scaffold state, set it to close by default
     val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
@@ -91,7 +91,7 @@ fun PerfilApp() {
 
         // pass the drawer
         drawerContent = {
-            AppDrawer("OSC") // cambiar por drawer usuario ----------------------------------------------------
+            AppDrawer("OSC") // TODO: pasar parámetro tipoUsuario
         },
 
         floatingActionButton = {
