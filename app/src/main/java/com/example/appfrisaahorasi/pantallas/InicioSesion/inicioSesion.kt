@@ -1,4 +1,4 @@
-package com.example.appfrisaahorasi.pantallas
+package com.example.appfrisaahorasi.pantallas.InicioSesion
 
 import android.view.LayoutInflater
 import androidx.compose.foundation.background
@@ -21,6 +21,5 @@ fun InicioSesion() {
         },
         modifier = Modifier.fillMaxSize()
             .background(Color.White) // Set the background color here
-
     )
 }

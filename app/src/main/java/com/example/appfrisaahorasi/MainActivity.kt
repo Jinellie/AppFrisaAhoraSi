@@ -18,7 +18,7 @@ import com.example.appfrisaahorasi.pantallas.AvisodePrivacidadScreen
 import com.example.appfrisaahorasi.pantallas.Home
 import com.example.appfrisaahorasi.pantallas.Busqueda.BrusqueTags
 import com.example.appfrisaahorasi.pantallas.Inicio
-import com.example.appfrisaahorasi.pantallas.InicioSesion
+import com.example.appfrisaahorasi.pantallas.InicioSesion.InicioSesion
 import com.example.appfrisaahorasi.pantallas.Perfil.PerfilApp
 import com.example.appfrisaahorasi.pantallas.Perfil.PerfilUsuario
 import com.example.appfrisaahorasi.pantallas.Registro.Registro

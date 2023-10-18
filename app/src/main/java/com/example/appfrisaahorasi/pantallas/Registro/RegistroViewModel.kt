@@ -49,6 +49,39 @@ class RegistroViewModel : ViewModel() {
     //private val firestore = FirebaseFirestore.getInstance()
     // FUNCION DE REGISTRO
     private val _loading = MutableLiveData(false)
+
+    // SUPPORT FUNCION CREAR
+    private fun uploadDataUserOnCreate() {
+        val userId = auth.currentUser?.uid
+        if (userId != null) {
+            val newDataOfUser = mutableMapOf(
+                "User_id" to userId,
+                "Display_name" to this.nombre,
+                "Email" to this.correo,
+                "TipoDeUsuario" to "Persona",
+                "celular" to this.celular
+            )
+
+            FirebaseFirestore.getInstance().collection("Users")
+                .add(newDataOfUser)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Log.d("Datos subidos satisfactoriamente", "Creado ${task.result?.id}")
+                        println("Datos subidos satisfactoriamente")
+                        // You can add further logic here, such as navigating to another screen.
+                    } else {
+                        Log.d("No se subieron los datos", "Error ${task.exception}")
+                        // Handle the error, possibly by displaying an error message to the user.
+                        println("No se subieron los datos por un error")
+                    }
+                }
+        } else {
+            Log.d("No user authenticated", "Data upload failed.")
+            // Handle the case where no user is authenticated, possibly by prompting the user to log in.
+            print("Fallo al recabar el usuario registrado, no se subieron los datos")
+        }
+    }
+
     fun registerUser(navController: NavController) {
         if(contrasena.length < 6){
             showErrorDialog = true
@@ -66,47 +99,27 @@ class RegistroViewModel : ViewModel() {
                 return
             }
         }
+
         auth.createUserWithEmailAndPassword(this.correo, this.contrasena)
             .addOnCompleteListener { task ->
                 if(_loading.value == false){
                     _loading.value = true;
                     if (task.isSuccessful) {
                         // El usuario se registró con éxito
-                        uploadDataUserOnCreate(nombre, correo)
+                        uploadDataUserOnCreate()
                         navController.navigate("EscogerEtiquetasScreen")
                         println("Registrado con éxito")
                     } else {
                         // Ocurrió un error al registrar al usuario
                         navController.navigate("Inicio")
                         //scaffoldState.snackbarHostState.showSnackbar("Fallo en el inicio de sesión")
-                        println("Fallo en el registro")
+                        println("Fallo en el registro -> Main Page por default")
                     }
                     _loading.value = false;
                 }
             }
     }
-    // SUPPORT FUNCION CREAR
-    private fun uploadDataUserOnCreate(name: String, email: String){
-        // Vector<String> arr = {Nombre, Telefono, Correo, TipoDeUsuario, }
-        val userId = auth.currentUser?.uid
-        val user = mutableMapOf<String, Any>()
 
-        // Asignar
-        user["User_id"] = userId.toString()
-        user["Display_name"] = name
-        user["Email"] = email
-        user["TipoDeUsuario"] = "Persona"
-
-        // Referenciar la colección que creamos en firestore database
-        FirebaseFirestore.getInstance().collection("Users")
-            .add(user)
-            .addOnSuccessListener {
-                Log.d("Datos subidos satisfactoriamente", "Creado ${it.id}")
-            }
-            .addOnFailureListener{
-                Log.d("Datos subidos satisfactoriamente", "Error ${it}")
-            }
-    }
 
     fun onNombreChanged(newNombre: String) {
         nombre = newNombre
