@@ -19,6 +19,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -38,7 +40,7 @@ fun registroSC5() {
         "Medicos"
 
     )
-
+    val selectedTags = remember { mutableStateListOf<String>() }
 
     Column(
         modifier = Modifier
@@ -65,7 +67,7 @@ fun registroSC5() {
 
         LazyColumn {
             items(items = tags) {
-                ClickableBox(tags = it)
+                ClickableBox(it, selectedTags)
             }
         }
 
@@ -90,10 +92,5 @@ fun registroSC5() {
         ) {
             Text(text = "Guardar", color = Color.White)
         }
-
-
-
     }
-
-
 }

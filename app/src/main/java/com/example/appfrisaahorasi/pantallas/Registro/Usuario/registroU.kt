@@ -35,7 +35,6 @@ fun RegistroUScreen(
     viewModel: RegistroViewModel = viewModel()
     )
     {
-    val viewModel: RegistroViewModel = viewModel()
 
     Scaffold( // nav bar iría aquí
         topBar = {
