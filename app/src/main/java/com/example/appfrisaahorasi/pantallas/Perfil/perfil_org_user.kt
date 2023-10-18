@@ -47,6 +47,10 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.core.net.toUri
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.appfrisaahorasi.R
 import com.example.appfrisaahorasi.ui.theme.Black
 import com.example.appfrisaahorasi.ui.theme.RedApp
@@ -57,18 +61,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            Surface(color = Color.White) {
-                // Scaffold we created
-                PerfilApp(NombreOrg, OrgDesc, instaUrl, twitterUrl, faceBookUrl )
-            }
-//            MapScreen()
-        }
-    }
-}
 //Descripcion de organizacion
 var OrgDesc = "¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada..."
 var NombreOrg = "Nombre_Org"
@@ -78,7 +70,7 @@ val twitterUrl = "https://twitter.com"
 val faceBookUrl = "https://www.facebook.com"
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun PerfilApp(NombreOrg: String, OrgDesc : String, instaUrl : String, twitterUrl: String, facebookUrl: String ) {
+fun PerfilApp(NombreOrg: String, OrgDesc : String, instaUrl : String, twitterUrl: String, facebookUrl: String,  navController: NavController ) {
 
     // create a scaffold state, set it to close by default
     val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
@@ -112,7 +104,7 @@ fun PerfilApp(NombreOrg: String, OrgDesc : String, instaUrl : String, twitterUrl
 
         // Pass the body in content parameter
         content = {
-            Body()
+            Body(navController)
         },
 
         // pass the drawer
@@ -195,29 +187,9 @@ fun rememberMapLifecycleObserver(mapView: MapView): LifecycleEventObserver =
         }
     }
 
-@Composable
-fun MapScreen() {
-    val mapView = rememberMapViewWithLifecycle()
 
-    // on below line creating a
-    // column for our maps.
-    Column(
-        modifier = Modifier
-            .fillMaxHeight()
-            .fillMaxWidth()
-            .background(Color.White)
-    ) {
-        // on below line adding a map view to it.
-        AndroidView({ mapView }) { mapView ->
-            // on below line launching our map view
-            CoroutineScope(Dispatchers.Main).launch {
-                //val map = mapView.awaitMap()
-                // on below line adding zoom controls for map.
-                //map.uiSettings.isZoomControlsEnabled = true
-            }
-        }
-    }
-}
+
+
 
 // A function which will receive a callback to trigger to opening the drawer
 @Composable
@@ -263,7 +235,7 @@ fun BottomBar() {
 }
 
 @Composable
-fun Body() {
+fun Body(navController: NavController) {
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
     var isImageClicked by remember { mutableStateOf(false) }
@@ -418,6 +390,10 @@ fun Body() {
             painter = painterResource(id = R.drawable.google_maps),
             contentDescription = null,
             modifier = Modifier.padding(top = 20.dp).size(90.dp)
+                .clickable{
+                    navController.navigate("map")
+
+                }
         )
     }
 }
@@ -443,11 +419,11 @@ fun Drawer() {
 
 
 
-@Preview
-@Composable
-fun PerfilPreview() {
-    PerfilApp(NombreOrg, OrgDesc, instaUrl, twitterUrl, faceBookUrl)
-}
+//@Preview
+//@Composable
+//fun PerfilPreview() {
+//    PerfilApp(NombreOrg, OrgDesc, instaUrl, twitterUrl, faceBookUrl)
+//}
 
 
 

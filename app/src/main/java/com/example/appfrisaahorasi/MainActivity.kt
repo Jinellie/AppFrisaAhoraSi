@@ -39,30 +39,38 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+
+
             AppFrisaAhoraSiTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
                     navController = rememberNavController()
-                    var OrgDesc = "¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada..."
-                    var NombreOrg = "Nombre_Org"
+                    NavHost(navController = navController, startDestination = "profile") {
+                        composable("profile") {
+                            var OrgDesc =
+                                "¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada... ¡Hola!, somos una organización dedicada..."
+                            var NombreOrg = "Nombre_Org"
 
-                    var instaUrl = "https://www.instagram.com"
-                    val twitterUrl = "https://twitter.com"
-                    val faceBookUrl = "https://www.facebook.com"
-                    PerfilApp(
-                        com.example.appfrisaahorasi.pantallas.Perfil.NombreOrg,
-                        com.example.appfrisaahorasi.pantallas.Perfil.OrgDesc,
-                        com.example.appfrisaahorasi.pantallas.Perfil.instaUrl,
-                        com.example.appfrisaahorasi.pantallas.Perfil.twitterUrl,
-                        com.example.appfrisaahorasi.pantallas.Perfil.faceBookUrl
-                    )
+                            var instaUrl = "https://www.instagram.com"
+                            val twitterUrl = "https://twitter.com"
+                            val faceBookUrl = "https://www.facebook.com"
+                            PerfilApp(
+                                com.example.appfrisaahorasi.pantallas.Perfil.NombreOrg,
+                                com.example.appfrisaahorasi.pantallas.Perfil.OrgDesc,
+                                com.example.appfrisaahorasi.pantallas.Perfil.instaUrl,
+                                com.example.appfrisaahorasi.pantallas.Perfil.twitterUrl,
+                                com.example.appfrisaahorasi.pantallas.Perfil.faceBookUrl,
+                                navController
+                            )
+                        }
+                        composable("map") {
+                            MapScreen(navController)
+                        }
 
 
-
-
-                    // NAVIGATION MANAGER SCREENS
+                        // NAVIGATION MANAGER SCREENS
 //                    navController?.let { controller ->
 //                        NavHost(navController, startDestination = NavRoutes.Inicio) {
 //                            //  Main page
@@ -118,8 +126,9 @@ class MainActivity : ComponentActivity() {
 //
 //                        }
 //                    }
-                }
+                    }
 
+                }
             }
         }
     }
