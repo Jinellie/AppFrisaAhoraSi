@@ -34,5 +34,4 @@ object NavRoutes {
     const val favOrgs="FavOrgs"
     const val favoritos="Favoritos"
     const val historialBusqueda = "HistorialDeBusquedas"
-
 }

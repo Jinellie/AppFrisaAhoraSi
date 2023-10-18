@@ -68,7 +68,7 @@ class TagsViewModel : ViewModel() {
                                 NavigationFlow.REGISTRATION_USER -> {
                                     if (tipoDeUsuario == "Persona") {
                                         // Navegar a la continuación del registro de usuario
-                                        navController.navigate("RegistroUsuarioContinuacionScreen")
+                                        navController.navigate("registroU3")
                                     } else {
                                         // Handle unexpected scenario or error
                                     }

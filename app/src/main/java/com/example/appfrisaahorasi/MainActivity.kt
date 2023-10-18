@@ -57,8 +57,11 @@ class MainActivity : ComponentActivity() {
                 ) {
                     navController = rememberNavController()
 
+
+
                     // NAVIGATION MANAGER SCREENS
                     navController?.let { controller ->
+
                         NavHost(navController, startDestination = NavRoutes.Inicio) {
                             //  Main page
                             composable(NavRoutes.Inicio) {
@@ -79,7 +82,8 @@ class MainActivity : ComponentActivity() {
                             }
                             // Perfil USUARIO
                             composable(NavRoutes.perfilOrgvistaUsuario) {
-                                PerfilApp("CarlosMex", "Si Somos", "www.teitter.com", "fbeds", "sdsdsd", navController = controller)
+
+                                PerfilApp("Diez por Ciénega A.C.", "Nuestra misión en Diez por Ciénega A.C. es promover el desarrollo integral de la población vulnerable en la región de la Ciénega de Chapala. Nos dedicamos a empoderar a las personas y comunidades desfavorecidas, brindándoles acceso a recursos, educación, salud y oportunidades que les permitan alcanzar su máximo potencial. Trabajamos incansablemente para construir un futuro más equitativo y próspero, donde cada individuo tenga las herramientas necesarias para superar desafíos y lograr una vida plena. Juntos, construimos puentes hacia un mejor mañana. #DesarrolloIntegral #Empoderamiento #ComunidadFuerte", "www.instagram.com", "www.twitter.com", "www.facebook.com", navController = controller)
 
                             }
                             composable(NavRoutes.perfilUsuario) {
@@ -108,13 +112,13 @@ class MainActivity : ComponentActivity() {
 
                             // REGISTRO: USUARIO
                             composable(NavRoutes.registroU) {
-                                RegistroUScreen(navController)
+                                RegistroUScreen(navController, sharedTagsViewModel)
                             }
                             composable(NavRoutes.EscogerEtiquetasScreen) {
-                                EscogerEtiquetasScreen(navController = controller)
+                                EscogerEtiquetasScreen(navController = controller, sharedTagsViewModel)
                             }
                             composable(NavRoutes.registroU3) {
-                                RegistroU3Screen()
+                                RegistroU3Screen(navController = controller)
                             }
                             // Busqueda
                             composable(NavRoutes.busqueda){
@@ -128,7 +132,9 @@ class MainActivity : ComponentActivity() {
                             }
                             // HOME
                             composable(NavRoutes.home) {
-                                Home(navController)
+                              
+                                Home(navController = controller)
+
                             }
                             composable(NavRoutes.favoritos) {
                                 FavsOSC(navController = controller)
@@ -141,9 +147,12 @@ class MainActivity : ComponentActivity() {
                     } // Fin NavControllerCreation
                 } // Fin cuerpo surface
             }// Fin App frisa
-        } // Fin Set Content
-    } // Fin ON Create
-} // Fin clase
+                } // Fin Set Content
+            } // Fin ON Create
+        } // Fin clase
+
+
+
 
 
 
