@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
@@ -37,6 +38,8 @@ import com.example.appfrisaahorasi.pantallas.Registro.EscogerEtiquetasScreen
 import com.example.appfrisaahorasi.pantallas.Registro.TagsViewModel
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.favOrgs
 import com.example.appfrisaahorasi.pantallas.busquedaBar.Brusque
+import com.example.appfrisaahorasi.pantallas.FavsOSC
+import com.example.appfrisaahorasi.pantallas.FavsDos
 import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
 import com.example.appfrisaahorasi.pantallas.Registro.EscogerEtiquetasScreen
 
@@ -124,24 +127,22 @@ class MainActivity : ComponentActivity() {
                             composable(NavRoutes.busquedaTags){
                                 BrusqueTags(navController = controller)
                             }
-                            composable(NavRoutes.favOrgs){
-                                favOrgs(navController = controller)
-                            }
-                            composable(NavRoutes.favoritos){
-                                favOrgs(navController = controller)
-                            }
-
                             composable(NavRoutes.historialBusqueda){
                                 HistorialBrusqre(navController = controller)
                             }
                             // HOME
                             composable(NavRoutes.home) {
+                              
                                 Home(navController = controller)
 
                             }
                             composable(NavRoutes.favoritos) {
-                              //  favoritos()
+                                FavsOSC(navController = controller)
                             }
+                            composable(NavRoutes.favOrgs){
+                                FavsDos(navController = controller)
+                            }
+
                         } // Fin NavHost
                     } // Fin NavControllerCreation
                 } // Fin cuerpo surface

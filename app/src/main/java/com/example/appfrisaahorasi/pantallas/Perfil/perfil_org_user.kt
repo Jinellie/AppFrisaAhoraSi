@@ -110,7 +110,7 @@ fun PerfilApp(NombreOrg: String, OrgDesc : String, instaUrl : String, twitterUrl
 
         // pass the drawer
         drawerContent = {
-            AppDrawer("OSC") // TODO: pasar parámetro tipoUsuario
+            AppDrawer("OSC", navController) // TODO: pasar parámetro tipoUsuario
         },
 
         floatingActionButton = {
