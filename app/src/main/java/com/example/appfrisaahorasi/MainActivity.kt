@@ -32,18 +32,19 @@ import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.RegistroSC4Sc
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.RegistroScreen
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroU3Screen
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.RegistroUScreen
-import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.registroSC5
 import com.example.appfrisaahorasi.pantallas.Registro.EscogerEtiquetasScreen
 import com.example.appfrisaahorasi.pantallas.Registro.TagsViewModel
 import com.example.appfrisaahorasi.pantallas.Registro.Usuario.favOrgs
 import com.example.appfrisaahorasi.pantallas.busquedaBar.Brusque
 import com.example.appfrisaahorasi.ui.theme.AppFrisaAhoraSiTheme
-import com.example.appfrisaahorasi.pantallas.Registro.EscogerEtiquetasScreen
+
+import com.example.appfrisaahorasi.pantallas.Registro.RegistroViewModel
 
 class MainActivity : ComponentActivity() {
     // NAV CONTROLLER TO ACCESS ALL
     private lateinit var navController: NavHostController
     private val sharedTagsViewModel by viewModels<TagsViewModel>()
+    private val sharedRegisterViewModel by viewModels<RegistroViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -88,19 +89,16 @@ class MainActivity : ComponentActivity() {
                             }
                             // REGISTRO: ORGANIZACIÓN
                             composable(NavRoutes.registroSC) {
-                                RegistroScreen()
+                                RegistroScreen(navController, sharedRegisterViewModel)
                             }
                             composable(NavRoutes.registroSC2) {
-                                RegistroSC2Screen()
+                                RegistroSC2Screen(navController, sharedRegisterViewModel)
                             }
                             composable(NavRoutes.registroSC3) {
-                                RegistroSC3Screen()
+                                RegistroSC3Screen(navController, sharedRegisterViewModel)
                             }
                             composable(NavRoutes.registroSC4) {
-                                RegistroSC4Screen()
-                            }
-                            composable(NavRoutes.registroSC5) {
-                                registroSC5()
+                                RegistroSC4Screen(navController, sharedRegisterViewModel)
                             }
 
                             // REGISTRO: USUARIO
@@ -132,7 +130,7 @@ class MainActivity : ComponentActivity() {
                             }
                             // HOME
                             composable(NavRoutes.home) {
-                                Home()
+                                Home(navController)
                             }
                             composable(NavRoutes.favoritos) {
                               //  favoritos()
