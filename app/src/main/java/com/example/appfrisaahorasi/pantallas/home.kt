@@ -1,14 +1,7 @@
 package com.example.appfrisaahorasi.pantallas
 
-import android.content.res.ColorStateList
-import android.graphics.Typeface
-import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.View
-import android.widget.EditText
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -27,12 +20,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.DrawerValue
 import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Comment
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.rememberDrawerState
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
@@ -45,7 +36,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -54,9 +44,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.appfrisaahorasi.R
-import com.example.appfrisaahorasi.pantallas.Busqueda.Content
-import com.example.appfrisaahorasi.pantallas.Perfil.Body
-import com.example.appfrisaahorasi.pantallas.Perfil.BottomBar
 import kotlinx.coroutines.launch
 
 @Composable
@@ -81,14 +68,13 @@ fun Home(navController: NavController) {
                             scaffoldState.drawerState.open()
                         }
                     }
-                },
-                tipoUsuario = "Personal"
+                }
             )
         }
     )
 }
 @Composable
-fun ContentHome(modifier: Modifier, onMenuClick: () -> Unit, tipoUsuario: String) {
+fun ContentHome(modifier: Modifier, onMenuClick: () -> Unit) {
     lateinit var navController: NavHostController
 
     navController = rememberNavController()
