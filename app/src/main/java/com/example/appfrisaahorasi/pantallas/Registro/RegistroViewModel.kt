@@ -26,7 +26,7 @@ class RegistroViewModel : ViewModel() {
     var celular by mutableStateOf("") // celular al que se vincula la cuenta
     var correo by mutableStateOf("")
     var contrasena by mutableStateOf("")
-    var profilePictureUri by mutableStateOf<Uri?>(null)
+   // var profilePictureUri by mutableStateOf<Uri?>(null)
 
     // USUARIO PERSONA
     var edad by  mutableStateOf("")
@@ -60,7 +60,9 @@ class RegistroViewModel : ViewModel() {
                 "Display_name" to this.nombre,
                 "Email" to this.correo,
                 "TipoDeUsuario" to "Persona",
-                "celular" to this.celular
+                "celular" to this.celular,
+                "Edad" to this.edad,
+                "Descripcion" to this.descripcion
             )
 
             FirebaseFirestore.getInstance().collection("Users")

@@ -51,7 +51,7 @@ fun AppDrawer(userType: String, navController: NavController) {
     // Define the selected drawer content Composable
     val drawerContent: @Composable () -> Unit = when (userType) {
         "OSC" -> { { OSCDrawerContent(navController) } }
-        "Personal" -> { { StandardUserDrawerContent(navController) } }
+        "Persona" -> { { StandardUserDrawerContent(navController) } }
         else -> { { InvitadoDrawerContent(navController) } }
     }
 

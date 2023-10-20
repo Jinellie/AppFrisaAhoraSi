@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.appfrisaahorasi.pantallas.Registro.RegistroViewModel
+import com.example.appfrisaahorasi.ui.theme.RedApp
 
 
 @Composable
@@ -225,23 +226,7 @@ fun RegistroScreen(navController: NavController,viewModel: RegistroViewModel) {
                     isPassword = true,
                     passwordVisibility = passwordHidden
                 )
-                Text(
-                    text = "Obligatorio *",
-                    textAlign = TextAlign.Start,
-                    fontSize = 12.sp,
-                    textDecoration = TextDecoration.None,
-                    letterSpacing = 0.sp,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier
-                        .align(alignment = Alignment.Start)
-                        .padding(18.dp, 0.dp, 18.dp, 0.dp)
-                        .width(77.dp)
-                        //.height(18.dp)
-                        .alpha(1f),
-                    fontWeight = FontWeight.Medium,
-                    fontStyle = FontStyle.Normal,
-                    color = Color.Gray
-                )
+
 
                 Button(
                     onClick = { viewModel.validateContinue1(navController)},
@@ -273,8 +258,10 @@ fun RegistroScreen(navController: NavController,viewModel: RegistroViewModel) {
             title = { Text(text = "Error") },
             text = { Text(text = viewModel.dialogMessage) },
             buttons = {
-                Button(onClick = { viewModel.showErrorDialog = false }) { // Esto se invocará cuando se presione el botón
-                    Text(text = "Aceptar")
+                Button(onClick = { viewModel.showErrorDialog = false }, shape = RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp, bottomStart = 5.dp, bottomEnd = 5.dp),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = RedApp), modifier = Modifier.fillMaxWidth() // FIXME MAYBE
+                    ) { // Esto se invocará cuando se presione el botón
+                    Text(text = "Aceptar", color = Color.White)
                 }
             }
         )
