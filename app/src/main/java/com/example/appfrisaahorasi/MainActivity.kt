@@ -88,7 +88,7 @@ class MainActivity : ComponentActivity() {
 
                             }
                             composable(NavRoutes.perfilUsuario) {
-                                PerfilUsuario()
+                                PerfilUsuario(navController = controller)
                             }
                             // REGISTRO EMPEZAR
                             composable(NavRoutes.IniciarRegistro) {

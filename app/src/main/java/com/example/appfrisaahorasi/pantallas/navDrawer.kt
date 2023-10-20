@@ -136,7 +136,7 @@ fun StandardUserDrawerContent(navController: NavController) {
         NavigationButton(
             text = "Favoritos",
             icon = Icons.Default.Favorite, // Replace with your desired icon
-            onClick = { navController.navigate("favoritos") }
+            onClick = { navController.navigate(NavRoutes.favoritos) }
         )
 
         NavigationButton(

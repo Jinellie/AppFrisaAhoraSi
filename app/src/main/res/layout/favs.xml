@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#DDDDDD">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -126,6 +127,14 @@
         </LinearLayout>
 
     </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/favspublicaciones">
+
+    </ImageView>
 
 
 </LinearLayout>
