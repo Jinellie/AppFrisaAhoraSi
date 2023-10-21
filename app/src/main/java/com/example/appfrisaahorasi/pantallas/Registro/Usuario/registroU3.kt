@@ -38,6 +38,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.appfrisaahorasi.R
 import com.example.appfrisaahorasi.navigation.NavRoutes
+import com.example.appfrisaahorasi.navigation.NavRoutes.home
 import com.example.appfrisaahorasi.pantallas.Registro.Organizacion.CustomTextField
 import com.example.appfrisaahorasi.pantallas.Registro.RegistroViewModel
 
@@ -94,7 +95,7 @@ fun RegistroU3Screen(navController: NavController, viewModel: RegistroViewModel 
                     contentDescription = "Foto de perfil genérica",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
-                        .size(200.dp)
+                        .size(150.dp)
                         .clip(RoundedCornerShape(10.dp))
                 )
                 // Boton de foto de perfil
@@ -118,7 +119,8 @@ fun RegistroU3Screen(navController: NavController, viewModel: RegistroViewModel 
 
                 Button(
                     onClick = { viewModel.finishRegisterUser(){
-                                    navController.navigate(NavRoutes.historialBusqueda)
+                        val parameterValue = "Persona"
+                        navController.navigate("${NavRoutes.home}/$parameterValue")
                                 }
                               },
                     shape = RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp, bottomStart = 5.dp, bottomEnd = 5.dp),

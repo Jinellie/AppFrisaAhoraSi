@@ -1,24 +1,17 @@
 package com.example.appfrisaahorasi.pantallas
 
-import android.content.res.ColorStateList
-import android.graphics.Typeface
-import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.View
-import android.widget.EditText
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavController
 import com.example.appfrisaahorasi.R
@@ -34,7 +27,7 @@ fun FavsDos(navController: NavController) {
     Scaffold(
         scaffoldState = scaffoldState,
         drawerContent = {
-            AppDrawer(userType = "Personal", navController)
+            AppDrawer(userType = "Persona", navController)
         },
         content = { padding ->
             ContentDos(
@@ -56,6 +49,65 @@ fun FavsDos(navController: NavController) {
 
 @Composable
 fun ContentDos(navController: NavController, modifier: Modifier, onMenuClick: () -> Unit) {
+
+    val  listaDeOSC = listOf(
+        OSC(
+            userName = "Diez por Ciénega A.C.",
+            imageUrl = "https://picsum.photos/id/0/200",
+
+            ),
+        OSC(
+            userName = "Diez por Ciénega A.C.",
+            imageUrl = "https://picsum.photos/id/0/200",
+
+            ),
+        OSC(
+            userName = "Organización Solidaria A.B.",
+            imageUrl = "https://picsum.photos/id/1/200",
+
+            ),
+        OSC(
+            userName = "Fundación Esperanza X.Y.Z.",
+            imageUrl = "https://picsum.photos/id/2/200",
+
+            ),
+        OSC(
+            userName = "Asociación Pro Medio Ambiente",
+            imageUrl = "https://picsum.photos/id/3/200",
+
+            ),
+        OSC(
+            userName = "Acción Humanitaria B.C.D.",
+            imageUrl = "https://picsum.photos/id/4/200",
+
+            ),
+        OSC(
+            userName = "Fundación Sonrisas E.F.G.",
+            imageUrl = "https://picsum.photos/id/5/200",
+
+            ),
+        OSC(
+            userName = "Ayuda para Personas Mayores H.I.J.",
+            imageUrl = "https://picsum.photos/id/6/200",
+
+            ),
+        OSC(
+            userName = "Fundación Educación K.L.M.",
+            imageUrl = "https://picsum.photos/id/7/200",
+
+            ),
+        OSC(
+            userName = "Organización Cultural N.O.P.",
+            imageUrl = "https://picsum.photos/id/8/200",
+
+            ),
+        OSC(
+            userName = "Fundación de Salud Q.R.S.",
+            imageUrl = "https://picsum.photos/id/9/200",
+        )
+    )
+    LazyColumnWithOSCCards(users = listaDeOSC, navController)
+
     AndroidView(
         factory = { context ->
             // Inflate your XML layout using the context

@@ -27,7 +27,8 @@ object NavRoutes {
     // ETIQUETAS
     const val EscogerEtiquetasScreen = "EscogerEtiquetasScreen"
     // Home
-    const val home = "home"
+    //const val home = "home"
+    const val home = "home?parameter={parameter}"
     //Busqueda
     const val busqueda="Busqueda"
     const val busquedaTags="BusquedaTags"

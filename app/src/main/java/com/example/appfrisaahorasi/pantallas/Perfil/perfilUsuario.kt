@@ -11,13 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavController
 import com.example.appfrisaahorasi.R
 import com.example.appfrisaahorasi.pantallas.AppDrawer
-import com.example.appfrisaahorasi.pantallas.Content
 import kotlinx.coroutines.launch
 
 
@@ -29,7 +26,7 @@ fun PerfilUsuario(navController: NavController) {
     Scaffold(
         scaffoldState = scaffoldState,
         drawerContent = {
-            AppDrawer(userType = "Personal", navController)
+            AppDrawer(userType = "Persona", navController)
         },
         content = { padding ->
             ContentPerfil(

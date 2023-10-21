@@ -29,6 +29,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,27 +40,40 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.appfrisaahorasi.R
 import kotlinx.coroutines.launch
 
 @Composable
-fun Home(navController: NavController) {
+fun Home(navController: NavController, tipoUsuario: String?) {
     val scaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
+    /*val tipoUsuario = remember {
+        val route = navController.currentBackStackEntry?.destination?.route
+        route?.substringAfterLast("/")
+    }*/
 
     Scaffold(
         scaffoldState = scaffoldState,
         drawerContent = {
-            AppDrawer(userType = "Personal", navController)
-        },
+            AppDrawer(userType = " ", navController)
+        }
+            /*if (tipoUsuario != null) {
+                AppDrawer(userType = tipoUsuario, navController)
+            }
+            else {
+                AppDrawer(userType = " ", navController)
+            }
+        }*/,
         content = { padding ->
             ContentHome(
-               // navController,
-                modifier = Modifier.padding(padding).clickable { navController.navigate("perfilOrgvistaUsuario") },
+                navController,
+                modifier = Modifier.padding(padding).clickable(enabled = true, onClick = { navController.navigate("perfilOrgvistaUsuario") }),
                 onMenuClick = {
                     coroutineScope.launch {
                         if (scaffoldState.drawerState.isOpen) {
@@ -74,10 +88,7 @@ fun Home(navController: NavController) {
     )
 }
 @Composable
-fun ContentHome(modifier: Modifier, onMenuClick: () -> Unit) {
-    lateinit var navController: NavHostController
-
-    navController = rememberNavController()
+fun ContentHome(navController: NavController, modifier: Modifier, onMenuClick: () -> Unit) {
 
     val  listaDeOSC = listOf(
         User(

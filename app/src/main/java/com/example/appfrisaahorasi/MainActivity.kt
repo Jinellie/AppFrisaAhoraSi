@@ -8,11 +8,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.appfrisaahorasi.navigation.NavRoutes
 import com.example.appfrisaahorasi.navigation.NavRoutes.LogInFrisa
 
@@ -129,9 +132,21 @@ class MainActivity : ComponentActivity() {
                                 HistorialBrusqre(navController = controller)
                             }
                             // HOME
-                            composable(NavRoutes.home) {
-                                Home(navController = controller)
+                            /*composable(NavRoutes.home) {
+                                Home(navController = controller, "")
+                            }*/
+                            composable(
+                                route = "home?parameter={parameter}",
+                                arguments = listOf(navArgument("parameter") { defaultValue = " "
+                                    type = NavType.StringType })
+                            ) { entry ->
+                                val parameter = entry.arguments?.getString("parameter")
+                                val localParameter = remember { parameter } // Create a local variable using remember
+
+                                Home(navController = controller, tipoUsuario = localParameter)
                             }
+
+
                             composable(NavRoutes.favoritos) {
                                 FavsOSC(navController = controller)
                             }

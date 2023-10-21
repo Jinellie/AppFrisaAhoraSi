@@ -88,7 +88,7 @@
             android:outlineProvider="background"
 
             android:scaleType="centerCrop"
-            android:src="@drawable/woman"
+            android:src="@drawable/profpic"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintVertical_bias="0.5" />
 
@@ -101,7 +101,7 @@
             android:layout_marginTop="13dp"
 
             android:fontFamily="sans-serif-black"
-            android:text="Sara Martinez Arriola"
+            android:text="Adrián Tadeo Barrera Almanza"
             android:textSize="16sp" />
 
         <TextView
@@ -111,7 +111,7 @@
             android:layout_gravity="center"
 
             android:fontFamily="sans-serif"
-            android:text="23 años"
+            android:text="20 años"
             android:textSize="16sp" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -134,7 +134,7 @@
                 android:layout_marginTop="0dp"
 
                 android:fontFamily="sans-serif"
-                android:text="+52 81 2902 4531"
+                android:text="+52 81 1797 5841"
                 android:textSize="13sp" />
 
         </LinearLayout>
@@ -146,11 +146,8 @@
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="27dp"
-
             android:fontFamily="sans-serif-medium"
-            android:text="Me encanta trabajar como voluntaria en diversas organizaciones sin fines de lucro. Ya sea ayudando a comunidades desfavorecidas, trabajando en proyectos de conservación ambiental o participando en campañas de concienciación social, siempre estoy dispuesta a dar un paso adelante para marcar la diferencia.
-
-"
+            android:text="Me encanta trabajar como voluntario en diversas organizaciones sin fines de lucro."
             android:textAlignment="center"
             android:textSize="12sp" />
 
@@ -176,7 +173,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center_horizontal"
                 android:padding="10dp"
-                android:text="Psicología"
+                android:text="Ambientalistas"
                 android:textSize="12sp" />
 
             <TextView
@@ -189,7 +186,7 @@
                 android:background="@drawable/rounded_gray"
                 android:fontFamily="sans-serif-medium"
                 android:padding="10dp"
-                android:text="Autoestima"
+                android:text="Medicina"
                 android:textSize="12sp" />
 
             <TextView
@@ -227,7 +224,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center_horizontal"
                 android:padding="10dp"
-                android:text="Bienestar"
+                android:text="Discapacidad"
                 android:textSize="12sp" />
 
             <TextView
@@ -242,7 +239,7 @@
                 android:background="@drawable/rounded_gray"
                 android:fontFamily="sans-serif-medium"
                 android:padding="10dp"
-                android:text="Mentalidad"
+                android:text="Salud"
                 android:textSize="12sp" />
 
         </GridLayout>

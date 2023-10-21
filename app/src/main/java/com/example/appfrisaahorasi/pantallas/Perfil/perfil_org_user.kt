@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -57,16 +58,18 @@ import com.example.appfrisaahorasi.pantallas.TopBar
 import com.example.appfrisaahorasi.ui.theme.Black
 import com.example.appfrisaahorasi.ui.theme.RedApp
 import com.google.android.gms.maps.MapView
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+/*
 var NombreOrg = "Nombre_Org"
 var OrgDesc = "Hola soy una organizacion....Hola soy una organizacion....Hola soy una organizacion....Hola soy una organizacion....Hola soy una organizacion...."
 var instaUrl = "https://www.instagram.com"
 var twitterUrl = "https://twitter.com"
-var faceBookUrl = "https://www.facebook.com"
+var faceBookUrl = "https://www.facebook.com"*/
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -113,7 +116,7 @@ fun PerfilApp(NombreOrg: String, OrgDesc : String, instaUrl : String, twitterUrl
             AppDrawer("OSC", navController) // TODO: pasar parámetro tipoUsuario
         },
 
-        floatingActionButton = {
+        /*floatingActionButton = {
             // Create a floating action button in
             // floatingActionButton parameter of scaffold
             FloatingActionButton(
@@ -139,8 +142,8 @@ fun PerfilApp(NombreOrg: String, OrgDesc : String, instaUrl : String, twitterUrl
                 }) {
                 // Simple Text inside FAB
                 Text(text = "X")
-            }
-        }
+            }*/
+      //  }
     )
 }
 @Composable
@@ -196,6 +199,7 @@ fun rememberMapLifecycleObserver(mapView: MapView): LifecycleEventObserver =
 
 
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun BottomBar() {
     val customColor = RedApp // Hex color code
@@ -204,15 +208,45 @@ fun BottomBar() {
     BottomAppBar(
         backgroundColor = customColor
     ) {
-        // Center the text horizontally and vertically
-        Text(
-            text = "Suscribirme",
-            color = Color.White,
+        // Agregar un botón para guardar los datos del usuario en Firebase cuando se haga clic en "Suscribirme"
+        Card(
+            onClick = {
+                val email = "frisa@gmail.com" // Dirección de correo
+
+                // Crear un mapa con los datos que deseas guardar
+                val userData = mapOf(
+                    "correo" to email,
+                    "correoUsuario" to "tadeo34.barrera@gmail.com",
+                    "date" to "20 Oct, 2023",
+                    "favoritos" to "18 de octubre de 2023, 00:00:00 UTC-6",
+                    "name" to "Adrián Tadeo Barrera Almanza",
+                    "shipTo" to "Mex, N.L.",
+                    "telefono" to "8117975841"
+                )
+
+                // Guardar los datos en la colección "listaDifusionCorreo"
+                FirebaseFirestore.getInstance().collection("listaDifusion")
+                    .document(email)
+                    .set(userData)
+                    .addOnSuccessListener {
+                        // Manejar el éxito de la operación
+                        println("Datos del usuario guardados en listaDifusion")
+                    }
+                    .addOnFailureListener { e ->
+                        // Manejar cualquier error
+                        println("Error al guardar los datos del usuario en listaDifusion: $e")
+                    }
+            },
+            shape = MaterialTheme.shapes.medium,
             modifier = Modifier
-                .padding(8.dp) // Add padding for spacing
                 .fillMaxWidth()
-                .wrapContentSize(Alignment.Center)
-        )
+                .wrapContentSize(Alignment.Center),
+            backgroundColor = Color.Transparent,
+            elevation =  0.dp
+        ) {
+            Text(text = "Suscribirme",         color = Color.White
+            )
+        }
     }
 }
 
@@ -239,7 +273,7 @@ fun Body(NombreOrg: String, OrgDesc : String, instaUrl : String, twitterUrl: Str
             Image(
                 painter = painterResource(id = R.drawable.organizacion),
                 contentDescription = null,
-                modifier = Modifier.size(90.dp)
+                modifier = Modifier.size(70.dp)
             )
 
             Text(
@@ -249,7 +283,7 @@ fun Body(NombreOrg: String, OrgDesc : String, instaUrl : String, twitterUrl: Str
                 style = TextStyle(fontSize = 24.sp)
 
             )
-            Spacer(modifier = Modifier.width(35.dp))
+            Spacer(modifier = Modifier.width(20.dp))
 
             Image(
                 painter = painterResource(id = R.drawable.share_icon),
@@ -265,12 +299,12 @@ fun Body(NombreOrg: String, OrgDesc : String, instaUrl : String, twitterUrl: Str
                     }
             )
 
-            Spacer(modifier = Modifier.width(20.dp))
+            Spacer(modifier = Modifier.width(10.dp))
 
 
 
             Image(
-                painter = painterResource(if (isImageClicked) R.drawable.heart_black else R.drawable.empty_heart),
+                painter = painterResource(if (!isImageClicked) R.drawable.heart_black else R.drawable.empty_heart),
                 contentDescription = null,
                 modifier = Modifier
                     .padding(top = 27.dp)
